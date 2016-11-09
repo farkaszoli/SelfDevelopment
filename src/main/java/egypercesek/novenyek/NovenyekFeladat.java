@@ -17,7 +17,7 @@ public class NovenyekFeladat {
 
     private List<Noveny> novenyList = new ArrayList();
 
-    public void beolvas() {
+    public List<Noveny> beolvas() {
         try {
             Scanner scanner = new Scanner(FILE);
             while (scanner.hasNextLine()) {
@@ -34,6 +34,7 @@ public class NovenyekFeladat {
         } catch (Exception e) {
             System.out.print("Error: " + e.getMessage());
         }
+        return novenyList;
     }
 
     //    Írd ki, hogy a gyöngyvirág melyik részét gyűjtik!
