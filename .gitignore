@@ -1,6 +1,5 @@
 .idea/
 .target/
-*.xml
 *.iml
 *.lst
 *.jar

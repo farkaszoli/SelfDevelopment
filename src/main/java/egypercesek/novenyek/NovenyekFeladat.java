@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 // http://www.webotlet.hu/?p=898
 public class NovenyekFeladat {
-    private static final File FILE = new File("E:\\Epam\\repok\\Practice\\src\\resource\\novenyek.txt");
+    private static final File FILE = new File("E:\\Epam\\repok\\SelfDevelopmentProject\\src\\main\\resources\\novenyek.txt");
 
     private List<Noveny> novenyList = new ArrayList();
 
