@@ -65,7 +65,7 @@ public class Hivasok
             {
                  if (hivas.getHivasHivasIdopont().getOra() == i)
                  {
-                    if (i >= 8 && i <= 17)
+                    if (i > 7 && i < 18)
                     {
                         csucsidejuHivasDarabSzama++;
                     } else
@@ -75,8 +75,8 @@ public class Hivasok
 
                     String telefonszam = hivas.getTelefonszam();
 
-                    if (telefonszam.contains("+3621") || telefonszam.contains("+3631")
-                            || telefonszam.contains("+3671"))
+                    if (telefonszam.startsWith("+3621") || telefonszam.startsWith("+3631")
+                            || telefonszam.startsWith("+3671"))
                     {
                         mobilHivasDarabSzama++;
                     } else
@@ -85,6 +85,7 @@ public class Hivasok
                     }
                 }
             }
+
             System.out.println(i + ".ora: " + csucsidejuHivasDarabSzama + ", " + nemcsucsIdejuHivasDarabSzama +
                     ", " + mobilHivasDarabSzama + ", " + vezetekesHivasDarabSzama);
         }

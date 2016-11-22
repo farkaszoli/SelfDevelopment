@@ -28,4 +28,10 @@ public class Szoveg
         }
 
     }
+
+    @Test
+    public void fordiva()
+    {
+        System.out.println(new StringBuffer(TASK_WORD).reverse().toString());
+    }
 }

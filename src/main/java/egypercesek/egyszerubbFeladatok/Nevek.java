@@ -26,8 +26,15 @@ public class Nevek
 
     // Írd ki csupa nagybetűvel!
     @Test
-    public void upperCaseName() {
+    public void upperCaseName()
+    {
         System.out.println("nagybetuvel a nev: " + name.toUpperCase());
+    }
+
+    @Test
+    public void upperCaseNameWithJava8()
+    {
+        name.chars().forEach(x -> System.out.println(Character.toUpperCase((char)x)));
     }
 
     // Írd ki betűnként egymás alá!
@@ -37,6 +44,12 @@ public class Nevek
         for (int i = 0; i < name.length(); i++) {
             System.out.println(name.charAt(i));
         }
+    }
+
+    @Test
+    public void egymasAlattJava8()
+    {
+        name.chars().forEach(x -> System.out.println((char)x));
     }
 
     // Írd ki, található-e benne ’a’ betű!
@@ -51,7 +64,6 @@ public class Nevek
 
         }
     }
-
 
     //    Írd ki csak a vezetékneved!
     @Test
