@@ -4,11 +4,14 @@ import egypercesek.kombinaltMegszamlalas.HivasIdopont;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 //  http://www.webotlet.hu/?p=1129
-public class Kezilabda {
+public class Kezilabda
+{
     private static final File FILE
             = new File("E:\\Epam\\repok\\SelfDevelopmentProject\\src\\main\\resources\\kezilabda.csv");
     private List<Jatekos> jatekosokLista = new ArrayList<>();
@@ -52,31 +55,32 @@ public class Kezilabda {
      * Hány akciógólt dobott? (nem hetesekből)?
      * Hány százalékát dobta be a heteseinek? Ha valaki nem dobott hetest, azt az esetet is oldd meg valahogy!
      */
-    public void kiszamol() {
+    public void kiszamol()
+    {
         List<Jatekos> jatekosLista = beolvas();
 
-        for (Jatekos jatekos : jatekosLista) {
+        for (Jatekos jatekos : jatekosLista)
+        {
             String[] meccsek = jatekos.getMeccsek().split(",");
             int meccsekSzama = 0;
             int golokSzama = 0;
-            for (int i = 0; i < meccsek.length; i++) {
-                if (!(meccsek[i].startsWith("")) || !(meccsek[i].contains(String.valueOf(0)))) {
+
+            for (String meccs : meccsek)
+            {
+                try {
+                    golokSzama += Integer.parseInt(meccs);
                     meccsekSzama++;
-                    golokSzama += Integer.valueOf(meccsek[i]);
+                } catch (NumberFormatException ex)
+                {
+                        System.out.print("Error: " + ex.getMessage());
                 }
 
-            }
 
+            }
             jatekos.setMeccsekSzama(meccsekSzama);
             jatekos.setGolokSzama(golokSzama);
-
             double szazalek = jatekos.getErtekesitettHetes() / jatekos.getHetesekSzama();
-
             jatekos.setSikeresHetesekSzazaleka(szazalek);
-        }
-
-        for (Jatekos jatekos : jatekosLista) {
-            System.out.println(jatekos.getNev() + " " + jatekos.getMeccsekSzama() + " " + jatekos.getGolokSzama());
         }
     }
 
@@ -85,22 +89,29 @@ public class Kezilabda {
      * Írd ki, hogy az adott posztokon játszó játékosok kicsodák, hányan vannak, és összesen mennyi gólt lőttek.
      * A játékosok nevei vesszővel legyenek elválasztva a felsorolásban.
      */
-    public void pozicio() {
+    public void pozicio()
+    {
         List<Jatekos> jatekosLista = beolvas();
         List<Jatekos> posztAlapjan = new ArrayList<>();
         String[] poszt = {"iranyito", "atlovo", "beallo", "jobbszelso", "balszelso", "kapus"};
 
-        for (String pozicio : poszt) {
-            for (Jatekos jatekos : jatekosLista) {
-                if (pozicio.contains(jatekos.getPoszt())) {
+        for (String pozicio : poszt)
+        {
+            for (Jatekos jatekos : jatekosLista)
+            {
+                if (pozicio.contains(jatekos.getPoszt()))
+                {
                     posztAlapjan.add(jatekos);
                 }
             }
-            for (String jatekospozicio : poszt) {
+            for (String jatekospozicio : poszt)
+            {
                 System.out.print(jatekospozicio + ": ");
 
-                for (Jatekos jatekos : posztAlapjan) {
-                    if (jatekospozicio.equals(jatekos.getPoszt())) {
+                for (Jatekos jatekos : posztAlapjan)
+                {
+                    if (jatekospozicio.equals(jatekos.getPoszt()))
+                    {
                         System.out.print(jatekos.getNev());
                     }
                 }
@@ -113,21 +124,26 @@ public class Kezilabda {
      * Írd ki, hogy ki a legjobb hetes lövő azok közül, akik legalább 5 hetest dobtak (bedobott hetesek arányának megfelelően)!
      */
 
-    public void legjobbHetesDobo() {
+    public void legjobbHetesDobo()
+    {
         List<Jatekos> jatekosLista = beolvas();
         Jatekos legjobbanDoboJatekos = new Jatekos("", "", 0, 0, "", 0, 0, 0, 0.0d);
         double szazalek;
         double legjobbSzazalek = 0.0d;
 
-        for (Jatekos jatekos : jatekosLista) {
-            if (jatekos.getErtekesitettHetes() != 0 && jatekos.getHetesekSzama() != 0 && jatekos.getHetesekSzama() > 4) {
+        for (Jatekos jatekos : jatekosLista)
+        {
+            if (jatekos.getErtekesitettHetes() != 0 && jatekos.getHetesekSzama() != 0 && jatekos.getHetesekSzama() > 4)
+            {
                 szazalek = (jatekos.getErtekesitettHetes() / jatekos.getHetesekSzama()) * 100;
 
-                if (szazalek > legjobbSzazalek) {
+                if (szazalek > legjobbSzazalek)
+                {
                     legjobbSzazalek = szazalek;
                     legjobbanDoboJatekos = jatekos;
                 }
-            } else {
+            } else
+            {
                 szazalek = 0.0d;
             }
             System.out.println(legjobbanDoboJatekos.getNev() + " " + szazalek);
@@ -135,28 +151,44 @@ public class Kezilabda {
     }
 
     //    Dobott-e jobbszélső hetest?
-    public void legkevesebbetJatszott() {
+    public void legkevesebbetJatszott()
+    {
         List<Jatekos> jatekosLista = beolvas();
+        List<Jatekos> jobbszelso = jatekosLista.stream()
+                .filter(x -> "jobbszelso".equals(x.getPoszt())).collect(Collectors.toList());
 
-        for (Jatekos jatekos : jatekosLista) {
-            if ("jobbszelso".equals(jatekos.getPoszt())) {
-                String[] meccsek = jatekos.getMeccsek().split(",");
-                try {
-                    for (String meccs : meccsek) {
-                        int i = Integer.parseInt(meccs);
-                        if (i >= 0)
-                        {
-                            System.out.print("igen");
+        for (Jatekos jatekos : jobbszelso)
+        {
+            String[] meccsek = jatekos.getMeccsek().split(",");
+            try
+            {
+                for (String meccs : meccsek)
+                {
+                    if(!meccs.contains(""))
+                    {
+                        int golokSzama = Integer.parseInt(meccs);
+                        if (golokSzama >= 0) {
+                            System.out.print("dobott");
                             break;
                         }
                     }
-                } catch (NumberFormatException ex)
-                {
-                    System.out.print("Error: " + ex.getMessage());
                 }
-
+            } catch (NumberFormatException ex)
+            {
+                System.out.print("Error: " + ex.getMessage());
             }
+
         }
+    }
+
+//    Ki volt a legeredményesebb átlövő?
+    public void legeredmenyesebbAtlovo()
+    {
+        List<Jatekos> jatekosLista = beolvas();
+        List<Jatekos> jobbszelso = jatekosLista.stream()
+                .filter(x -> "atlovo".equals(x.getPoszt())).collect(Collectors.toList());
+
+
     }
 }
 
