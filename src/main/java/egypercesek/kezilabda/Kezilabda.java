@@ -19,13 +19,14 @@ public class Kezilabda
     public List<Jatekos> beolvas() {
         try (Scanner scanner = new Scanner(FILE)) {
             scanner.nextLine();
+            boolean elsoSor = scanner.hasNextLine();
 
             while (scanner.hasNextLine()) {
                 String sor = scanner.nextLine();
                 String[] jatekosAdatok = sor.split(";");
 
                 String jatekosNev = jatekosAdatok[0];
-                String poszt = jatekosAdatok[1];
+                Poszt poszt = getPozicio(jatekosAdatok[1]);
                 int dobottHetes = Integer.valueOf(jatekosAdatok[2]);
                 int ertekesitettHetes = Integer.valueOf(jatekosAdatok[3]);
                 String meccsek = jatekosAdatok[4];
@@ -39,11 +40,37 @@ public class Kezilabda
         return jatekosokLista;
     }
 
+    private Poszt getPozicio(String jatekosPozicio) {
+        Poszt poszt = null;
+        switch (jatekosPozicio)
+        {
+            case "iranyito":
+                 poszt = Poszt.IRANYITO;
+            break;
+            case "atlovo":
+                poszt = Poszt.ATLOVO;
+            break;
+            case "beallo":
+                poszt = Poszt.BEALLO;
+            break;
+            case "balszelso":
+                poszt = Poszt.BALSZELSO;
+            break;
+            case "jobbszelso":
+                poszt = Poszt.JOBBSZELSO;
+            break;
+            case "kapus":
+                poszt = Poszt.KAPUS;
+            break;
+        }
+        return poszt;
+    }
+
     public void kiir() {
         List<Jatekos> jatekosLista = beolvas();
 
         for (Jatekos jatekos : jatekosLista) {
-            System.out.println(jatekos.getNev());
+            System.out.println(jatekos.getNev() + ", " + jatekos.getPoszt());
         }
     }
 
@@ -55,6 +82,7 @@ public class Kezilabda
      * Hány akciógólt dobott? (nem hetesekből)?
      * Hány százalékát dobta be a heteseinek? Ha valaki nem dobott hetest, azt az esetet is oldd meg valahogy!
      */
+
     public void kiszamol()
     {
         List<Jatekos> jatekosLista = beolvas();
@@ -79,7 +107,14 @@ public class Kezilabda
             }
             jatekos.setMeccsekSzama(meccsekSzama);
             jatekos.setGolokSzama(golokSzama);
-            double szazalek = jatekos.getErtekesitettHetes() / jatekos.getHetesekSzama();
+            double szazalek;
+            if(jatekos.getHetesekSzama() == 0)
+            {
+                szazalek = 0;
+            } else
+            {
+                szazalek = jatekos.getErtekesitettHetes() / jatekos.getHetesekSzama();
+            }
             jatekos.setSikeresHetesekSzazaleka(szazalek);
         }
     }
@@ -89,22 +124,22 @@ public class Kezilabda
      * Írd ki, hogy az adott posztokon játszó játékosok kicsodák, hányan vannak, és összesen mennyi gólt lőttek.
      * A játékosok nevei vesszővel legyenek elválasztva a felsorolásban.
      */
-    public void pozicio()
+  /*  public void pozicio()
     {
         List<Jatekos> jatekosLista = beolvas();
         List<Jatekos> posztAlapjan = new ArrayList<>();
-        String[] poszt = {"iranyito", "atlovo", "beallo", "jobbszelso", "balszelso", "kapus"};
 
-        for (String pozicio : poszt)
+        for (Poszt pozicio : posztAlapjan)
         {
             for (Jatekos jatekos : jatekosLista)
             {
-                if (pozicio.contains(jatekos.getPoszt()))
+                if (pozicio.equals(jatekos.getPoszt()))
                 {
                     posztAlapjan.add(jatekos);
                 }
             }
-            for (String jatekospozicio : poszt)
+
+            for (Poszt jatekospozicio : posztAlapjan)
             {
                 System.out.print(jatekospozicio + ": ");
 
@@ -119,11 +154,11 @@ public class Kezilabda
             }
         }
     }
-
+*/
     /**
      * Írd ki, hogy ki a legjobb hetes lövő azok közül, akik legalább 5 hetest dobtak (bedobott hetesek arányának megfelelően)!
      */
-
+/*
     public void legjobbHetesDobo()
     {
         List<Jatekos> jatekosLista = beolvas();
@@ -149,7 +184,7 @@ public class Kezilabda
             System.out.println(legjobbanDoboJatekos.getNev() + " " + szazalek);
         }
     }
-
+*/
     //    Dobott-e jobbszélső hetest?
     public void legkevesebbetJatszott()
     {
@@ -177,7 +212,6 @@ public class Kezilabda
             {
                 System.out.print("Error: " + ex.getMessage());
             }
-
         }
     }
 

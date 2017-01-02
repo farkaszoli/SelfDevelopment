@@ -18,15 +18,15 @@ public class FolyoFeladat {
     // pl tomb
     static int[][] folyo = new int[][] {
             { 1, 0, 0 },
-            { 0, 0, 0 },
-            { 0, 1, 1 },
+            { 0, 1, 1},
+            { 1, 0, 1 },
             { 1, 1, 1 } };
 
     static int n_max = 0;
     static int m_max = 0;
     static boolean nyertelMar = false;
     static int eredmeny = 0;
-
+    static boolean[] ok;
     public static void main(String[] args) {
         Scanner beolvasas = new Scanner(System.in);
         Random rand = new Random();
@@ -40,7 +40,7 @@ public class FolyoFeladat {
         // } while (n_max < m_max);
         // beolvasas.close();
         // folyo = new int[n_max][m_max];
-
+        boolean win = false;
         n_max = 4;
         m_max = 3;
 
@@ -55,10 +55,22 @@ public class FolyoFeladat {
 
         for (int i = 0; i < n_max; i++) {
             if (folyo[i][0] == 1) {
-                System.out.println(nez(i, 0));
+//                System.out.println(nez(i, 0));
+                if(nez(i, 0))
+                {
+                    win = true;
+                }
+
             } else {
-                System.out.println(false);
+//                System.out.println("2" + false);
             }
+        }
+//
+        if(win)
+        {
+            System.out.print("nyert");
+        } else {
+            System.out.print("buko");
         }
     }
 
@@ -94,7 +106,7 @@ public class FolyoFeladat {
         }
     }
 
-    private static boolean beulVanE(int i, int j) {
+    private static boolean beulVainE(int i, int j) {
         if (i < n_max && j < m_max) {
             return true;
         } else {
