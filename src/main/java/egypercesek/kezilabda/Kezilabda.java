@@ -1,6 +1,7 @@
 package egypercesek.kezilabda;
 
 import egypercesek.kombinaltMegszamlalas.HivasIdopont;
+import javafx.geometry.Pos;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -124,45 +125,48 @@ public class Kezilabda
      * Írd ki, hogy az adott posztokon játszó játékosok kicsodák, hányan vannak, és összesen mennyi gólt lőttek.
      * A játékosok nevei vesszővel legyenek elválasztva a felsorolásban.
      */
-  /*  public void pozicio()
-    {
-        List<Jatekos> jatekosLista = beolvas();
-        List<Jatekos> posztAlapjan = new ArrayList<>();
+   public void pozicio()
+   {
+       List<Jatekos> jatekosLista = beolvas();
+       List<Jatekos> jatekosPozicio = new ArrayList<>();
 
-        for (Poszt pozicio : posztAlapjan)
-        {
-            for (Jatekos jatekos : jatekosLista)
-            {
-                if (pozicio.equals(jatekos.getPoszt()))
-                {
-                    posztAlapjan.add(jatekos);
-                }
-            }
+       for (Poszt jatekosPoz : Poszt.values())
+       {
+           {
+               for (Jatekos jatekos : jatekosLista)
+               {
+                   if (jatekosPoz.equals(jatekos.getPoszt()))
+                   {
+                       jatekosPozicio.add(jatekos);
+                   }
+               }
 
-            for (Poszt jatekospozicio : posztAlapjan)
-            {
-                System.out.print(jatekospozicio + ": ");
+               for (Poszt jatekospozicio : Poszt.values())
+               {
+                   System.out.print(jatekospozicio + ": ");
 
-                for (Jatekos jatekos : posztAlapjan)
-                {
-                    if (jatekospozicio.equals(jatekos.getPoszt()))
-                    {
-                        System.out.print(jatekos.getNev());
-                    }
-                }
-                System.out.println();
-            }
-        }
-    }
-*/
+                   for (Jatekos jatekos : jatekosPozicio)
+                   {
+                       if (jatekospozicio.equals(jatekos.getPoszt()))
+                       {
+
+                           System.out.print(jatekos.getNev() + ", ");
+                       }
+                   }
+                   System.out.println();
+               }
+           }
+       }
+   }
+
     /**
      * Írd ki, hogy ki a legjobb hetes lövő azok közül, akik legalább 5 hetest dobtak (bedobott hetesek arányának megfelelően)!
      */
-/*
+
     public void legjobbHetesDobo()
     {
         List<Jatekos> jatekosLista = beolvas();
-        Jatekos legjobbanDoboJatekos = new Jatekos("", "", 0, 0, "", 0, 0, 0, 0.0d);
+        Jatekos legjobbanDoboJatekos = new Jatekos("", Poszt.ATLOVO, 0, 0, "", 0, 0, 0, 0.0d);
         double szazalek;
         double legjobbSzazalek = 0.0d;
 
@@ -184,7 +188,7 @@ public class Kezilabda
             System.out.println(legjobbanDoboJatekos.getNev() + " " + szazalek);
         }
     }
-*/
+
     //    Dobott-e jobbszélső hetest?
     public void legkevesebbetJatszott()
     {
