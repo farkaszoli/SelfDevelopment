@@ -4,6 +4,7 @@ import egypercesek.kombinaltMegszamlalas.HivasIdopont;
 import javafx.geometry.Pos;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -17,13 +18,15 @@ public class Kezilabda
             = new File("E:\\Epam\\repok\\SelfDevelopmentProject\\src\\main\\resources\\kezilabda.csv");
     private static final List<Jatekos> jatekosokLista = new ArrayList<>();
 
-    public static List<Jatekos> beolvas()
+    public List<Jatekos> beolvas()
     {
-        try (Scanner scanner = new Scanner(FILE)) {
+        try (Scanner scanner = new Scanner(FILE))
+        {
             scanner.nextLine();
             boolean fejlec = scanner.hasNextLine();
 
-            while (scanner.hasNextLine()) {
+            while (scanner.hasNextLine())
+            {
                 String sor = scanner.nextLine();
                 String[] jatekosAdatok = sor.split(";");
 
@@ -32,8 +35,14 @@ public class Kezilabda
                 int dobottHetes = Integer.valueOf(jatekosAdatok[2]);
                 int ertekesitettHetes = Integer.valueOf(jatekosAdatok[3]);
                 String meccsek = jatekosAdatok[4];
+                int meccsekSzama = getMeccsekSzama(jatekosAdatok[4]);
+                int golokSzama = getGolokSzama(jatekosAdatok[4]);
+                BigDecimal golAtlag = BigDecimal.valueOf(golokSzama / meccsekSzama );
+                BigDecimal sikeresHetesekSzazaleka = getErtekesitettHetesSzazalek(ertekesitettHetes, dobottHetes);
 
-                Jatekos jatekos = new Jatekos(jatekosNev, poszt, dobottHetes, ertekesitettHetes, meccsek, 0, 0, 0, 0.0);
+
+                Jatekos jatekos = new Jatekos(jatekosNev, poszt, dobottHetes, ertekesitettHetes, meccsek, meccsekSzama,
+                        golokSzama, golAtlag, sikeresHetesekSzazaleka);
                 jatekosokLista.add(jatekos);
             }
         } catch (Exception e) {
@@ -68,13 +77,64 @@ public class Kezilabda
         return poszt;
     }
 
+    private int getMeccsekSzama(String meccsek)
+    {
+        String[] osszesMeccsLista = meccsek.split(",");
+        int meccsekSzama = 0;
+
+        for (String adottMeccs : osszesMeccsLista) {
+            try {
+                if (!"".equals(adottMeccs)) {
+                    meccsekSzama++;
+                }
+            } catch (NumberFormatException ex) {
+                System.out.print("Error: " + ex.getMessage());
+            }
+        }
+
+        return meccsekSzama;
+    }
+
+    private int getGolokSzama(String meccsek)
+    {
+        String[] osszesMeccsLista = meccsek.split(",");
+        int golokSzama = 0;
+
+        for (String adottMeccs : osszesMeccsLista)
+        {
+            try
+            {
+                if (!"".equals(adottMeccs))
+                {
+                    golokSzama += Integer.valueOf(adottMeccs);
+                }
+            } catch (NumberFormatException ex)
+            {
+                System.out.print("Error: " + ex.getMessage());
+            }
+        }
+
+        return golokSzama;
+    }
+
+    private BigDecimal getErtekesitettHetesSzazalek(int ertekesitettHetes, int dobottHetes)
+    {
+        if(dobottHetes != 0 && ertekesitettHetes != 0)
+        {
+            return BigDecimal.valueOf( (ertekesitettHetes / dobottHetes) * 100);
+        }
+
+        return BigDecimal.ZERO;
+    }
+
     public void kiir()
     {
         List<Jatekos> jatekosokLista = beolvas();
 
         for (Jatekos jatekos : jatekosokLista)
         {
-            System.out.println(jatekos.getNev() + ", " + jatekos.getPoszt());
+            System.out.println(jatekos.getNev() + ", " + jatekos.getPoszt() + ", " + jatekos.getMeccsekSzama()
+            + ", " + jatekos.getGolokSzama() + ", " + jatekos.getGolAtlag() + ", " + jatekos.getSikeresHetesekSzazaleka());
         }
     }
 
@@ -86,32 +146,15 @@ public class Kezilabda
      * Hány akciógólt dobott? (nem hetesekből)?
      * Hány százalékát dobta be a heteseinek? Ha valaki nem dobott hetest, azt az esetet is oldd meg valahogy!
      */
-
-    public void kiszamol()
+/*
+  public void kiszamol()
     {
         List<Jatekos> jatekosokLista = beolvas();
         double szazalek;
 
         for (Jatekos jatekos : jatekosokLista)
         {
-            String[] osszesMeccsLista = jatekos.getMeccsek().split(",");
-            int meccsekSzama = 0;
-            int golokSzama = 0;
 
-            for (String adottMeccs : osszesMeccsLista) {
-                try
-                {
-                    if(!"".equals(adottMeccs))
-                    {
-                        golokSzama += Integer.parseInt(adottMeccs);
-                        meccsekSzama++;
-                    }
-                } catch (NumberFormatException ex) {
-                    System.out.print("Error: " + ex.getMessage());
-                }
-
-                jatekos.setMeccsekSzama(meccsekSzama);
-                jatekos.setGolokSzama(golokSzama);
             }
 
             if (jatekos.getHetesekSzama() == 0)
@@ -122,13 +165,11 @@ public class Kezilabda
                 szazalek = ((double) jatekos.getErtekesitettHetes() / (double) jatekos.getHetesekSzama()) * 100;
             }
 
-            jatekos.setSikeresHetesekSzazaleka(szazalek);
-
             System.out.print(jatekos.getNev() + jatekos.getMeccsekSzama() +", "+ jatekos.getGolokSzama() +
                     ", " + jatekos.getHetesekSzama() +", " + szazalek + "\n");
         }
     }
-
+*/
     /**
      * A csapatban a következő posztokon játszanak a játékosok: irányító, átlövő, beálló, jobbszélső, balszélső, kapus
      * Írd ki, hogy az adott posztokon játszó játékosok kicsodák, hányan vannak, és összesen mennyi gólt lőttek.
@@ -143,8 +184,7 @@ public class Kezilabda
         for (Poszt jatekosPoz : Poszt.values())
         {
             for (Jatekos jatekos : jatekosokLista)
-            {
-                if (jatekosPoz.equals(jatekos.getPoszt()))
+            {if (jatekosPoz.equals(jatekos.getPoszt()))
                 {
                     jatekosPozicioAlapjanAJatekos.add(jatekos);
                 }

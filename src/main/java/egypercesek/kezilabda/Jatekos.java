@@ -1,5 +1,7 @@
 package egypercesek.kezilabda;
 
+import java.math.BigDecimal;
+
 public class Jatekos
 {
     private final String nev;
@@ -9,10 +11,11 @@ public class Jatekos
     private final String meccsek;
     private int meccsekSzama;
     private int golokSzama;
-    private int golAtlag;
-    private double sikeresHetesekSzazaleka;
+    private BigDecimal golAtlag;
+    private BigDecimal sikeresHetesekSzazaleka;
 
-    public Jatekos(String nev, Poszt poszt, int hetesekSzama, int ertekesitettHetes, String meccsek, int meccsekSzama, int golokSzama, int golAtlag, double sikeresHetesekSzazaleka) {
+    public Jatekos(String nev, Poszt poszt, int hetesekSzama, int ertekesitettHetes, String meccsek, int meccsekSzama,
+                   int golokSzama, BigDecimal golAtlag, BigDecimal sikeresHetesekSzazaleka) {
         this.nev = nev;
         this.poszt = poszt;
         this.hetesekSzama = hetesekSzama;
@@ -48,31 +51,16 @@ public class Jatekos
         return meccsekSzama;
     }
 
-    public void setMeccsekSzama(int meccsekSzama) {
-        this.meccsekSzama = meccsekSzama;
-    }
-
     public int getGolokSzama() {
         return golokSzama;
     }
 
-    public void setGolokSzama(int golokSzama) {
-        this.golokSzama = golokSzama;
-    }
-
-    public int getGolAtlag() {
+    public BigDecimal getGolAtlag() {
         return golAtlag;
     }
 
-    public void setGolAtlag(int golAtlag) {
-        this.golAtlag = golAtlag;
-    }
-
-    public double getSikeresHetesekSzazaleka() {
+    public BigDecimal getSikeresHetesekSzazaleka() {
         return sikeresHetesekSzazaleka;
     }
 
-    public void setSikeresHetesekSzazaleka(double sikeresHetesekSzazaleka) {
-        this.sikeresHetesekSzazaleka = sikeresHetesekSzazaleka;
-    }
 }
