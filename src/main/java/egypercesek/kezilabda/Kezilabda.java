@@ -210,7 +210,6 @@ public class Kezilabda
         }
     }
 
-
     /**
      * Írd ki, hogy ki a legjobb hetes lövő azok közül, akik legalább 5 hetest dobtak (bedobott hetesek arányának megfelelően)!
      */
@@ -242,14 +241,48 @@ public class Kezilabda
         System.out.println(legjobbanDoboJatekos.getNev() + " " + szazalek);
     }
 
-    /*
-    Melyik szélsőnek legjobb a gólátlaga?
-    Bal vagy jobbszélső dobott több gólt?
-    */
+//    Melyik szélsőnek legjobb a gólátlaga?
+    public void legjobbSzelsoGolatlag()
+    {
+        List<Jatekos> szelsok = getSzelsoJatekosokLista();
 
+        Jatekos legjobbGolatlaguJatekos = null;
+        BigDecimal legjobbGolatlag = BigDecimal.ZERO;
+
+        for (Jatekos jatekos : szelsok)
+        {
+            if(jatekos.getGolAtlag().intValue() > legjobbGolatlag.intValue())
+            {
+                legjobbGolatlaguJatekos = jatekos;
+                legjobbGolatlag = jatekos.getGolAtlag();
+            }
+        }
+
+        System.out.print("legjobb golatlagu szelso: " + legjobbGolatlaguJatekos.getNev() );
+    }
+
+//    Bal vagy jobbszélső dobott több gólt?
+    public void jobbVagyBalszelsoSzerzettTobbGolt()
+    {
+        List<Jatekos> szelsok = getSzelsoJatekosokLista();
+
+        Jatekos tobbGoltSzerzo = null;
+        int legtobbGol = 0;
+
+        for (Jatekos jatekos : szelsok)
+        {
+            if (jatekos.getGolokSzama() > legtobbGol)
+            {
+                tobbGoltSzerzo = jatekos;
+                legtobbGol = jatekos.getGolokSzama();
+            }
+        }
+
+        System.out.print("legtobb golt szerzo szelso: " + tobbGoltSzerzo.getNev() + ", posztja: "
+                    + tobbGoltSzerzo.getPoszt());
+    }
 
     // Melyik irányító játszott a legkevesebbet?
-
     public void legkevesebbetJatszoIranyito()
     {
         List<Jatekos> jatekosLista = beolvas();
@@ -307,5 +340,12 @@ public class Kezilabda
                 legeredmenyesebbJatekos.getGolokSzama());
     }
 
-
+    private List<Jatekos> getSzelsoJatekosokLista()
+    {
+        List<Jatekos> jatekosLista = beolvas();
+        return jatekosLista.stream()
+                .filter(x -> Poszt.JOBBSZELSO.equals(x.getPoszt()))
+                .filter(y -> Poszt.BALSZELSO.equals(y.getPoszt()))
+                .collect(Collectors.toList());
+    }
 }
