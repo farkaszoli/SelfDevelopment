@@ -140,9 +140,9 @@ public class Kezilabda
 
     /**
      * Minden játékosnál számítsd ki a következő adatokat és tárold el ezeket is:
-     * Hány mérkőzésen játszott a bajnokságban?
-     * Hány gólt dobott a bajnokságban?
-     * Mennyi volt a meccsenkénti gólátlaga?
+     * Hány mérkőzésen játszott a bajnokságban? ok
+     * Hány gólt dobott a bajnokságban? ok
+     * Mennyi volt a meccsenkénti gólátlaga? ok
      * Hány akciógólt dobott? (nem hetesekből)?
      * Hány százalékát dobta be a heteseinek? Ha valaki nem dobott hetest, azt az esetet is oldd meg valahogy!
      */
@@ -242,8 +242,37 @@ public class Kezilabda
         System.out.println(legjobbanDoboJatekos.getNev() + " " + szazalek);
     }
 
+    /*
+    Melyik szélsőnek legjobb a gólátlaga?
+    Bal vagy jobbszélső dobott több gólt?
+    */
+
+
+    // Melyik irányító játszott a legkevesebbet?
+
+    public void legkevesebbetJatszoIranyito()
+    {
+        List<Jatekos> jatekosLista = beolvas();
+        List<Jatekos> iranyito = jatekosLista.stream()
+                .filter(x -> Poszt.IRANYITO.equals(x.getPoszt())).collect(Collectors.toList());
+
+        int legkevesebbMeccs = 100;
+        Jatekos legkevesebbetJatszott = null;
+
+        for (Jatekos jatekos : iranyito)
+        {
+            if(jatekos.getMeccsekSzama() < legkevesebbMeccs)
+            {
+                legkevesebbMeccs = jatekos.getMeccsekSzama();
+                legkevesebbetJatszott = jatekos;
+            }
+        }
+        System.out.print(legkevesebbetJatszott.getNev() + " " + legkevesebbetJatszott.getMeccsekSzama());
+
+    }
+
     //    Dobott-e jobbszélső hetest?
-    public void legkevesebbetJatszott()
+    public void jobbSzelsoHetestDobottE()
     {
         List<Jatekos> jatekosLista = beolvas();
         List<Jatekos> jobbszelso = jatekosLista.stream()
@@ -251,25 +280,10 @@ public class Kezilabda
 
         for (Jatekos jatekos : jobbszelso)
         {
-            String[] meccsek = jatekos.getMeccsek().split(",");
-            try
-            {
-                for (String meccs : meccsek)
-                {
-                    if (!meccs.contains(""))
-                    {
-                        int golokSzama = Integer.parseInt(meccs);
-                        if (golokSzama >= 0)
-                        {
-                            System.out.print("dobott");
-                            break;
-                        }
-                    }
-                }
-            } catch (NumberFormatException ex)
-            {
-                System.out.print("Error: " + ex.getMessage());
-            }
+           if(jatekos.getHetesekSzama() > 0)
+           {
+               System.out.print("dobott");
+           }
         }
     }
 
@@ -277,8 +291,21 @@ public class Kezilabda
     public void legeredmenyesebbAtlovo()
     {
         List<Jatekos> jatekosLista = beolvas();
-        List<Jatekos> jobbszelso = jatekosLista.stream()
+        List<Jatekos> atlovo = jatekosLista.stream()
                 .filter(jatekos -> Poszt.ATLOVO.equals(jatekos.getPoszt())).collect(Collectors.toList());
+        Jatekos legeredmenyesebbJatekos = null;
+        int legtobbGol = 0;
+        for(Jatekos jatekos : atlovo)
+        {
+            if(jatekos.getGolokSzama() > legtobbGol)
+            {
+                legtobbGol = jatekos.getGolokSzama();
+                legeredmenyesebbJatekos = jatekos;
+            }
+        }
+        System.out.print("legeredmenyesebb atlovo: " + legeredmenyesebbJatekos + ", goljai szama: " +
+                legeredmenyesebbJatekos.getGolokSzama());
     }
-}
 
+
+}
