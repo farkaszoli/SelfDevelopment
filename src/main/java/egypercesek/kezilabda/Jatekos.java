@@ -11,11 +11,11 @@ public class Jatekos
     private final String meccsek;
     private int meccsekSzama;
     private int golokSzama;
-    private BigDecimal golAtlag;
-    private BigDecimal sikeresHetesekSzazaleka;
+    private double golAtlag;
+    private double sikeresHetesekSzazaleka;
 
     public Jatekos(String nev, Poszt poszt, int hetesekSzama, int ertekesitettHetes, String meccsek, int meccsekSzama,
-                   int golokSzama, BigDecimal golAtlag, BigDecimal sikeresHetesekSzazaleka) {
+                   int golokSzama, double golAtlag, double sikeresHetesekSzazaleka) {
         this.nev = nev;
         this.poszt = poszt;
         this.hetesekSzama = hetesekSzama;
@@ -55,11 +55,11 @@ public class Jatekos
         return golokSzama;
     }
 
-    public BigDecimal getGolAtlag() {
+    public double getGolAtlag() {
         return golAtlag;
     }
 
-    public BigDecimal getSikeresHetesekSzazaleka() {
+    public double getSikeresHetesekSzazaleka() {
         return sikeresHetesekSzazaleka;
     }
 

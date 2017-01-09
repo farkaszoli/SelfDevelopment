@@ -10,6 +10,6 @@ public class Main
         System.out.println("Hello");
 
         Kezilabda kezilabda = new Kezilabda();
-        kezilabda.kiir();
+        kezilabda.legjobbHetesDobo();
     }
 }

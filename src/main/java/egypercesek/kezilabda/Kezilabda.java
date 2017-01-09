@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+import static jdk.nashorn.internal.objects.NativeMath.round;
+
 //  http://www.webotlet.hu/?p=1129
 public class Kezilabda
 {
@@ -37,8 +39,8 @@ public class Kezilabda
                 String meccsek = jatekosAdatok[4];
                 int meccsekSzama = getMeccsekSzama(jatekosAdatok[4]);
                 int golokSzama = getGolokSzama(jatekosAdatok[4]);
-                BigDecimal golAtlag = BigDecimal.valueOf(golokSzama / meccsekSzama );
-                BigDecimal sikeresHetesekSzazaleka = getErtekesitettHetesSzazalek(ertekesitettHetes, dobottHetes);
+                double golAtlag = (double) golokSzama / (double) meccsekSzama;
+                double sikeresHetesekSzazaleka = getErtekesitettHetesSzazalek(ertekesitettHetes, dobottHetes);
 
 
                 Jatekos jatekos = new Jatekos(jatekosNev, poszt, dobottHetes, ertekesitettHetes, meccsek, meccsekSzama,
@@ -117,14 +119,14 @@ public class Kezilabda
         return golokSzama;
     }
 
-    private BigDecimal getErtekesitettHetesSzazalek(int ertekesitettHetes, int dobottHetes)
+    private double getErtekesitettHetesSzazalek(int ertekesitettHetes, int dobottHetes)
     {
-        if(dobottHetes != 0 && ertekesitettHetes != 0)
+        if(dobottHetes != 0 || ertekesitettHetes != 0)
         {
-            return BigDecimal.valueOf( (ertekesitettHetes / dobottHetes) * 100);
+            return ((double) ertekesitettHetes / (double) dobottHetes) * 100;
         }
 
-        return BigDecimal.ZERO;
+        return 0.0;
     }
 
     public void kiir()
@@ -143,37 +145,14 @@ public class Kezilabda
      * Hány mérkőzésen játszott a bajnokságban? ok
      * Hány gólt dobott a bajnokságban? ok
      * Mennyi volt a meccsenkénti gólátlaga? ok
-     * Hány akciógólt dobott? (nem hetesekből)?
-     * Hány százalékát dobta be a heteseinek? Ha valaki nem dobott hetest, azt az esetet is oldd meg valahogy!
+     * Hány akciógólt dobott? (nem hetesekből)? ok
+     * Hány százalékát dobta be a heteseinek? Ha valaki nem dobott hetest, azt az esetet is oldd meg valahogy! ok
      */
-/*
-  public void kiszamol()
-    {
-        List<Jatekos> jatekosokLista = beolvas();
-        double szazalek;
 
-        for (Jatekos jatekos : jatekosokLista)
-        {
-
-            }
-
-            if (jatekos.getHetesekSzama() == 0)
-            {
-                szazalek = 0;
-            } else
-            {
-                szazalek = ((double) jatekos.getErtekesitettHetes() / (double) jatekos.getHetesekSzama()) * 100;
-            }
-
-            System.out.print(jatekos.getNev() + jatekos.getMeccsekSzama() +", "+ jatekos.getGolokSzama() +
-                    ", " + jatekos.getHetesekSzama() +", " + szazalek + "\n");
-        }
-    }
-*/
     /**
      * A csapatban a következő posztokon játszanak a játékosok: irányító, átlövő, beálló, jobbszélső, balszélső, kapus
      * Írd ki, hogy az adott posztokon játszó játékosok kicsodák, hányan vannak, és összesen mennyi gólt lőttek.
-     * A játékosok nevei vesszővel legyenek elválasztva a felsorolásban.
+     * A játékosok nevei vesszővel legyenek elválasztva a felsorolásban.  ok
      */
     public void pozicio()
     {
@@ -218,27 +197,21 @@ public class Kezilabda
     {
         List<Jatekos> jatekosokLista = beolvas();
         Jatekos legjobbanDoboJatekos = null;
-        double szazalek = 0;
         double legjobbSzazalek = 0.0d;
 
         for (Jatekos jatekos : jatekosokLista)
         {
-            if (jatekos.getErtekesitettHetes() != 0 && jatekos.getHetesekSzama() != 0 && jatekos.getHetesekSzama() > 4)
+            if(jatekos.getHetesekSzama() > 5)
             {
-                szazalek = ( (double)jatekos.getErtekesitettHetes() / (double) jatekos.getHetesekSzama()) * 100;
-
-                if (szazalek > legjobbSzazalek)
+                if (jatekos.getSikeresHetesekSzazaleka() > legjobbSzazalek)
                 {
-                    legjobbSzazalek = szazalek;
+                    legjobbSzazalek = jatekos.getSikeresHetesekSzazaleka();
                     legjobbanDoboJatekos = jatekos;
                 }
-            } else
-            {
-                szazalek = 0.0d;
             }
 
         }
-        System.out.println(legjobbanDoboJatekos.getNev() + " " + szazalek);
+        System.out.println(legjobbanDoboJatekos.getNev() + " " + legjobbSzazalek);
     }
 
 //    Melyik szélsőnek legjobb a gólátlaga?
@@ -247,11 +220,11 @@ public class Kezilabda
         List<Jatekos> szelsok = getSzelsoJatekosokLista();
 
         Jatekos legjobbGolatlaguJatekos = null;
-        BigDecimal legjobbGolatlag = BigDecimal.ZERO;
+        double legjobbGolatlag = 0.0;
 
         for (Jatekos jatekos : szelsok)
         {
-            if(jatekos.getGolAtlag().intValue() > legjobbGolatlag.intValue())
+            if(jatekos.getGolAtlag() > legjobbGolatlag)
             {
                 legjobbGolatlaguJatekos = jatekos;
                 legjobbGolatlag = jatekos.getGolAtlag();
