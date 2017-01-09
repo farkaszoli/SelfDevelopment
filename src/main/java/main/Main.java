@@ -1,5 +1,6 @@
 package main;
 
+import egypercesek.idojaras.IdojarasFeladat;
 import egypercesek.kezilabda.Jatekos;
 import egypercesek.kezilabda.Kezilabda;
 
@@ -9,7 +10,10 @@ public class Main
     {
         System.out.println("Hello");
 
-        Kezilabda kezilabda = new Kezilabda();
-        kezilabda.legjobbHetesDobo();
+//        Kezilabda kezilabda = new Kezilabda();
+//        kezilabda.legjobbHetesDobo();
+
+        IdojarasFeladat idojarasFeladat = new IdojarasFeladat();
+        idojarasFeladat.beolvas();
     }
 }

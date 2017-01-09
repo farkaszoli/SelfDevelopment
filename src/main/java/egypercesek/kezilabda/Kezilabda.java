@@ -309,6 +309,7 @@ public class Kezilabda
                 legeredmenyesebbJatekos = jatekos;
             }
         }
+
         System.out.print("legeredmenyesebb atlovo: " + legeredmenyesebbJatekos + ", goljai szama: " +
                 legeredmenyesebbJatekos.getGolokSzama());
     }
