@@ -8,8 +8,10 @@ public class Idojaras
     private final int szelerosseg;
     private final int legnyomas;
     private final double paratartalom;
+    private final int ora;
 
-    public Idojaras(String idokep, int homerseklet, int szelirany, int szelerosseg, int legnyomas, double paratartalom)
+    public Idojaras(String idokep, int homerseklet, int szelirany, int szelerosseg, int legnyomas, double paratartalom,
+                int ora)
     {
         this.idokep = idokep;
         this.homerseklet = homerseklet;
@@ -17,6 +19,7 @@ public class Idojaras
         this.szelerosseg = szelerosseg;
         this.legnyomas = legnyomas;
         this.paratartalom = paratartalom;
+        this.ora = ora;
     }
 
     public String getIdokep() {
@@ -41,5 +44,9 @@ public class Idojaras
 
     public double getParatartalom() {
         return paratartalom;
+    }
+
+    public int getOra() {
+        return ora;
     }
 }
