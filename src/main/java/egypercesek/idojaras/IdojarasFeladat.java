@@ -3,13 +3,18 @@ package egypercesek.idojaras;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import static java.lang.Math.abs;
 
-//http://www.webotlet.hu/?p=1112
+//  http://www.webotlet.hu/?p=1112
 public class IdojarasFeladat
 {
+    // TODO: all task with java8
+    // TODO: add unit tests
+    // TODO: use enum
     private static final File FILE
             = new File("E:\\Epam\\repok\\SelfDevelopmentProject\\src\\main\\resources\\idojaras.csv");
     private static final List<Idojaras> idojarasLista = new ArrayList<>();
@@ -122,6 +127,30 @@ public class IdojarasFeladat
 
         int osszeg = abs(leghidegebb) + legmelegebb;
         System.out.print("hoingas: " + osszeg + " fok");
+    }
+
+//    Hányszor volt fagypont?
+    public void fagypontokSzam()
+    {
+        List<Idojaras> idojarasLista = beolvas();
+
+        int fagypontokSzama = idojarasLista.stream()
+                .filter(idojaras -> idojaras.getHomerseklet() == 0)
+                .collect(Collectors.toList()).size();
+
+        System.out.print(fagypontokSzama);
+    }
+
+    // Hány olyan időszak volt, amikor fagyott? (amikor tartósan negatív a hőmérséklet)
+    public void fagyott()
+    {
+        List<Idojaras> idojarasLista = beolvas();
+
+        int fagyott = idojarasLista.stream()
+                .filter(idojaras -> idojaras.getHomerseklet() <= 0)
+                .collect(Collectors.toList()).size();
+
+        System.out.print(fagyott);
     }
 
 }
