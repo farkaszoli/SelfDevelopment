@@ -14,6 +14,6 @@ public class Main
 //        kezilabda.legjobbHetesDobo();
 
         IdojarasFeladat idojarasFeladat = new IdojarasFeladat();
-        idojarasFeladat.fagypontokSzam();
+        idojarasFeladat.szelIrany();
     }
 }
