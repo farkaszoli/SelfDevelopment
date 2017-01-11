@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static java.lang.Math.abs;
+
 //http://www.webotlet.hu/?p=1112
 public class IdojarasFeladat
 {
@@ -98,4 +100,28 @@ public class IdojarasFeladat
 
         System.out.print("borult: " + borultEg + " alkalommal!");
     }
+
+//    Mennyi volt a napi hőingás?
+    public void napiHoIngas()
+    {
+        List<Idojaras> idojarasLista = beolvas();
+        int leghidegebb = 0;
+        int legmelegebb = 0;
+        for(Idojaras idojaras : idojarasLista)
+        {
+            if (idojaras.getHomerseklet() > legmelegebb)
+            {
+                legmelegebb = idojaras.getHomerseklet();
+            }
+
+            if (idojaras.getHomerseklet() < leghidegebb)
+            {
+                leghidegebb = idojaras.getHomerseklet();
+            }
+        }
+
+        int osszeg = abs(leghidegebb) + legmelegebb;
+        System.out.print("hoingas: " + osszeg + " fok");
+    }
+
 }
