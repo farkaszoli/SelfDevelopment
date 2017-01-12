@@ -12,57 +12,25 @@ import static java.lang.Math.abs;
 //  http://www.webotlet.hu/?p=1112
 public class IdojarasFeladat
 {
-
     // TODO: all task with java8
     // TODO: add unit tests
 
-    private static final File FILE
-            = new File("E:\\Epam\\repok\\SelfDevelopmentProject\\src\\main\\resources\\idojaras.csv");
-    private static final List<Idojaras> idojarasLista = new ArrayList<>();
-
-    // 1. beolvasas
-    public static List<Idojaras> beolvas() {
-        int oraSzam = 0;
-
-        try (Scanner scanner = new Scanner(FILE)) {
-            scanner.nextLine();
-
-            while (scanner.hasNextLine()) {
-                String sor = scanner.nextLine();
-                String[] idojarasFilebol = sor.split(";");
-
-                Idokep idokep = getIdokep(idojarasFilebol[0]);
-                int homerseklet = Integer.valueOf(idojarasFilebol[1]);
-                int szelirany = Integer.valueOf(idojarasFilebol[2]);
-                int szelerosseg = Integer.valueOf(idojarasFilebol[3]);
-                int legnyomas = Integer.valueOf(idojarasFilebol[4]);
-                double paratartalom = Double.valueOf(idojarasFilebol[5]);
-                int ora = oraSzam;
-
-                Idojaras idojaras = new Idojaras(idokep, homerseklet, szelirany, szelerosseg, legnyomas, paratartalom, ora);
-                idojarasLista.add(idojaras);
-                oraSzam++;
-            }
-        } catch (Exception e) {
-            System.out.print("Error: " + e.getMessage());
-        }
-        return idojarasLista;
-    }
+    private static Reader reader = new Reader();
+    private static final List<Idojaras> IDOJARAS_LISTA = reader.beolvas();
 
     public void kiir()
     {
-        List<Idojaras> idojarasLista = beolvas();
-
-        idojarasLista.stream()
+        IDOJARAS_LISTA.stream()
                 .forEach(idojaras -> System.out.println(idojaras.toString()));
     }
 
     // 2. Hány órakor volt a legmelegebb?
-    public int legmelegebb() {
-        List<Idojaras> idojarasLista = beolvas();
+    public int legmelegebb()
+    {
         int legmelegebb = 0;
         int legmelegebbOra = 0;
-        for (Idojaras idojaras : idojarasLista) {
+
+        for (Idojaras idojaras : IDOJARAS_LISTA) {
             if (idojaras.getHomerseklet() > legmelegebb) {
                 legmelegebb = idojaras.getHomerseklet();
                 legmelegebbOra = idojaras.getOra();
@@ -76,15 +44,16 @@ public class IdojarasFeladat
     }
 
     //   3. Mikor fújt a legerősebben a szél?
-    public void legerosebbSzel() {
-        List<Idojaras> idojarasLista = beolvas();
+    public void legerosebbSzel()
+    {
         int legerosebben = 0;
         int legmelegebbOra = 0;
-        for (Idojaras idojaras : idojarasLista) {
-            if (idojaras.getSzelerosseg() > legerosebben) {
+
+        for (Idojaras idojaras : IDOJARAS_LISTA) {
+            if (idojaras.getSzelerosseg() > legerosebben)
+            {
                 legerosebben = idojaras.getSzelerosseg();
                 legmelegebbOra = idojaras.getOra();
-
             }
         }
 
@@ -94,20 +63,17 @@ public class IdojarasFeladat
 //    4. Mikor fújt ÉNY a szél?
     public void fujtENySzel()
     {
-        List<Idojaras> idojarasLista = beolvas();
-
-        idojarasLista.stream()
+        IDOJARAS_LISTA.stream()
                 .filter(idojaras -> idojaras.getSzelirany() > 270)
                 .filter(idojaras -> idojaras.getSzelirany() < 360)
                 .forEach(idojaras -> System.out.print(idojaras.getOra() + ", "));
     }
 
-
     // 5. Hányszor volt borult az ég?
-    public void borultEg() {
-        List<Idojaras> idojarasLista = beolvas();
+    public void borultEg()
+    {
         int borultEg = 0;
-        for (Idojaras idojaras : idojarasLista) {
+        for (Idojaras idojaras : IDOJARAS_LISTA) {
             if ("borult".equals(idojaras.getIdokep())) {
                 borultEg++;
             }
@@ -117,12 +83,15 @@ public class IdojarasFeladat
     }
 
     //   6. Mennyi volt a napi hőingás?
-    public void napiHoIngas() {
-        List<Idojaras> idojarasLista = beolvas();
+    public void napiHoIngas()
+    {
         int leghidegebb = 0;
         int legmelegebb = 0;
-        for (Idojaras idojaras : idojarasLista) {
-            if (idojaras.getHomerseklet() > legmelegebb) {
+
+        for (Idojaras idojaras : IDOJARAS_LISTA)
+        {
+            if (idojaras.getHomerseklet() > legmelegebb)
+            {
                 legmelegebb = idojaras.getHomerseklet();
             }
 
@@ -136,10 +105,9 @@ public class IdojarasFeladat
     }
 
     //    7. Hányszor volt fagypont?
-    public void fagypontokSzam() {
-        List<Idojaras> idojarasLista = beolvas();
-
-        int fagypontokSzama = idojarasLista.stream()
+    public void fagypontokSzam()
+    {
+        int fagypontokSzama = IDOJARAS_LISTA.stream()
                 .filter(idojaras -> idojaras.getHomerseklet() == 0)
                 .collect(Collectors.toList()).size();
 
@@ -147,10 +115,9 @@ public class IdojarasFeladat
     }
 
     // 8. Hány olyan időszak volt, amikor fagyott? (amikor tartósan negatív a hőmérséklet)
-    public void fagyott() {
-        List<Idojaras> idojarasLista = beolvas();
-
-        int fagyott = idojarasLista.stream()
+    public void fagyott()
+    {
+        int fagyott = IDOJARAS_LISTA.stream()
                 .filter(idojaras -> idojaras.getHomerseklet() <= 0)
                 .collect(Collectors.toList()).size();
 
@@ -158,12 +125,12 @@ public class IdojarasFeladat
     }
 
     //   9. Hányszor emelkedett a hőmérséklet az előző órához képest?
-    public void emelkedett() {
-        List<Idojaras> idojarasLista = beolvas();
+    public void emelkedett()
+    {
         int db = 0;
         int elozo = 0;
 
-        for (Idojaras idojaras : idojarasLista) {
+        for (Idojaras idojaras : IDOJARAS_LISTA) {
             if (idojaras.getHomerseklet() > elozo) {
                 db++;
             }
@@ -174,13 +141,12 @@ public class IdojarasFeladat
     }
 
     // 10. Milyen irányból fújt a szél, amikor a legmelegebb volt? (E, EK, K, DK, stb..)
-    public void szelIrany() {
-        List<Idojaras> idojarasLista = beolvas();
-
+    public void szelIrany()
+    {
         int legmelegebbOra = legmelegebb();
         int szelirany = 0;
 
-        for (Idojaras idojaras : idojarasLista) {
+        for (Idojaras idojaras : IDOJARAS_LISTA) {
             if (idojaras.getOra() == legmelegebbOra) {
                 szelirany = idojaras.getSzelirany();
             }
@@ -192,12 +158,11 @@ public class IdojarasFeladat
     //   11. Mennyi volt a nappali átlaghőmérséklet, ha tudjuk, hogy 7:01-kor volt napkelte és 16:48-kor volt napnyugta?
     public void nappaliAtlagHomerseklet()
     {
-        List<Idojaras> idojarasLista = beolvas();
-
         int ossz = 0;
         int darab = 0;
         double atlag;
-        for(Idojaras idojaras : idojarasLista)
+
+        for(Idojaras idojaras : IDOJARAS_LISTA)
         {
             if(idojaras.getOra() > 7 && idojaras.getOra() < 17)
             {
@@ -210,21 +175,22 @@ public class IdojarasFeladat
         System.out.print(atlag);
     }
 
-    private static Idokep getIdokep(String idokep)
+    static Idokep getIdokep(String idokep)
     {
-//        DERULT("derult"),
-//                VALTOZOAN_FELHOS("valtozoan felhos"),
-//                BORULT("borult"),
-//                SZELES("szeles"),
-//                HO_ZAPOR("hozapor");
         switch (idokep)
         {
-            case "derult": return Idokep.DERULT;
-            case "valtozoan felhos": return Idokep.VALTOZOAN_FELHOS;
-            case "borult": return Idokep.BORULT;
-            case "szeles": return Idokep.SZELES;
-            case "hozapor": return Idokep.HO_ZAPOR;
-            default: return null;
+            case "derult":
+                return Idokep.DERULT;
+            case "valtozoan felhos":
+                return Idokep.VALTOZOAN_FELHOS;
+            case "borult":
+                return Idokep.BORULT;
+            case "szeles":
+                return Idokep.SZELES;
+            case "hozapor":
+                return Idokep.HO_ZAPOR;
+            default:
+                return null;
         }
     }
 
