@@ -2,7 +2,7 @@ package egypercesek.idojaras;
 
 public class Idojaras
 {
-    private final String idokep;
+    private final Idokep idokep;
     private final int homerseklet;
     private final int szelirany;
     private final int szelerosseg;
@@ -10,7 +10,7 @@ public class Idojaras
     private final double paratartalom;
     private final int ora;
 
-    public Idojaras(String idokep, int homerseklet, int szelirany, int szelerosseg, int legnyomas, double paratartalom,
+    public Idojaras(Idokep idokep, int homerseklet, int szelirany, int szelerosseg, int legnyomas, double paratartalom,
                 int ora)
     {
         this.idokep = idokep;
@@ -22,7 +22,7 @@ public class Idojaras
         this.ora = ora;
     }
 
-    public String getIdokep() {
+    public Idokep getIdokep() {
         return idokep;
     }
 
@@ -48,5 +48,18 @@ public class Idojaras
 
     public int getOra() {
         return ora;
+    }
+
+    @Override
+    public String toString() {
+        return "Idojaras{" +
+                "idokep=" + idokep +
+                ", homerseklet=" + homerseklet +
+                ", szelirany=" + szelirany +
+                ", szelerosseg=" + szelerosseg +
+                ", legnyomas=" + legnyomas +
+                ", paratartalom=" + paratartalom +
+                ", ora=" + ora +
+                '}';
     }
 }

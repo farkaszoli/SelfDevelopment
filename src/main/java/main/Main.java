@@ -8,12 +8,9 @@ public class Main
 {
     public static void main(String[] args)
     {
-        System.out.println("Hello");
-
-//        Kezilabda kezilabda = new Kezilabda();
-//        kezilabda.legjobbHetesDobo();
+        System.out.println("Self Development Home project");
 
         IdojarasFeladat idojarasFeladat = new IdojarasFeladat();
-        idojarasFeladat.szelIrany();
+        idojarasFeladat.kiir();
     }
 }

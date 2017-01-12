@@ -10,10 +10,12 @@ import java.util.stream.Collectors;
 import static java.lang.Math.abs;
 
 //  http://www.webotlet.hu/?p=1112
-public class IdojarasFeladat {
+public class IdojarasFeladat
+{
+
     // TODO: all task with java8
     // TODO: add unit tests
-    // TODO: use enum
+
     private static final File FILE
             = new File("E:\\Epam\\repok\\SelfDevelopmentProject\\src\\main\\resources\\idojaras.csv");
     private static final List<Idojaras> idojarasLista = new ArrayList<>();
@@ -29,7 +31,7 @@ public class IdojarasFeladat {
                 String sor = scanner.nextLine();
                 String[] idojarasFilebol = sor.split(";");
 
-                String idokep = idojarasFilebol[0];
+                Idokep idokep = getIdokep(idojarasFilebol[0]);
                 int homerseklet = Integer.valueOf(idojarasFilebol[1]);
                 int szelirany = Integer.valueOf(idojarasFilebol[2]);
                 int szelerosseg = Integer.valueOf(idojarasFilebol[3]);
@@ -45,6 +47,14 @@ public class IdojarasFeladat {
             System.out.print("Error: " + e.getMessage());
         }
         return idojarasLista;
+    }
+
+    public void kiir()
+    {
+        List<Idojaras> idojarasLista = beolvas();
+
+        idojarasLista.stream()
+                .forEach(idojaras -> System.out.println(idojaras.toString()));
     }
 
     // 2. Hány órakor volt a legmelegebb?
@@ -198,6 +208,24 @@ public class IdojarasFeladat {
 
         atlag = (double) ossz / (double) darab;
         System.out.print(atlag);
+    }
+
+    private static Idokep getIdokep(String idokep)
+    {
+//        DERULT("derult"),
+//                VALTOZOAN_FELHOS("valtozoan felhos"),
+//                BORULT("borult"),
+//                SZELES("szeles"),
+//                HO_ZAPOR("hozapor");
+        switch (idokep)
+        {
+            case "derult": return Idokep.DERULT;
+            case "valtozoan felhos": return Idokep.VALTOZOAN_FELHOS;
+            case "borult": return Idokep.BORULT;
+            case "szeles": return Idokep.SZELES;
+            case "hozapor": return Idokep.HO_ZAPOR;
+            default: return null;
+        }
     }
 
     private void getSzelirany(int szelirany) {
