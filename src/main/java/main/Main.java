@@ -1,6 +1,7 @@
 package main;
 
 import komplex.evfolyam.Beolvas;
+import komplex.evfolyam.Evfolyam;
 import komplex.idojaras.IdojarasFeladat;
 
 public class Main
@@ -9,7 +10,7 @@ public class Main
     {
         System.out.println("Self Development Home project");
 
-        Beolvas beolvas = new Beolvas();
-        beolvas.beolvas();
+        Evfolyam evfolyam = new Evfolyam();
+        evfolyam.kiirTizAOsztalyTanuloit();
     }
 }

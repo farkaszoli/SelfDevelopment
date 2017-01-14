@@ -28,13 +28,13 @@ public class Beolvas
                 String osztaly = evfolyamFilebol[1];
                 String magatartas = evfolyamFilebol[2];
                 String szorgalom = evfolyamFilebol[3];
-                int irodalom = Integer.valueOf(evfolyamFilebol[4]);
-                int nyelvtan = Integer.valueOf(evfolyamFilebol[5]);
-                int tortenelem = Integer.valueOf(evfolyamFilebol[6]);
-                int matematika = Integer.valueOf(evfolyamFilebol[7]);
-                int angol = Integer.valueOf(evfolyamFilebol[8]);
-                int nemet = Integer.valueOf(evfolyamFilebol[9]);
-                int informatika = Integer.valueOf(evfolyamFilebol[10]);
+                String irodalom = evfolyamFilebol[4];
+                String nyelvtan = evfolyamFilebol[5];
+                String tortenelem = evfolyamFilebol[6];
+                String matematika = evfolyamFilebol[7];
+                String angol = evfolyamFilebol[8];
+                String nemet = evfolyamFilebol[9];
+                String informatika = evfolyamFilebol[10];
 
                 Tanulo tanulo = new Tanulo(nev, osztaly, magatartas, szorgalom, irodalom, nyelvtan, tortenelem,
                         matematika, angol, nemet, informatika);
@@ -46,4 +46,6 @@ public class Beolvas
         }
         return evfolyamLista;
     }
+
+
 }

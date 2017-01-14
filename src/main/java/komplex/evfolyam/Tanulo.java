@@ -6,16 +6,16 @@ public class Tanulo
     private final String osztaly;
     private final String magatartas;
     private final String szorgalom;
-    private final int irodalom;
-    private final int nyelvtan;
-    private final int tortenelem;
-    private final int matematika;
-    private final int angol;
-    private final int nemet;
-    private final int informatika;
+    private final String irodalom;
+    private final String nyelvtan;
+    private final String tortenelem;
+    private final String matematika;
+    private final String angol;
+    private final String nemet;
+    private final String informatika;
 
-    public Tanulo(String nev, String osztaly, String magatartas, String szorgalom, int irodalom, int nyelvtan,
-                  int tortenelem, int matematika, int angol, int nemet, int informatika)
+    public Tanulo(String nev, String osztaly, String magatartas, String szorgalom, String irodalom, String nyelvtan,
+                  String tortenelem, String matematika, String angol, String nemet, String informatika)
     {
         this.nev = nev;
         this.osztaly = osztaly;
@@ -47,31 +47,48 @@ public class Tanulo
         return szorgalom;
     }
 
-    public int getIrodalom() {
+    public String getIrodalom() {
         return irodalom;
     }
 
-    public int getNyelvtan() {
+    public String getNyelvtan() {
         return nyelvtan;
     }
 
-    public int getTortenelem() {
+    public String getTortenelem() {
         return tortenelem;
     }
 
-    public int getMatematika() {
+    public String getMatematika() {
         return matematika;
     }
 
-    public int getAngol() {
+    public String getAngol() {
         return angol;
     }
 
-    public int getNemet() {
+    public String getNemet() {
         return nemet;
     }
 
-    public int getInformatika() {
+    public String getInformatika() {
         return informatika;
+    }
+
+    @Override
+    public String toString() {
+        return "Tanulo{" +
+                "nev='" + nev + '\'' +
+                ", osztaly='" + osztaly + '\'' +
+                ", magatartas='" + magatartas + '\'' +
+                ", szorgalom='" + szorgalom + '\'' +
+                ", irodalom='" + irodalom + '\'' +
+                ", nyelvtan='" + nyelvtan + '\'' +
+                ", tortenelem='" + tortenelem + '\'' +
+                ", matematika='" + matematika + '\'' +
+                ", angol='" + angol + '\'' +
+                ", nemet='" + nemet + '\'' +
+                ", informatika='" + informatika + '\'' +
+                '}';
     }
 }
