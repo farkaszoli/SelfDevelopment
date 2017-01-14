@@ -1,4 +1,4 @@
-package egypercesek.idojaras;
+package komplex.idojaras;
 
 public class Idojaras
 {

@@ -1,4 +1,4 @@
-package egypercesek.novenyek;
+package komplex.novenyek;
 
 public class Noveny
 {

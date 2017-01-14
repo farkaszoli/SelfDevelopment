@@ -1,10 +1,6 @@
-package egypercesek.idojaras;
+package komplex.idojaras;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import static java.lang.Math.abs;

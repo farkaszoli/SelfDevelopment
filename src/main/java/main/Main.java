@@ -1,8 +1,7 @@
 package main;
 
-import egypercesek.idojaras.IdojarasFeladat;
-import egypercesek.kezilabda.Jatekos;
-import egypercesek.kezilabda.Kezilabda;
+import komplex.evfolyam.Beolvas;
+import komplex.idojaras.IdojarasFeladat;
 
 public class Main
 {
@@ -10,7 +9,7 @@ public class Main
     {
         System.out.println("Self Development Home project");
 
-        IdojarasFeladat idojarasFeladat = new IdojarasFeladat();
-        idojarasFeladat.kiir();
+        Beolvas beolvas = new Beolvas();
+        beolvas.beolvas();
     }
 }

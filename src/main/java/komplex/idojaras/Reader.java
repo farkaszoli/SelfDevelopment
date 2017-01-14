@@ -1,4 +1,4 @@
-package egypercesek.idojaras;
+package komplex.idojaras;
 
 import java.io.File;
 import java.util.ArrayList;

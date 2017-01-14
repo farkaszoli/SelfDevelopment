@@ -1,17 +1,10 @@
-package egypercesek.kezilabda;
-
-import egypercesek.kombinaltMegszamlalas.HivasIdopont;
-import javafx.geometry.Pos;
+package komplex.kezilabda;
 
 import java.io.File;
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
-
-import static jdk.nashorn.internal.objects.NativeMath.round;
 
 //  http://www.webotlet.hu/?p=1129
 public class Kezilabda

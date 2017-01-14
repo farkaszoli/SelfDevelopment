@@ -1,6 +1,4 @@
-package egypercesek.kezilabda;
-
-import java.math.BigDecimal;
+package komplex.kezilabda;
 
 public class Jatekos
 {

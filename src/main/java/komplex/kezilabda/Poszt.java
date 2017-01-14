@@ -1,4 +1,4 @@
-package egypercesek.kezilabda;
+package komplex.kezilabda;
 
 public enum Poszt
 {

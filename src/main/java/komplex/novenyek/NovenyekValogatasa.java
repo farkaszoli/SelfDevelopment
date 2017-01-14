@@ -1,4 +1,4 @@
-package egypercesek.novenyek;
+package komplex.novenyek;
 
 import org.testng.annotations.Test;
 

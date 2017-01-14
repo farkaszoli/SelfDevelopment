@@ -1,14 +1,10 @@
-package egypercesek.novenyek;
+package komplex.novenyek;
 
 import org.testng.annotations.Test;
 
-import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.io.File;
-import java.io.IOException;
-import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Scanner;
 
 // http://www.webotlet.hu/?p=898
