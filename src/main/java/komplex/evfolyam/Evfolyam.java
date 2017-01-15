@@ -28,4 +28,20 @@ public class Evfolyam
                 .forEach(tanulo -> System.out.println(tanulo.getNev()));
     }
 
+//    3. Írd ki, hány gyerek kitűnő az egész évfolyamban!
+    public void kitunoTanulokSzama()
+    {
+        EVFOLYAM_LISTA.stream()
+                .filter(tanulo -> "peldas".equals(tanulo.getMagatartas()))
+                .filter(tanulo -> "peldas".equals(tanulo.getSzorgalom()))
+                .filter(tanulo -> "5".equals(tanulo.getIrodalom()))
+                .filter(tanulo -> "5".equals(tanulo.getNyelvtan()))
+                .filter(tanulo -> "5".equals(tanulo.getTortenelem()))
+                .filter(tanulo -> "5".equals(tanulo.getMatematika()))
+                .filter(tanulo -> "5".equals(tanulo.getIrodalom()))
+                .filter(tanulo -> "5".equals(tanulo.getAngol()) && "".equals(tanulo.getNemet())
+                                || "".equals(tanulo.getAngol()) &&  "5".equals(tanulo.getNemet()))
+                .filter(tanulo -> "5".equals(tanulo.getInformatika()))
+                .forEach(tanulo -> System.out.println(tanulo.getNev()));
+    }
 }
