@@ -11,6 +11,6 @@ public class Main
         System.out.println("Self Development Home project");
 
         Evfolyam evfolyam = new Evfolyam();
-        evfolyam.bukottTanulok();
+        evfolyam.tizBTanulmanyiAtlaga();
     }
 }

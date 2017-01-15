@@ -1,5 +1,7 @@
 package komplex.evfolyam;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -50,13 +52,31 @@ public class Evfolyam
     {
         EVFOLYAM_LISTA.stream()
                 .filter(tanulo ->
-                        "1".equals(tanulo.getIrodalom()) ||
-                                "1".equals(tanulo.getNyelvtan()) ||
-                                "1".equals(tanulo.getTortenelem()) ||
-                                "1".equals(tanulo.getMatematika()) ||
-                                "1".equals(tanulo.getAngol()) && "".equals(tanulo.getNemet()) ||
-                                "".equals(tanulo.getAngol()) && "1".equals(tanulo.getNemet()) ||
-                                "1".equals(tanulo.getInformatika())
+                                "1".equals(tanulo.getIrodalom()) ||
+                                        "1".equals(tanulo.getNyelvtan()) ||
+                                        "1".equals(tanulo.getTortenelem()) ||
+                                        "1".equals(tanulo.getMatematika()) ||
+                                        "1".equals(tanulo.getAngol()) && "".equals(tanulo.getNemet()) ||
+                                        "".equals(tanulo.getAngol()) && "1".equals(tanulo.getNemet()) ||
+                                        "1".equals(tanulo.getInformatika())
                 ).forEach(tanulo -> System.out.println(tanulo.getNev()));
+    }
+
+//    6. Írd ki a 10B osztály tanulmányi átlagát!
+    public void tizBTanulmanyiAtlaga()
+    {
+     List<Tanulo> tizBOsztaly = EVFOLYAM_LISTA.stream()
+                .filter(tanulo -> "10B".equals(tanulo.getOsztaly())).collect(Collectors.toList());
+
+        BigDecimal osszeg = BigDecimal.valueOf(0);
+
+        for (Tanulo tanulo : tizBOsztaly)
+        {
+            osszeg = osszeg.add(tanulo.getAtlag());
+        }
+
+        BigDecimal tanulokSzamaAzOsztalyban = BigDecimal.valueOf(tizBOsztaly.size());
+
+        System.out.print("atlag: " + osszeg.divide(tanulokSzamaAzOsztalyban, 3, RoundingMode.CEILING));
     }
 }

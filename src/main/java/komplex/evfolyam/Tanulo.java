@@ -1,4 +1,7 @@
 package komplex.evfolyam;
+
+import java.math.BigDecimal;
+
 //tanulo;osztaly;magatartas;szorgalom;irodalom;nyelvtan;tortenelem;matematika;angol;nemet;informatika
 public class Tanulo
 {
@@ -13,9 +16,10 @@ public class Tanulo
     private final String angol;
     private final String nemet;
     private final String informatika;
+    private final BigDecimal atlag;
 
     public Tanulo(String nev, String osztaly, String magatartas, String szorgalom, String irodalom, String nyelvtan,
-                  String tortenelem, String matematika, String angol, String nemet, String informatika)
+                  String tortenelem, String matematika, String angol, String nemet, String informatika, BigDecimal atlag)
     {
         this.nev = nev;
         this.osztaly = osztaly;
@@ -28,6 +32,7 @@ public class Tanulo
         this.angol = angol;
         this.nemet = nemet;
         this.informatika = informatika;
+        this.atlag = atlag;
     }
 
     public String getNev()
@@ -75,6 +80,10 @@ public class Tanulo
         return informatika;
     }
 
+    public BigDecimal getAtlag() {
+        return atlag;
+    }
+
     @Override
     public String toString() {
         return "Tanulo{" +
@@ -89,6 +98,7 @@ public class Tanulo
                 ", angol='" + angol + '\'' +
                 ", nemet='" + nemet + '\'' +
                 ", informatika='" + informatika + '\'' +
+                ", atlag='" + atlag + '\'' +
                 '}';
     }
 }
