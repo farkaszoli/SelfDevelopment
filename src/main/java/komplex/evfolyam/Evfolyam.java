@@ -44,4 +44,19 @@ public class Evfolyam
                 .filter(tanulo -> "5".equals(tanulo.getInformatika()))
                 .forEach(tanulo -> System.out.println(tanulo.getNev()));
     }
+
+//    5. Írd ki a bukott tanulók neveit névsorban!
+    public void bukottTanulok()
+    {
+        EVFOLYAM_LISTA.stream()
+                .filter(tanulo ->
+                        "1".equals(tanulo.getIrodalom()) ||
+                                "1".equals(tanulo.getNyelvtan()) ||
+                                "1".equals(tanulo.getTortenelem()) ||
+                                "1".equals(tanulo.getMatematika()) ||
+                                "1".equals(tanulo.getAngol()) && "".equals(tanulo.getNemet()) ||
+                                "".equals(tanulo.getAngol()) && "1".equals(tanulo.getNemet()) ||
+                                "1".equals(tanulo.getInformatika())
+                ).forEach(tanulo -> System.out.println(tanulo.getNev()));
+    }
 }
