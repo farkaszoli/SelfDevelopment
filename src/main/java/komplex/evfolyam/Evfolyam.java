@@ -2,8 +2,7 @@ package komplex.evfolyam;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 //http://www.webotlet.hu/?p=921
@@ -79,4 +78,52 @@ public class Evfolyam
 
         System.out.print("atlag: " + osszeg.divide(tanulokSzamaAzOsztalyban, 3, RoundingMode.CEILING));
     }
+
+//    7. Melyik tantárgyból a legjobb a 10C osztály átlaga?
+    public void targybolLegjobbAzAtlagaATizCNek()
+    {
+        List<Tanulo> tizBOsztaly = EVFOLYAM_LISTA.stream()
+                .filter(tanulo -> "10C".equals(tanulo.getOsztaly())).collect(Collectors.toList());
+
+        int irodalom = 0;
+
+        int nyelvtan = 0;
+
+        int tortenelem = 0;
+
+        int matematika = 0;
+
+        int angol = 0;
+        int angol_db = 0;
+
+        int nemet = 0;
+        int nemet_db = 0;
+
+        int informatika = 0;
+
+        for(Tanulo tanulo : tizBOsztaly)
+        {
+            irodalom += Integer.valueOf(tanulo.getIrodalom());
+            nyelvtan += Integer.valueOf(tanulo.getNyelvtan());
+            tortenelem += Integer.valueOf(tanulo.getTortenelem());
+            matematika += Integer.valueOf(tanulo.getMatematika());
+
+            if(!tanulo.getAngol().isEmpty())
+            {
+                angol += Integer.valueOf(tanulo.getAngol());
+                angol_db++;
+            }
+            else if(!tanulo.getNemet().isEmpty())
+            {
+                nemet += Integer.valueOf(tanulo.getNemet());
+                nemet_db++;
+            }
+
+            informatika += Integer.valueOf(tanulo.getInformatika());
+        }
+
+
+    }
+    
+//    8. Melyik tantárgyból legrosszabb a 10D osztály átlaga?
 }
