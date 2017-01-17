@@ -117,23 +117,54 @@ public class Evfolyam
             informatika += Integer.valueOf(tanulo.getInformatika());
         }
 
-        HashMap<String, BigDecimal> atlagok = new HashMap<String, BigDecimal>();
-        atlagok.put("irodalom", BigDecimal.valueOf(irodalom).divide(BigDecimal.valueOf(tizBOsztaly.size())));
-        atlagok.put("nyelvtan", BigDecimal.valueOf(nyelvtan).divide(BigDecimal.valueOf(tizBOsztaly.size())));
-        atlagok.put("tortenelem", BigDecimal.valueOf(tortenelem).divide(BigDecimal.valueOf(tizBOsztaly.size())));
-        atlagok.put("matematika", BigDecimal.valueOf(matematika).divide(BigDecimal.valueOf(tizBOsztaly.size())));
-        atlagok.put("angol", BigDecimal.valueOf(angol).divide(BigDecimal.valueOf(angol_db)));
-        atlagok.put("nemet", BigDecimal.valueOf(nemet).divide(BigDecimal.valueOf(nemet_db)));
-        atlagok.put("informatika", BigDecimal.valueOf(informatika).divide(BigDecimal.valueOf(tizBOsztaly.size())));
+        int osztalyLetszam = tizBOsztaly.size();
+        List<Tantargy> tantargyLista = new ArrayList<>();
+
+        Tantargy irodalomTargy = new Tantargy("irodalom", getAtlag(irodalom, osztalyLetszam));
+        tantargyLista.add(irodalomTargy);
+
+        Tantargy nyelvtanTargy = new Tantargy("nyelvtan", getAtlag(nyelvtan, osztalyLetszam));
+        tantargyLista.add(nyelvtanTargy);
+
+        Tantargy tortenelemTargy = new Tantargy("tortenelem", getAtlag(tortenelem, osztalyLetszam));
+        tantargyLista.add(tortenelemTargy);
+
+        Tantargy matematikaTargy = new Tantargy("matematika", getAtlag(matematika, osztalyLetszam));
+        tantargyLista.add(matematikaTargy);
+
+        Tantargy angolTargy = new Tantargy("angol", getAtlag(angol, angol_db));
+        tantargyLista.add(angolTargy);
+
+        Tantargy nemetTargy = new Tantargy("nemet", getAtlag(nemet_db, nemet_db));
+        tantargyLista.add(nemetTargy);
+
+        Tantargy informatikaTargy = new Tantargy("informatika", getAtlag(informatika, osztalyLetszam));
+        tantargyLista.add(nemetTargy);
+
+        Tantargy legjobbAtlaguTargy = new Tantargy("", 0.0);
+
+        for(Tantargy tantargy : tantargyLista)
+        {
+            if(tantargy.getAtlag() > legjobbAtlaguTargy.getAtlag())
+            {
+                legjobbAtlaguTargy = tantargy;
+            }
+        }
+
+        System.out.print(legjobbAtlaguTargy.getNev() + " atlag: " + legjobbAtlaguTargy.getAtlag());
+    }
+
+    //    8. Melyik tantárgyból legrosszabb a 10D osztály átlaga?
+    public void legrosszabbAtlaguTargyATizDben()
+    {
+        List<Tanulo> tizDLista = EVFOLYAM_LISTA.stream()
+                .filter(tanulo -> "10D".equals(tanulo.getOsztaly())).collect(Collectors.toList());
+
 
     }
 
-//    8. Melyik tantárgyból legrosszabb a 10D osztály átlaga?
-        public void legrosszabbAtlaguTargyATizDben()
-        {
-            List<Tanulo> tizDLista = EVFOLYAM_LISTA.stream()
-                    .filter(tanulo -> "10D".equals(tanulo.getOsztaly())).collect(Collectors.toList());
-
-
-        }
+    private double getAtlag(double osszeg, int letszam)
+    {
+        return osszeg / letszam;
+    }
 }
