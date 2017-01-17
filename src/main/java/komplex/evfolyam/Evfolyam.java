@@ -80,8 +80,7 @@ public class Evfolyam
     }
 
 //    7. Melyik tantárgyból a legjobb a 10C osztály átlaga?
-    public void targybolLegjobbAzAtlagaATizCNek()
-    {
+    public void targybolLegjobbAzAtlagaATizCNek() {
         List<Tanulo> tizBOsztaly = EVFOLYAM_LISTA.stream()
                 .filter(tanulo -> "10C".equals(tanulo.getOsztaly())).collect(Collectors.toList());
 
@@ -101,20 +100,16 @@ public class Evfolyam
 
         int informatika = 0;
 
-        for(Tanulo tanulo : tizBOsztaly)
-        {
+        for (Tanulo tanulo : tizBOsztaly) {
             irodalom += Integer.valueOf(tanulo.getIrodalom());
             nyelvtan += Integer.valueOf(tanulo.getNyelvtan());
             tortenelem += Integer.valueOf(tanulo.getTortenelem());
             matematika += Integer.valueOf(tanulo.getMatematika());
 
-            if(!tanulo.getAngol().isEmpty())
-            {
+            if (!tanulo.getAngol().isEmpty()) {
                 angol += Integer.valueOf(tanulo.getAngol());
                 angol_db++;
-            }
-            else if(!tanulo.getNemet().isEmpty())
-            {
+            } else if (!tanulo.getNemet().isEmpty()) {
                 nemet += Integer.valueOf(tanulo.getNemet());
                 nemet_db++;
             }
@@ -122,8 +117,23 @@ public class Evfolyam
             informatika += Integer.valueOf(tanulo.getInformatika());
         }
 
+        HashMap<String, BigDecimal> atlagok = new HashMap<String, BigDecimal>();
+        atlagok.put("irodalom", BigDecimal.valueOf(irodalom).divide(BigDecimal.valueOf(tizBOsztaly.size())));
+        atlagok.put("nyelvtan", BigDecimal.valueOf(nyelvtan).divide(BigDecimal.valueOf(tizBOsztaly.size())));
+        atlagok.put("tortenelem", BigDecimal.valueOf(tortenelem).divide(BigDecimal.valueOf(tizBOsztaly.size())));
+        atlagok.put("matematika", BigDecimal.valueOf(matematika).divide(BigDecimal.valueOf(tizBOsztaly.size())));
+        atlagok.put("angol", BigDecimal.valueOf(angol).divide(BigDecimal.valueOf(angol_db)));
+        atlagok.put("nemet", BigDecimal.valueOf(nemet).divide(BigDecimal.valueOf(nemet_db)));
+        atlagok.put("informatika", BigDecimal.valueOf(informatika).divide(BigDecimal.valueOf(tizBOsztaly.size())));
 
     }
-    
+
 //    8. Melyik tantárgyból legrosszabb a 10D osztály átlaga?
+        public void legrosszabbAtlaguTargyATizDben()
+        {
+            List<Tanulo> tizDLista = EVFOLYAM_LISTA.stream()
+                    .filter(tanulo -> "10D".equals(tanulo.getOsztaly())).collect(Collectors.toList());
+
+
+        }
 }
