@@ -80,10 +80,53 @@ public class Evfolyam
     }
 
 //    7. Melyik tantárgyból a legjobb a 10C osztály átlaga?
-    public void targybolLegjobbAzAtlagaATizCNek() {
+    public void targybolLegjobbAzAtlagaATizCNek()
+    {
         List<Tanulo> tizBOsztaly = EVFOLYAM_LISTA.stream()
                 .filter(tanulo -> "10C".equals(tanulo.getOsztaly())).collect(Collectors.toList());
 
+        List<Tantargy> tantargyLista = getTantargyAtlag(tizBOsztaly);
+
+        Tantargy legjobbAtlaguTargy = new Tantargy("", 0.0);
+
+        for(Tantargy tantargy : tantargyLista)
+        {
+            if(tantargy.getAtlag() > legjobbAtlaguTargy.getAtlag())
+            {
+                legjobbAtlaguTargy = tantargy;
+            }
+        }
+
+        System.out.print(legjobbAtlaguTargy.getNev() + " atlag: " + legjobbAtlaguTargy.getAtlag());
+    }
+
+    // TODO: refactor: tantargy enum, ugy a listaba, tantargy atlag szamitas, majd filter a szukseges osztalyra
+    // TODO: only java8
+    // TODO: unit test
+    // TODO: finish tasks
+
+    //    8. Melyik tantárgyból legrosszabb a 10D osztály átlaga?
+    public void legrosszabbAtlaguTargyATizDben()
+    {
+        List<Tanulo> tizDLista = EVFOLYAM_LISTA.stream()
+                .filter(tanulo -> "10D".equals(tanulo.getOsztaly())).collect(Collectors.toList());
+
+        List<Tantargy> tantargyLista = getTantargyAtlag(tizDLista);
+
+        Tantargy legrosszabbAtlaguTargy = new Tantargy("", 5.0);
+
+        for(Tantargy tantargy : tantargyLista)
+        {
+            if(tantargy.getAtlag() < legrosszabbAtlaguTargy.getAtlag())
+            {
+                legrosszabbAtlaguTargy = tantargy;
+            }
+        }
+
+        System.out.print(legrosszabbAtlaguTargy.getNev() + " atlag: " + legrosszabbAtlaguTargy.getAtlag());
+    }
+
+    private List<Tantargy> getTantargyAtlag(List<Tanulo> tizDLista) {
         int irodalom = 0;
 
         int nyelvtan = 0;
@@ -100,7 +143,8 @@ public class Evfolyam
 
         int informatika = 0;
 
-        for (Tanulo tanulo : tizBOsztaly) {
+        for (Tanulo tanulo : tizDLista)
+        {
             irodalom += Integer.valueOf(tanulo.getIrodalom());
             nyelvtan += Integer.valueOf(tanulo.getNyelvtan());
             tortenelem += Integer.valueOf(tanulo.getTortenelem());
@@ -117,7 +161,7 @@ public class Evfolyam
             informatika += Integer.valueOf(tanulo.getInformatika());
         }
 
-        int osztalyLetszam = tizBOsztaly.size();
+        int osztalyLetszam = tizDLista.size();
         List<Tantargy> tantargyLista = new ArrayList<>();
 
         Tantargy irodalomTargy = new Tantargy("irodalom", getAtlag(irodalom, osztalyLetszam));
@@ -135,32 +179,12 @@ public class Evfolyam
         Tantargy angolTargy = new Tantargy("angol", getAtlag(angol, angol_db));
         tantargyLista.add(angolTargy);
 
-        Tantargy nemetTargy = new Tantargy("nemet", getAtlag(nemet_db, nemet_db));
+        Tantargy nemetTargy = new Tantargy("nemet", getAtlag(nemet, nemet_db));
         tantargyLista.add(nemetTargy);
 
         Tantargy informatikaTargy = new Tantargy("informatika", getAtlag(informatika, osztalyLetszam));
-        tantargyLista.add(nemetTargy);
-
-        Tantargy legjobbAtlaguTargy = new Tantargy("", 0.0);
-
-        for(Tantargy tantargy : tantargyLista)
-        {
-            if(tantargy.getAtlag() > legjobbAtlaguTargy.getAtlag())
-            {
-                legjobbAtlaguTargy = tantargy;
-            }
-        }
-
-        System.out.print(legjobbAtlaguTargy.getNev() + " atlag: " + legjobbAtlaguTargy.getAtlag());
-    }
-
-    //    8. Melyik tantárgyból legrosszabb a 10D osztály átlaga?
-    public void legrosszabbAtlaguTargyATizDben()
-    {
-        List<Tanulo> tizDLista = EVFOLYAM_LISTA.stream()
-                .filter(tanulo -> "10D".equals(tanulo.getOsztaly())).collect(Collectors.toList());
-
-
+        tantargyLista.add(informatikaTargy);
+        return tantargyLista;
     }
 
     private double getAtlag(double osszeg, int letszam)
