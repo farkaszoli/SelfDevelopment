@@ -5,7 +5,7 @@ import java.math.RoundingMode;
 import java.util.*;
 import java.util.stream.Collectors;
 
-//http://www.webotlet.hu/?p=921
+//  http://www.webotlet.hu/?p=921
 public class Evfolyam
 {
     private static Beolvas beolvas = new Beolvas();
@@ -30,9 +30,9 @@ public class Evfolyam
     }
 
 //    3. Írd ki, hány gyerek kitűnő az egész évfolyamban!
-    public void kitunoTanulokSzama()
+    public List<Tanulo> kitunoTanulokSzama()
     {
-        EVFOLYAM_LISTA.stream()
+       List<Tanulo> kitunoTanulok =  EVFOLYAM_LISTA.stream()
                 .filter(tanulo -> "peldas".equals(tanulo.getMagatartas()))
                 .filter(tanulo -> "peldas".equals(tanulo.getSzorgalom()))
                 .filter(tanulo -> "5".equals(tanulo.getIrodalom()))
@@ -42,8 +42,11 @@ public class Evfolyam
                 .filter(tanulo -> "5".equals(tanulo.getIrodalom()))
                 .filter(tanulo -> "5".equals(tanulo.getAngol()) && "".equals(tanulo.getNemet())
                                 || "".equals(tanulo.getAngol()) &&  "5".equals(tanulo.getNemet()))
-                .filter(tanulo -> "5".equals(tanulo.getInformatika()))
-                .forEach(tanulo -> System.out.println(tanulo.getNev()));
+                .filter(tanulo -> "5".equals(tanulo.getInformatika())).collect(Collectors.toList());
+
+        int kitunoTanulokSzama = kitunoTanulok.size();
+
+        return kitunoTanulok;
     }
 
 //    5. Írd ki a bukott tanulók neveit névsorban!
@@ -186,6 +189,33 @@ public class Evfolyam
         tantargyLista.add(informatikaTargy);
         return tantargyLista;
     }
+
+//    10. Írd ki a kitűnő tanulók neveit osztályonként névsorba rendezve!
+    public void kiirKitunoTanulokatOsztalySzerint()
+    {
+        List<Tanulo> kitunoTanulokListaja = kitunoTanulokSzama();
+        List<List<Tanulo>> osztalyonkentLista = new ArrayList<>();
+
+        List<Tanulo> tizA = kitunoTanulokListaja.stream().filter(tanulo -> "10A".equals(tanulo.getOsztaly()))
+                .collect(Collectors.toList());
+        osztalyonkentLista.add(tizA);
+        List<Tanulo> tizB = kitunoTanulokListaja.stream().filter(tanulo -> "10B".equals(tanulo.getOsztaly()))
+                .collect(Collectors.toList());
+        osztalyonkentLista.add(tizB);
+        List<Tanulo> tizC = kitunoTanulokListaja.stream().filter(tanulo -> "10C".equals(tanulo.getOsztaly()))
+                .collect(Collectors.toList());
+        osztalyonkentLista.add(tizC);
+        List<Tanulo> tizD = kitunoTanulokListaja.stream().filter(tanulo -> "10D".equals(tanulo.getOsztaly()))
+                .collect(Collectors.toList());
+        osztalyonkentLista.add(tizD);
+        List<Tanulo> tizE = kitunoTanulokListaja.stream().filter(tanulo -> "10E".equals(tanulo.getOsztaly()))
+                .collect(Collectors.toList());
+        osztalyonkentLista.add(tizE);
+
+
+    }
+
+
 
     private double getAtlag(double osszeg, int letszam)
     {

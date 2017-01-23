@@ -10,7 +10,7 @@ public class Main
     {
         System.out.println("Self Development Home project");
 
-        Evfolyam evfolyam = new Evfolyam();
-        evfolyam.targybolLegjobbAzAtlagaATizCNek();
+        komplex.robotok.Beolvas beolvas = new komplex.robotok.Beolvas();
+        beolvas.beolvas();
     }
 }
