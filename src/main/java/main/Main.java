@@ -3,6 +3,7 @@ package main;
 import komplex.evfolyam.Beolvas;
 import komplex.evfolyam.Evfolyam;
 import komplex.idojaras.IdojarasFeladat;
+import komplex.robotok.RobotokFeladat;
 
 public class Main
 {
@@ -10,7 +11,6 @@ public class Main
     {
         System.out.println("Self Development Home project");
 
-        komplex.robotok.Beolvas beolvas = new komplex.robotok.Beolvas();
-        beolvas.beolvas();
+        RobotokFeladat.koordinataSzamitas();
     }
 }

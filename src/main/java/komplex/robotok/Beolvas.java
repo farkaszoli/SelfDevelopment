@@ -13,7 +13,7 @@ public class Beolvas
     private static final List<String> robotokIranya = new ArrayList<>();
 
     // 1. beolvasas
-    public List<String> beolvas()
+    public static List<String> beolvas()
     {
         try (Scanner scanner = new Scanner(FILE))
         {
