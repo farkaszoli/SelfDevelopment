@@ -45,4 +45,16 @@ public class Robot
     public int getY() {
         return y;
     }
+
+    @Override
+    public String toString() {
+        return "Robot{" +
+                "eszak=" + eszak +
+                ", kelet=" + kelet +
+                ", del=" + del +
+                ", nyugat=" + nyugat +
+                ", x=" + x +
+                ", y=" + y +
+                '}';
+    }
 }
