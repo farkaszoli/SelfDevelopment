@@ -10,25 +10,58 @@ public class Beolvas
     private static final File FILE
             = new File("E:\\Epam\\repok\\SelfDevelopmentProject\\src\\main\\resources\\utvonalak.txt");
 
-    private static final List<String> robotokIranya = new ArrayList<>();
+    private static final List<Robot> robotokIranya = new ArrayList<>();
 
     // 1. beolvasas
-    public static List<String> beolvas()
+    public static List<Robot> beolvas()
     {
         try (Scanner scanner = new Scanner(FILE))
         {
             scanner.nextLine();
 
-            while (scanner.hasNextLine()) {
+            int eszak = 0;
+            int kelet = 0;
+            int del = 0;
+            int nyugat = 0;
+            int x = 0;
+            int y = 0;
+
+            while (scanner.hasNextLine())
+            {
                 String sor = scanner.nextLine();
 
-                String irany = sor;
-                robotokIranya.add(irany);
+                for(char egyirany : sor.toCharArray())
+                {
+                    if('E' == egyirany)
+                    {
+                        eszak++;
+                    } else if('K' == egyirany)
+                    {
+                        kelet++;
+                    } else if('D' == egyirany)
+                    {
+                        del++;
+                    } else
+                    {
+                        nyugat++;
+                    }
+                }
+
+                x = kelet - nyugat;
+                y = eszak - del;
+
+             robotokIranya.add(new Robot(eszak, kelet, del, nyugat, x, y));
             }
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             System.out.print("Error: " + e.getMessage());
         }
-        System.out.print("ok:" + robotokIranya.size());
+
+        for(Robot robot : robotokIranya)
+        {
+            System.out.println("robot x, y koordinata: " + robot.getX() + ", " + robot.getY());
+        }
+
         return robotokIranya;
     }
 }
