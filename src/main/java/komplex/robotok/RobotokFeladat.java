@@ -1,8 +1,9 @@
 package komplex.robotok;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-//http://www.webotlet.hu/?p=906
+//  http://www.webotlet.hu/?p=906
 public class RobotokFeladat
 {
     private static final List<Robot> ROBOTOK_LISTAJA = Beolvas.beolvas();
@@ -55,5 +56,25 @@ public class RobotokFeladat
 
     }
 
+//  5. Add meg, melyek azok a robotok, melyek túlmentek volna egy 21×21-es tábla határain, melynek
+//  a középpontjából indultak!
+    public static void tulmentek()
+    {
+        List<Robot> hataronBeluliRobotok = ROBOTOK_LISTAJA.stream()
+                .filter(robot -> robot.getX() > 21)
+                .filter(robot -> robot.getY() > 21)
+                .collect(Collectors.toList());
 
+        System.out.print("tulmentek: " + hataronBeluliRobotok);
+    }
+
+    // 10. Van-e olyan robot, melynek útvonala tartalmaz szabályos négyzetet?
+    public static void szabalyosNegyzetAMegtettUt()
+    {
+        List<Robot> szabalyosTeruletuRobotok = ROBOTOK_LISTAJA.stream()
+                .filter(robot -> robot.getX() == robot.getY())
+                .collect(Collectors.toList());
+
+        System.out.print("szabalyos negyzet teruletu robotok: " + szabalyosTeruletuRobotok);
+    }
 }

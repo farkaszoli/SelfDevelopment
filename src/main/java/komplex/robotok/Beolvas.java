@@ -57,10 +57,10 @@ public class Beolvas
             System.out.print("Error: " + e.getMessage());
         }
 
-        for(Robot robot : robotokIranya)
-        {
-            System.out.println("robot x, y koordinata: " + robot.getX() + ", " + robot.getY());
-        }
+//        for(Robot robot : robotokIranya)
+//        {
+//            System.out.println("robot x, y koordinata: " + robot.getX() + ", " + robot.getY());
+//        }
 
         return robotokIranya;
     }
