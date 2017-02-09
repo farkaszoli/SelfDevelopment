@@ -34,5 +34,26 @@ public class RobotokFeladat
     }
 
 //    4. Melyik robot jutott útvonala során legmesszebbre a kezdőpontjától?
-    
+    public static void legmesszebbjutott()
+    {
+        Robot legmesszebbLevoRobot = new Robot(0,0,0,0,0,0);
+
+        int legmesszebb = 0;
+
+        for(Robot robot : ROBOTOK_LISTAJA)
+        {
+            int robotTavolsaga = Math.abs(robot.getX()) + Math.abs(robot.getY());
+
+            if(robotTavolsaga > legmesszebb)
+            {
+                legmesszebb = robotTavolsaga;
+                legmesszebbLevoRobot = robot;
+            }
+        }
+
+        System.out.print("legtavolabbi robot: " + legmesszebbLevoRobot + ", megtett ut: " + legmesszebb);
+
+    }
+
+
 }
