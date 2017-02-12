@@ -60,6 +60,28 @@ public class RobotokFeladat {
         System.out.print("tulmentek: " + hataronBeluliRobotok);
     }
 
+//  8.  A robot bejárt területének azt a négyszöget nevezzük, melybe befoglalható
+//      a robot teljes útvonala. Melyik roboté a legkisebb terület?
+    public static void legkisebbTerulet()
+    {
+        Robot legkisebbTeruletuRobot = new Robot(0, 0, 0, 0, 0, 0);
+        int legkisebbTerulet = Integer.MAX_VALUE;
+        int terulet;
+
+        for (Robot robot : ROBOTOK_LISTAJA)
+        {
+            terulet = Math.abs(robot.getX()) * Math.abs(robot.getX());
+
+            if ( terulet > legkisebbTerulet)
+            {
+                legkisebbTerulet = terulet;
+                legkisebbTeruletuRobot = robot;
+            }
+        }
+
+        System.out.print("legkisebbTeruletu robot: " + legkisebbTeruletuRobot);
+    }
+
     //    9. Melyik roboté a legnagyobb terület?
     public static void legnagyobbTerulet()
     {
