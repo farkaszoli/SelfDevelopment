@@ -60,6 +60,7 @@ public class RobotokFeladat {
         System.out.print("tulmentek: " + hataronBeluliRobotok);
     }
 
+
 //  8.  A robot bejárt területének azt a négyszöget nevezzük, melybe befoglalható
 //      a robot teljes útvonala. Melyik roboté a legkisebb terület?
     public static void legkisebbTerulet()
@@ -112,4 +113,17 @@ public class RobotokFeladat {
 
         System.out.print("szabalyos negyzet teruletu robotok: " + szabalyosTeruletuRobotok);
     }
+
+//  12. Van-e olyan robot, mely sehol nem helyezhető el egy 29×29-es táblán úgy, hogy ne menjen túl a határain?
+    public static void hataronTulmegy()
+    {
+        List<Robot> hataronTul = ROBOTOK_LISTAJA
+                .stream()
+                .filter(robot -> robot.getX() > 29)
+                .filter(robot -> robot.getY() > 29)
+                .collect(Collectors.toList());
+
+        System.out.println(hataronTul);
+    }
+
 }
