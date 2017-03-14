@@ -41,9 +41,12 @@ public class Nevek
     @Test
     public void egymasAlatt()
     {
-        for (int i = 0; i < name.length(); i++) {
-            System.out.println(name.charAt(i));
-        }
+//        for (int i = 0; i < name.length(); i++)
+//        {
+//            System.out.println(name.charAt(i));
+//        }
+
+        name.chars().mapToObj(x -> (char)x).forEach(System.out::println);
     }
 
     @Test
@@ -63,6 +66,7 @@ public class Nevek
             }
 
         }
+
     }
 
     //    Írd ki csak a vezetékneved!

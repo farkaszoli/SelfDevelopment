@@ -27,6 +27,17 @@ public class KutyasFeladat
         {
             System.out.println(dog);
         }
+
+    }
+
+    private void testWithJava8()
+    {
+        List<Kutya> kutyaList = kutyakList();
+        List<Kutya> vizslaNelkuli = new ArrayList();
+
+        kutyaList.stream().filter(kutya -> "vizsla".equals(kutya.getFajta())).map(kutya -> vizslaNelkuli.add(kutya));
+
+        vizslaNelkuli.stream().forEach(kutya -> System.out.print(kutya));
     }
 
     private List<Kutya> kutyakList()

@@ -1,5 +1,6 @@
 package main;
 
+import egypercesek.egyszerubbFeladatok.Nevek;
 import komplex.evfolyam.Beolvas;
 import komplex.evfolyam.Evfolyam;
 import komplex.idojaras.IdojarasFeladat;
@@ -11,6 +12,8 @@ public class Main
     {
         System.out.println("Self Development Home project");
 
-        RobotokFeladat.hataronTulmegy();
+//        RobotokFeladat.hataronTulmegy();
+        Nevek nevek = new Nevek();
+        nevek.egymasAlatt();
     }
 }

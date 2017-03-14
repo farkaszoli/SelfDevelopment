@@ -2,6 +2,8 @@ package egypercesek.egyszerubbFeladatok;
 
 import org.testng.annotations.Test;
 
+import java.util.Arrays;
+
 public class Szoveg
 {
     /**
@@ -27,6 +29,7 @@ public class Szoveg
             System.out.println(word);
         }
 
+        Arrays.stream(words).forEach(word -> System.out.print(word));
     }
 
     @Test
