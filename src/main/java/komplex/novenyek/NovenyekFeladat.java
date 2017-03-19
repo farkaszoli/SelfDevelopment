@@ -8,15 +8,19 @@ import java.util.List;
 import java.util.Scanner;
 
 // http://www.webotlet.hu/?p=898
-public class NovenyekFeladat {
+public class NovenyekFeladat
+{
     private static final File FILE = new File("E:\\Epam\\repok\\SelfDevelopmentProject\\src\\main\\resources\\novenyek.txt");
 
     private List<Noveny> novenyList = new ArrayList();
 
-    public List<Noveny> beolvas() {
-        try {
+    public List<Noveny> beolvas()
+    {
+        try
+        {
             Scanner scanner = new Scanner(FILE);
-            while (scanner.hasNextLine()) {
+            while (scanner.hasNextLine())
+            {
                 Noveny ujNoveny = new Noveny("", "", 0, 0);
                 String sor = scanner.nextLine();
                 String[] nov = sor.split(";");
@@ -27,20 +31,39 @@ public class NovenyekFeladat {
                 novenyList.add(ujNoveny);
             }
             scanner.close();
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             System.out.print("Error: " + e.getMessage());
         }
         return novenyList;
     }
 
-    //    Írd ki, hogy a gyöngyvirág melyik részét gyűjtik!
+    //  2. Írd ki, hogy a gyöngyvirág melyik részét gyűjtik!
     @Test
-    public void gyujtik() {
-        for (Noveny noveny : novenyList) {
-            if ("Gyongyvirag".equals(noveny.getNeve())) {
+    public void gyujtik()
+    {
+        for (Noveny noveny : novenyList)
+        {
+            if ("Gyongyvirag".equals(noveny.getNeve()))
+            {
                 System.out.println(noveny.getGyujtik());
             }
         }
+    }
+    public void gyujtikWithFilter()
+    {
+        novenyList.stream().filter(noveny -> "Gyongyvirag".equals(noveny.getGyujtik())).forEach(System.out::print);
+    }
+
+    public void gyujtikWithForEach()
+    {
+        novenyList.stream().forEach(noveny ->
+        {
+            if ("Gyongyvirag".equals(noveny.getGyujtik()))
+            {
+                System.out.println(noveny);
+            }
+        });
     }
 
     //    Írd ki, hány növényt gyűjtenek a leveléért!
