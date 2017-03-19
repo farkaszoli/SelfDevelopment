@@ -99,24 +99,34 @@ public class NovenyekFeladat
         System.out.print("ezekben a honapokban nem gyujtenek semmit: " + honapok);
     }
 
-
     //6. Hány növény neve áll egy szóból?
     @Test
-    public void egyszobol() {
+    public void egyszobol()
+    {
         int db = 0;
         String[] nev;
 
-        for (Noveny noveny : novenyList) {
-            if (noveny.getNeve().split(" ").length > 1) {
+        for (Noveny noveny : novenyList)
+        {
+            if (noveny.getNeve().split(" ").length > 1)
+            {
                 db++;
             }
-
         }
 
         System.out.println("db szam: " + db);
     }
+//    7. Írd ki, hogy melyik növényeket kezdik el ősszel gyűjteni!
+    public void osszelKezdikGyujteni()
+    {
+        novenyList.stream()
+                .filter(noveny -> noveny.getKezdikElGyujteni() == 9)
+                .filter(noveny -> noveny.getKezdikElGyujteni() == 10)
+                .filter(noveny -> noveny.getKezdikElGyujteni() == 11)
+                .forEach(System.out::println);
+    }
 
-    //Miket gyűjtenek ugyanazon részéért, mint a csalánt?
+    // 10. Miket gyűjtenek ugyanazon részéért, mint a csalánt?
     @Test
     public void gyujtikMintACsalant()
     {
