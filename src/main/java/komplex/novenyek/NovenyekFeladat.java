@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static java.util.Arrays.asList;
+
 // http://www.webotlet.hu/?p=898
 public class NovenyekFeladat
 {
@@ -66,7 +68,7 @@ public class NovenyekFeladat
         });
     }
 
-    //    Írd ki, hány növényt gyűjtenek a leveléért!
+    //    3. Írd ki, hány növényt gyűjtenek a leveléért!
     @Test
     public void szamol() {
         int db = 0;
@@ -78,7 +80,27 @@ public class NovenyekFeladat
         System.out.println("gyujtik a leveleert db szama: " + db);
     }
 
-    //Hány növény neve áll egy szóból?
+//    5.Írd ki azokat a hónapokat, amikor semmit nem kezdenek gyűjteni!
+    public void semmitNemGyujtenekAHonapban()
+    {
+        List<Integer> honapok = asList(1,2,3,4,5,6,7,8,9,10,11,12);
+
+        for(Noveny noveny : novenyList)
+        {
+            for(Integer honap : honapok)
+            {
+                if(noveny.getKezdikElGyujteni() == honap)
+                {
+                    honapok.remove(honap);
+                }
+            }
+        }
+
+        System.out.print("ezekben a honapokban nem gyujtenek semmit: " + honapok);
+    }
+
+
+    //6. Hány növény neve áll egy szóból?
     @Test
     public void egyszobol() {
         int db = 0;
