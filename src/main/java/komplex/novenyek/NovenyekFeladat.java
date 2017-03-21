@@ -126,6 +126,13 @@ public class NovenyekFeladat
                 .forEach(System.out::println);
     }
 
+    // 8. Hány növényt gyűjtenek a nyár elejétől kezdődően?
+    public void nyarElejetolGyujtik() {
+        novenyList.stream()
+                .filter(noveny -> noveny.getKezdikElGyujteni() > 6)
+                .count();
+    }
+
     // 10. Miket gyűjtenek ugyanazon részéért, mint a csalánt?
     @Test
     public void gyujtikMintACsalant()
@@ -146,5 +153,14 @@ public class NovenyekFeladat
                 System.out.println(noveny.getNeve());
             }
         }
+    }
+
+    // 11. Hány növényt gyűjtenek valamilyen virággal kapcsolatos részéért (virág, virágzat, stb)?
+    public void gyujtikViragaMiatt()
+    {
+        novenyList.stream()
+                .filter(noveny -> "virag".equals(noveny.getGyujtik()))
+                .filter(noveny -> "viragzat".equals(noveny.getGyujtik()))
+                .count();
     }
 }
