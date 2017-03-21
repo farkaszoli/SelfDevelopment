@@ -163,4 +163,31 @@ public class NovenyekFeladat
                 .filter(noveny -> "viragzat".equals(noveny.getGyujtik()))
                 .count();
     }
+
+    // 13. Van-e olyan hónap, amikor semmit nem gyűjtenek?
+    public void honapMikorNemGyujtenekSemmit()
+    {
+        List<Integer> honapok = asList(1,2,3,4,5,6,7,8,9,10,11,12);
+
+        for(Noveny noveny : novenyList)
+        {
+            for(Integer honap : honapok)
+            {
+                if(noveny.getKezdikElGyujteni() == honap)
+                {
+                    honapok.remove(honap);
+                }
+            }
+        }
+    }
+
+//    16. Írd ki, hogy melyik növényt hány hónapig gyűjtenek!
+    public void hanyHonapigGyujtik()
+    {
+        for(Noveny noveny : novenyList)
+        {
+            int honapokSzama = noveny.getKezdikElGyujteni() + (12 - noveny.getFejezikBeGyujteni());
+            System.out.print(noveny + " gyujtik: " +  honapokSzama);
+        }
+    }
 }
