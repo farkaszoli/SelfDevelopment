@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,9 +15,9 @@ public class NovenyekFeladat
 {
     private static final File FILE = new File("E:\\Epam\\repok\\SelfDevelopmentProject\\src\\main\\resources\\novenyek.txt");
 
-    private List<Noveny> novenyList = new ArrayList();
+    private static List<Noveny> novenyList = new ArrayList();
 
-    public List<Noveny> beolvas()
+    public static List<Noveny> beolvas()
     {
         try
         {
@@ -181,7 +182,39 @@ public class NovenyekFeladat
         }
     }
 
-//    16. Írd ki, hogy melyik növényt hány hónapig gyűjtenek!
+    // 14. Melyik hónapban gyűjtik a legtöbb fajta növényt?
+    public static void legtobbNovenytGyujtikAHonapban()
+    {
+        List<Noveny> novenyLista = beolvas();
+        List<String> gyujtott;
+        int mennyitGyujtottek = 0;
+        String honap = "";
+
+        for(int i = 1; i < 13; i++)
+        {
+            gyujtott = Collections.emptyList();
+            for(Noveny noveny : novenyLista)
+            {
+                if(noveny.getKezdikElGyujteni() == i)
+                {
+                    if(!gyujtott.contains(noveny.getNeve()))
+                    {
+                        gyujtott.add(noveny.getNeve());
+                    }
+                }
+            }
+
+            if(gyujtott.size() > mennyitGyujtottek)
+            {
+                mennyitGyujtottek = gyujtott.size();
+                honap = String.valueOf(i);
+            }
+        }
+
+        System.out.print("legtobb novenyt ebben a honapban gyujtenek: " + honap);
+    }
+
+    //    16. Írd ki, hogy melyik növényt hány hónapig gyűjtenek!
     public void hanyHonapigGyujtik()
     {
         for(Noveny noveny : novenyList)
