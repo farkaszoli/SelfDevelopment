@@ -182,6 +182,13 @@ public class NovenyekFeladat
         }
     }
 
+    //    15. Írd ki a növények adatait olyan sorrendben, hogy mikor kezdik gyűjteni őket!
+    public void mikorKezdikGyujteni()
+    {
+        novenyList.sort((a, b) -> Integer.compare(a.getKezdikElGyujteni(), b.getKezdikElGyujteni()));
+        novenyList.stream().forEach(noveny -> System.out.print(noveny));
+    }
+
     // 14. Melyik hónapban gyűjtik a legtöbb fajta növényt?
     public static void legtobbNovenytGyujtikAHonapban()
     {
