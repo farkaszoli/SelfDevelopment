@@ -3,12 +3,11 @@ package komplex.novenyek;
 import org.testng.annotations.Test;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static java.util.Arrays.asList;
+import static java.util.Arrays.stream;
 
 // http://www.webotlet.hu/?p=898
 public class NovenyekFeladat
@@ -165,6 +164,37 @@ public class NovenyekFeladat
                 .count();
     }
 
+    //    12. Melyik növényrészeket gyűjtik a legtöbb esetben?
+    public void legtobbetGyujtenek()
+    {
+        List<String> novenyReszek = asList();
+
+        for(Noveny noveny : novenyList)
+        {
+            if ( !novenyReszek.contains(noveny.getGyujtik()))
+            {
+                novenyReszek.add(noveny.getGyujtik());
+            }
+        }
+
+        String legtobbetGyujtotReszNeve = "";
+        long szama = 0;
+        long legtobb = 0;
+
+        for ( String novenyResz : novenyReszek)
+        {
+            szama = novenyList.stream().filter(noveny -> novenyResz.equals(noveny.getGyujtik())).count();
+
+            if( szama > legtobb)
+            {
+                legtobbetGyujtotReszNeve = novenyResz;
+            }
+        }
+
+        System.out.print(legtobbetGyujtotReszNeve);
+    }
+
+
     // 13. Van-e olyan hónap, amikor semmit nem gyűjtenek?
     public void honapMikorNemGyujtenekSemmit()
     {
@@ -180,13 +210,6 @@ public class NovenyekFeladat
                 }
             }
         }
-    }
-
-    //    15. Írd ki a növények adatait olyan sorrendben, hogy mikor kezdik gyűjteni őket!
-    public void mikorKezdikGyujteni()
-    {
-        novenyList.sort((a, b) -> Integer.compare(a.getKezdikElGyujteni(), b.getKezdikElGyujteni()));
-        novenyList.stream().forEach(noveny -> System.out.print(noveny));
     }
 
     // 14. Melyik hónapban gyűjtik a legtöbb fajta növényt?
@@ -219,6 +242,13 @@ public class NovenyekFeladat
         }
 
         System.out.print("legtobb novenyt ebben a honapban gyujtenek: " + honap);
+    }
+
+    //  15. Írd ki a növények adatait olyan sorrendben, hogy mikor kezdik gyűjteni őket!
+    public void mikorKezdikGyujteni()
+    {
+        novenyList.sort((a, b) -> Integer.compare(a.getKezdikElGyujteni(), b.getKezdikElGyujteni()));
+        novenyList.stream().forEach(noveny -> System.out.print(noveny));
     }
 
     //    16. Írd ki, hogy melyik növényt hány hónapig gyűjtenek!
