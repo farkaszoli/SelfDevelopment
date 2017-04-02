@@ -286,6 +286,14 @@ public class Kezilabda
         }
     }
 
+    public void jobbSzelsoHetesJava8()
+    {
+        beolvas().stream()
+                .filter(jatekos -> Poszt.JOBBSZELSO.equals(jatekos.getPoszt()))
+                .filter(jatekos -> jatekos.getHetesekSzama() > 0)
+                .forEach(jatekos -> System.out.print(jatekos));
+    }
+
     //    Ki volt a legeredményesebb átlövő?
     public void legeredmenyesebbAtlovo()
     {
@@ -324,13 +332,6 @@ public class Kezilabda
 
                         return jatekosNeve;
                     }).toString();
-    }
-
-    private String legeremenyesebbAtlovoSzamitasa(Jatekos jatekos)
-    {
-
-
-        return null;
     }
 
     private List<Jatekos> getSzelsoJatekosokLista()
