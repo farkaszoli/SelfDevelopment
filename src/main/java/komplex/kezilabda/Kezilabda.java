@@ -307,6 +307,32 @@ public class Kezilabda
                 legeredmenyesebbJatekos.getGolokSzama());
     }
 
+    public String legeredmenyesebbAtlovoJava8()
+    {
+        return beolvas().stream()
+                .filter(jatekos -> Poszt.ATLOVO.equals(jatekos.getPoszt()))
+                .map(jatekos ->
+                    {
+                        int legtobbGol = 0;
+                        String jatekosNeve = "";
+
+                        if(jatekos.getGolokSzama() > legtobbGol)
+                        {
+                            legtobbGol = jatekos.getGolokSzama();
+                            jatekosNeve = jatekos.getNev();
+                        }
+
+                        return jatekosNeve;
+                    }).toString();
+    }
+
+    private String legeremenyesebbAtlovoSzamitasa(Jatekos jatekos)
+    {
+
+
+        return null;
+    }
+
     private List<Jatekos> getSzelsoJatekosokLista()
     {
         List<Jatekos> jatekosLista = beolvas();
