@@ -270,6 +270,24 @@ public class Kezilabda
 
     }
 
+    public void legkevesebbetJatszottIranyitoJava8()
+    {
+        String legkevesebbetJatszo =
+            beolvas().stream()
+                .filter(jatekos -> Poszt.IRANYITO.equals(jatekos.getPoszt()))
+                .filter(jatekos ->
+                {
+                    int jatszottMeccsekSzama = 0;
+                    String neve = "";
+                    if(jatekos.getMeccsekSzama() > jatszottMeccsekSzama)
+                    {
+                        jatszottMeccsekSzama = jatekos.getMeccsekSzama();
+                        neve = jatekos.getNev()
+                    }
+                    return neve;
+                });
+    }
+
     //    Dobott-e jobbszélső hetest?
     public void jobbSzelsoHetestDobottE()
     {
