@@ -120,9 +120,9 @@ public class IdojarasFeladat
     //    7. Hányszor volt fagypont?
     public void fagypontokSzam()
     {
-        int fagypontokSzama = IDOJARAS_LISTA.stream()
+        long fagypontokSzama = IDOJARAS_LISTA.stream()
                 .filter(idojaras -> idojaras.getHomerseklet() == 0)
-                .collect(Collectors.toList()).size();
+                .count();
 
         System.out.print(fagypontokSzama);
     }
@@ -130,9 +130,8 @@ public class IdojarasFeladat
     // 8. Hány olyan időszak volt, amikor fagyott? (amikor tartósan negatív a hőmérséklet)
     public void fagyott()
     {
-        int fagyott = IDOJARAS_LISTA.stream()
-                .filter(idojaras -> idojaras.getHomerseklet() <= 0)
-                .collect(Collectors.toList()).size();
+        long fagyott = IDOJARAS_LISTA.stream()
+                .filter(idojaras -> idojaras.getHomerseklet() <= 0).count();
 
         System.out.print(fagyott);
     }
@@ -166,6 +165,13 @@ public class IdojarasFeladat
         }
 
         getSzelirany(szelirany);
+    }
+
+    public void szelIranyJava8()
+    {
+        IDOJARAS_LISTA.stream()
+                .max((idojaras1, idojaras2) -> Integer.compare(idojaras1.getHomerseklet(), idojaras2.getHomerseklet()))
+                .ifPresent(idojaras -> System.out.println("szelirany: " + idojaras.getSzelirany()));;
     }
 
     //   11. Mennyi volt a nappali átlaghőmérséklet, ha tudjuk, hogy 7:01-kor volt napkelte és 16:48-kor volt napnyugta?
