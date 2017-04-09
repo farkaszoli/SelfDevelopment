@@ -39,6 +39,12 @@ public class IdojarasFeladat
         return legmelegebbOra;
     }
 
+    public void hanyOrakkorVanALegmelegebbJava8()
+    {
+        IDOJARAS_LISTA.stream().max((idojaras1, idojaras2) -> Integer.compare(idojaras1.getHomerseklet(), idojaras2.getHomerseklet()))
+            .get();
+    }
+
     //   3. Mikor fújt a legerősebben a szél?
     public void legerosebbSzel()
     {
@@ -54,6 +60,11 @@ public class IdojarasFeladat
         }
 
         System.out.print("legerosebben fujt: " + legmelegebbOra + " orakkor!");
+    }
+
+    public void legerosebbenASzelJava8()
+    {
+        IDOJARAS_LISTA.stream().max((idojaras1, idojaras2) -> Integer.compare(idojaras1.getSzelerosseg(), idojaras2.getSzelerosseg())).get();
     }
 
 //    4. Mikor fújt ÉNY a szél?
