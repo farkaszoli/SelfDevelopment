@@ -42,7 +42,7 @@ public class IdojarasFeladat
     public void hanyOrakkorVanALegmelegebbJava8()
     {
         IDOJARAS_LISTA.stream().max((idojaras1, idojaras2) -> Integer.compare(idojaras1.getHomerseklet(), idojaras2.getHomerseklet()))
-            .get();
+                .ifPresent(idojaras -> System.out.println("Maximum number in the set is " + idojaras.getOra()));;
     }
 
     //   3. Mikor fújt a legerősebben a szél?
@@ -64,7 +64,8 @@ public class IdojarasFeladat
 
     public void legerosebbenASzelJava8()
     {
-        IDOJARAS_LISTA.stream().max((idojaras1, idojaras2) -> Integer.compare(idojaras1.getSzelerosseg(), idojaras2.getSzelerosseg())).get();
+        IDOJARAS_LISTA.stream().max((idojaras1, idojaras2) -> Integer.compare(idojaras1.getSzelerosseg(), idojaras2.getSzelerosseg()))
+                .ifPresent(idojaras->System.out.println("mikor fujt legerosebben: " + idojaras.getOra()));
     }
 
 //    4. Mikor fújt ÉNY a szél?
@@ -87,6 +88,11 @@ public class IdojarasFeladat
         }
 
         System.out.print("borult: " + borultEg + " alkalommal!");
+    }
+
+    public void borultEgJava8()
+    {
+        IDOJARAS_LISTA.stream().filter(idojaras -> "borult".equals(idojaras.getIdokep())).count();
     }
 
     //   6. Mennyi volt a napi hőingás?
