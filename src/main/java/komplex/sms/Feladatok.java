@@ -1,5 +1,7 @@
 package komplex.sms;
 
+import komplex.evfolyam.*;
+
 public class Feladatok
 {
     /*
@@ -7,4 +9,10 @@ public class Feladatok
     Ha az állományt nem tudja beolvasni, akkor a benne található adatok közül az első tíz üzenet adatait jegyezze be a
      programba, s úgy oldja meg a feladatokat!
      */
+    public void elsoFeladat()
+    {
+        Beolvas.beolvas();
+    }
+
+    
 }

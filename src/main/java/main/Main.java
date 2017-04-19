@@ -18,6 +18,6 @@ public class Main
 //        Nevek nevek = new Nevek();
 //        nevek.egymasAlatt();
 
-        NovenyekFeladat.legtobbNovenytGyujtikAHonapban();
+        komplex.sms.Beolvas.beolvas();
     }
 }

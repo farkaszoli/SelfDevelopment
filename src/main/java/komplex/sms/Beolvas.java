@@ -23,12 +23,25 @@ public class Beolvas
             {
                 String sor = scanner.nextLine();
 
-                smsek.add(new Sms());
+                String[] felbontas = sor.split(";");
+                String elsoResz = felbontas[0];
+
+                String masodikResz[] = elsoResz.split(" ");
+
+                int ora = Integer.valueOf(masodikResz[0]);
+                int perc = Integer.valueOf(masodikResz[1]);
+                int telefonszam = Integer.valueOf(masodikResz[2]);
+
+                String uzenet = felbontas[1];
+
+                smsek.add(new Sms(ora, perc, telefonszam, uzenet));
             }
         } catch (Exception e)
         {
             System.out.print("Error: " + e.getMessage());
         }
+
+        smsek.stream().forEach(sms -> System.out.println(sms));
 
         return smsek;
     }
