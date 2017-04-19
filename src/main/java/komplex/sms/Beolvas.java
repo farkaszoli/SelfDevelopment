@@ -41,7 +41,7 @@ public class Beolvas
             System.out.print("Error: " + e.getMessage());
         }
 
-        smsek.stream().forEach(sms -> System.out.println(sms));
+//        smsek.stream().forEach(sms -> System.out.println(sms));
 
         return smsek;
     }
