@@ -73,4 +73,46 @@ public class Feladatok
         System.out.println("leghoszabb uzenet adatai: " + leghosszabbSms.toString());
         System.out.println("legrovidebb uzenet adatai: " + legrovidebbSms.toString());
     }
+
+    /*
+    4. Készítsen karakterhossz szerinti statisztikát: 1-20, 21-40, 41-60, 61-80, 81-100!
+    Az intervallumok mellé a hozzájuk tartozó üzenetek darabszámát írja, mint eredményt a képernyőre!
+     */
+    public static void negyedikFeladat()
+    {
+        int smsHossza;
+        int huszig = 0;
+        int negyvenig = 0;
+        int hatvanig = 0;
+        int nyolcvanig = 0;
+        int szazig = 0;
+
+        for(Sms sms : SMSEK)
+        {
+            smsHossza = sms.getUzenet().length();
+            if(smsHossza > 0 && smsHossza < 21)
+            {
+                huszig++;
+            }
+            else if(smsHossza > 20 && smsHossza < 41)
+            {
+                negyvenig++;
+            }else if(smsHossza > 40 && smsHossza < 61)
+            {
+                hatvanig++;
+            } else if(smsHossza > 60 && smsHossza < 81)
+            {
+                nyolcvanig++;
+            }else if(smsHossza > 80 && smsHossza < 101)
+            {
+                szazig++;
+            }
+        }
+
+        System.out.println("1-20: " + huszig + " db");
+        System.out.println("21-40: " + negyvenig + " db");
+        System.out.println("41-60: " + hatvanig + " db");
+        System.out.println("61-80: " + nyolcvanig + " db");
+        System.out.println("81-1000: " + szazig + " db");
+    }
 }
