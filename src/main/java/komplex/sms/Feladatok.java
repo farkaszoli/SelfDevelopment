@@ -1,5 +1,7 @@
 package komplex.sms;
 
+import com.google.common.base.Strings;
+import com.sun.deploy.util.StringUtils;
 import komplex.evfolyam.*;
 
 import java.util.List;
@@ -43,5 +45,32 @@ public class Feladatok
         }
 
         System.out.print(uzenet);
+    }
+
+    /*
+    3. Adja meg a leghosszabb és a legrövidebb üzenetek adatait! Ha több azonos hosszúságú üzenet van,
+    akkor elegendő csak egyet-egyet megadnia! A képernyőn óra, perc, telefonszám, üzenet formában jelenítse meg
+    az adatokat!
+     */
+    public static void harmadikFeladat()
+    {
+        Sms leghosszabbSms = new Sms(0, 0, 0, "");
+        Sms legrovidebbSms = new Sms(0, 0, 0, Strings.repeat("z", 1000));
+
+        for(Sms sms : SMSEK)
+        {
+            if(sms.getUzenet().length() > leghosszabbSms.getUzenet().length())
+            {
+                leghosszabbSms = sms;
+            }
+
+            if(sms.getUzenet().length() < legrovidebbSms.getUzenet().length())
+            {
+                legrovidebbSms = sms;
+            }
+        }
+
+        System.out.println("leghoszabb uzenet adatai: " + leghosszabbSms.toString());
+        System.out.println("legrovidebb uzenet adatai: " + legrovidebbSms.toString());
     }
 }
