@@ -4,6 +4,7 @@ import com.google.common.base.Strings;
 import com.sun.deploy.util.StringUtils;
 import komplex.evfolyam.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Feladatok
@@ -54,8 +55,8 @@ public class Feladatok
      */
     public static void harmadikFeladat()
     {
-        Sms leghosszabbSms = new Sms(0, 0, 0, "");
-        Sms legrovidebbSms = new Sms(0, 0, 0, Strings.repeat("z", 1000));
+        Sms leghosszabbSms = SMSEK.get(0);
+        Sms legrovidebbSms = SMSEK.get(0);
 
         for(Sms sms : SMSEK)
         {
@@ -115,4 +116,59 @@ public class Feladatok
         System.out.println("61-80: " + nyolcvanig + " db");
         System.out.println("81-1000: " + szazig + " db");
     }
+
+    /*
+    5. Ha Ernő minden óra 0. percében elolvasná a memóriában lévő üzeneteket (az éppen ekkor érkező üzeneteket nem
+    látja), majd ki is törölné, akkor hány olyan üzenet lenne, amelynek elolvasásához fel kellene hívnia a szolgáltatót?
+    Írja ezt a számot a képernyőre! (Az üzeneteket először 1, utoljára 24 órakor olvassa el.)
+    */
+    public static void otodikFeladat()
+    {
+    List<Integer> ezekbenAzOrakbanErkezettUzenet = new ArrayList<>();
+
+        for(Sms sms : SMSEK)
+        {
+            if(!ezekbenAzOrakbanErkezettUzenet.contains(sms.getOra()))
+            {
+                ezekbenAzOrakbanErkezettUzenet.add(sms.getOra());
+            }
+        }
+
+        int db = 0;
+        int osszesDb = 0;
+
+        for (int ora : ezekbenAzOrakbanErkezettUzenet)
+        {
+            for (Sms sms : SMSEK)
+            {
+                if (ora == sms.getOra())
+                {
+                    db++;
+                }
+            }
+
+            if(db > 10)
+            {
+                osszesDb += db - 10;
+            }
+
+            db = 0;
+        }
+
+        System.out.print("ennyi uzenet miatt kell hivni: " + osszesDb);
+    }
+
+
+    /*
+    6. Ernő barátnője gyakran küld sms-t az 123456789-es számról. Mennyi volt a leghosszabb idő, amennyi eltelt két
+    üzenete között? Ha legfeljebb 1 üzenet érkezett tőle, akkor írja ki, hogy „nincs elegendő üzenet”, egyébként pedig
+    adja meg a leghosszabb időtartamot óra perc alakban!
+
+    7. Egy üzenet véletlenül késett. Olvassa be a billentyűzetről ennek az sms-nek az adatait, majd tárolja el a
+    memóriában a többihez hasonlóan!
+
+    8. Az smski.txt állományban készítsen egy listát az üzenetekről telefonszám szerinti csoportosításban, telefonszám
+    szerint növekvő sorrendben! Egy csoporthoz tartozó első sorban a feladó telefonszáma szerepeljen! Az alatta lévő
+    sorokban a feladás ideje, majd a tőle újabb szóközzel elválasztva az üzenet szövege szerepeljen!
+     */
 }
