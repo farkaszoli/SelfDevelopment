@@ -20,6 +20,6 @@ public class Main
 //        nevek.egymasAlatt();
 
 //        komplex.sms.Beolvas.beolvas();
-        Feladatok.harmadikFeladat();
+        Feladatok.hatodikFeladat();
     }
 }

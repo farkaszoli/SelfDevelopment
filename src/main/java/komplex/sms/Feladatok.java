@@ -6,6 +6,7 @@ import komplex.evfolyam.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Feladatok
 {
@@ -158,15 +159,55 @@ public class Feladatok
         System.out.print("ennyi uzenet miatt kell hivni: " + osszesDb);
     }
 
-
     /*
     6. Ernő barátnője gyakran küld sms-t az 123456789-es számról. Mennyi volt a leghosszabb idő, amennyi eltelt két
     üzenete között? Ha legfeljebb 1 üzenet érkezett tőle, akkor írja ki, hogy „nincs elegendő üzenet”, egyébként pedig
     adja meg a leghosszabb időtartamot óra perc alakban!
+    */
+    public static void hatodikFeladat()
+    {
+        List<Sms> baratnoiSmsek = SMSEK.stream().filter(sms -> sms.getTelefonszam() == 123456789).collect(Collectors.toList());
 
+        if( baratnoiSmsek.size() < 2)
+        {
+            System.out.print("nincs elegendo uzenet");
+            return;
+        }
+
+        int legnagyobbKulonbseg = 0;
+
+        for(int i = 0; i < baratnoiSmsek.size() - 1; i++)
+        {
+            int elsoIdopontOraja = baratnoiSmsek.get(i).getOra() * 60;
+            int elsoIdopontjaPerc = baratnoiSmsek.get(i).getPerc();
+
+            int elsoOraPercben = elsoIdopontOraja + elsoIdopontjaPerc;
+
+            int masodikIdopontOraja = baratnoiSmsek.get(i + 1).getOra() * 60;
+            int masodikIdopontPerc = baratnoiSmsek.get(i + 1).getPerc();
+
+            int masodikOraPercben = masodikIdopontOraja + masodikIdopontPerc;
+
+            int kulonbseg = masodikOraPercben - elsoOraPercben;
+
+            if ( kulonbseg > legnagyobbKulonbseg)
+            {
+                legnagyobbKulonbseg = kulonbseg;
+            }
+        }
+
+        int ora = legnagyobbKulonbseg / 60;
+        int perc = legnagyobbKulonbseg % 60;
+
+        System.out.println(ora + " ora"  + perc  + " perc");
+    }
+
+    /*
     7. Egy üzenet véletlenül késett. Olvassa be a billentyűzetről ennek az sms-nek az adatait, majd tárolja el a
     memóriában a többihez hasonlóan!
+    */
 
+    /*
     8. Az smski.txt állományban készítsen egy listát az üzenetekről telefonszám szerinti csoportosításban, telefonszám
     szerint növekvő sorrendben! Egy csoporthoz tartozó első sorban a feladó telefonszáma szerepeljen! Az alatta lévő
     sorokban a feladás ideje, majd a tőle újabb szóközzel elválasztva az üzenet szövege szerepeljen!
