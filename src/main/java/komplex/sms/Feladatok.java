@@ -212,4 +212,23 @@ public class Feladatok
     szerint növekvő sorrendben! Egy csoporthoz tartozó első sorban a feladó telefonszáma szerepeljen! Az alatta lévő
     sorokban a feladás ideje, majd a tőle újabb szóközzel elválasztva az üzenet szövege szerepeljen!
      */
+    public static void nyolcadikFeladat()
+    {
+        List<Integer> telefonszamok = new ArrayList<>();
+
+        for(Sms sms : SMSEK)
+        {
+            if(!telefonszamok.contains(sms.getTelefonszam()))
+            {
+                telefonszamok.add(sms.getTelefonszam());
+            }
+        }
+
+        telefonszamok.stream().sorted();
+
+        for (int i = 0; i < telefonszamok.size(); i++)
+        {
+            System.out.println(telefonszamok.get(i));
+        }
+    }
 }
