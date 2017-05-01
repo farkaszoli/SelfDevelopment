@@ -3,13 +3,19 @@ package komplex.sms;
 import com.google.common.base.Strings;
 import com.sun.deploy.util.StringUtils;
 import komplex.evfolyam.*;
+import sun.security.mscapi.SunMSCAPI;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Feladatok
 {
+    private int legfrissebb = 0;
+    private int legfrisebbPerc = 0;
+    private String uzenet = "";
+
     /*
     1. Olvassa be az sms.txt állományban talált adatokat, s annak felhasználásával oldja meg a következő feladatokat!
     Ha az állományt nem tudja beolvasni, akkor a benne található adatok közül az első tíz üzenet adatait jegyezze be a
@@ -17,8 +23,7 @@ public class Feladatok
      */
     private static final List<Sms> SMSEK = Beolvas.beolvas();
 
-    public void elsoFeladat()
-    {
+    public void elsoFeladat() {
         Beolvas.beolvas();
     }
 
@@ -26,20 +31,16 @@ public class Feladatok
     2. A fájlban tárolt utolsó üzenet érkezésekor melyik üzenet a legfrissebb a telefon memóriájában?
      Írja az üzenet szövegét a képernyőre!
      */
-    public static void masodikFeladat()
-    {
+    public static void masodikFeladat() {
         int legfrissebb = 0;
         int legfrisebbPerc = 0;
         String uzenet = "";
 
-        for(Sms sms : SMSEK)
-        {
-            if(sms.getOra() >= legfrissebb)
-            {
+        for (Sms sms : SMSEK) {
+            if (sms.getOra() >= legfrissebb) {
                 legfrissebb = sms.getOra();
 
-                if( sms.getPerc() > legfrisebbPerc)
-                {
+                if (sms.getPerc() > legfrisebbPerc) {
                     legfrisebbPerc = sms.getPerc();
                 }
                 uzenet = sms.getUzenet();
@@ -47,6 +48,25 @@ public class Feladatok
         }
 
         System.out.print(uzenet);
+    }
+
+    public void masodikFeladatJava8()
+    {
+        Optional<Sms> first = SMSEK.stream().map(sms -> legfrissebb(sms)).findFirst();
+    }
+
+    private Sms legfrissebb(Sms sms)
+    {
+        if (sms.getOra() >= legfrissebb) {
+            legfrissebb = sms.getOra();
+
+            if (sms.getPerc() > legfrisebbPerc) {
+                legfrisebbPerc = sms.getPerc();
+            }
+            uzenet = sms.getUzenet();
+        }
+
+        return sms;
     }
 
     /*
