@@ -1,9 +1,6 @@
 package komplex.sms;
 
-import com.google.common.base.Strings;
-import com.sun.deploy.util.StringUtils;
-import komplex.evfolyam.*;
-import sun.security.mscapi.SunMSCAPI;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +12,15 @@ public class Feladatok
     private int legfrissebb = 0;
     private int legfrisebbPerc = 0;
     private String uzenet = "";
+    private Sms legrovidebb = new Sms(0,0,0, StringUtils.repeat(" ", 3));
+    private Sms leghosszabb = new Sms(0,0,0, "");
+
+    int smsHossza;
+    int huszig = 0;
+    int negyvenig = 0;
+    int hatvanig = 0;
+    int nyolcvanig = 0;
+    int szazig = 0;
 
     /*
     1. Olvassa be az sms.txt állományban talált adatokat, s annak felhasználásával oldja meg a következő feladatokat!
@@ -22,6 +28,7 @@ public class Feladatok
      programba, s úgy oldja meg a feladatokat!
      */
     private static final List<Sms> SMSEK = Beolvas.beolvas();
+    private Sms legrovidebbSms;
 
     public void elsoFeladat() {
         Beolvas.beolvas();
@@ -96,19 +103,27 @@ public class Feladatok
         System.out.println("legrovidebb uzenet adatai: " + legrovidebbSms.toString());
     }
 
+    public void harmadikFeladatJava8()
+    {
+        SMSEK.stream().map(this::legrovidebb).forEach(System.out::print);
+    }
+
+    private Sms legrovidebb(Sms sms)
+    {
+        if(sms.getUzenet().length() < legrovidebb.getUzenet().length())
+        {
+            legrovidebbSms = sms;
+        }
+
+        return null;
+    }
+
     /*
     4. Készítsen karakterhossz szerinti statisztikát: 1-20, 21-40, 41-60, 61-80, 81-100!
     Az intervallumok mellé a hozzájuk tartozó üzenetek darabszámát írja, mint eredményt a képernyőre!
      */
-    public static void negyedikFeladat()
+    public void negyedikFeladat()
     {
-        int smsHossza;
-        int huszig = 0;
-        int negyvenig = 0;
-        int hatvanig = 0;
-        int nyolcvanig = 0;
-        int szazig = 0;
-
         for(Sms sms : SMSEK)
         {
             smsHossza = sms.getUzenet().length();
@@ -137,6 +152,8 @@ public class Feladatok
         System.out.println("61-80: " + nyolcvanig + " db");
         System.out.println("81-1000: " + szazig + " db");
     }
+
+        
 
     /*
     5. Ha Ernő minden óra 0. percében elolvasná a memóriában lévő üzeneteket (az éppen ekkor érkező üzeneteket nem
