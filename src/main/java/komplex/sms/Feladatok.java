@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Feladatok
@@ -153,7 +154,43 @@ public class Feladatok
         System.out.println("81-1000: " + szazig + " db");
     }
 
-        
+    public void negyedikFeladatJava8()
+    {
+        SMSEK.stream().map(this::szamol).forEach(this::kiir);
+    }
+
+    private void kiir(Object o)
+    {
+        System.out.println("1-20: " + huszig + " db");
+        System.out.println("21-40: " + negyvenig + " db");
+        System.out.println("41-60: " + hatvanig + " db");
+        System.out.println("61-80: " + nyolcvanig + " db");
+        System.out.println("81-1000: " + szazig + " db");
+    }
+
+    private Object szamol(Sms sms)
+    {
+        if(smsHossza > 0 && smsHossza < 21)
+        {
+            huszig++;
+        }
+        else if(smsHossza > 20 && smsHossza < 41)
+        {
+            negyvenig++;
+        }else if(smsHossza > 40 && smsHossza < 61)
+        {
+            hatvanig++;
+        } else if(smsHossza > 60 && smsHossza < 81)
+        {
+            nyolcvanig++;
+        }else if(smsHossza > 80 && smsHossza < 101)
+        {
+            szazig++;
+        }
+
+        return null;
+    }
+
 
     /*
     5. Ha Ernő minden óra 0. percében elolvasná a memóriában lévő üzeneteket (az éppen ekkor érkező üzeneteket nem
