@@ -9,8 +9,10 @@ public class RobotokFeladat
     private static final List<Robot> ROBOTOK_LISTAJA = Beolvas.beolvas();
 
     Robot legnagyobbTeruletuRobot = new Robot(0, 0, 0, 0, 0, 0);
+    Robot legmesszebbLevoRobot = new Robot(0, 0, 0, 0, 0, 0);
     int legnagyobbTerulet = 0;
-    int terulet;
+    int terulet = 0;
+    int legmesszebb = 0;
 
     //    Add meg minden robot útvonalának vég koordinátáit, ha azt feltételezzük, hogy a 0;0 pontból indultak!
     public static void koordinataSzamitas()
@@ -35,23 +37,38 @@ public class RobotokFeladat
     }
 
     //    4. Melyik robot jutott útvonala során legmesszebbre a kezdőpontjától?
-    public static void legmesszebbjutott()
+    public void legmesszebbjutott()
     {
-        Robot legmesszebbLevoRobot = new Robot(0, 0, 0, 0, 0, 0);
-
-        int legmesszebb = 0;
-
-        for (Robot robot : ROBOTOK_LISTAJA) {
+        for (Robot robot : ROBOTOK_LISTAJA)
+        {
             int robotTavolsaga = Math.abs(robot.getX()) + Math.abs(robot.getY());
 
-            if (robotTavolsaga > legmesszebb) {
+            if (robotTavolsaga > legmesszebb)
+            {
                 legmesszebb = robotTavolsaga;
                 legmesszebbLevoRobot = robot;
             }
         }
 
         System.out.print("legtavolabbi robot: " + legmesszebbLevoRobot + ", megtett ut: " + legmesszebb);
+    }
 
+    public void legmesszebbJutoRobotJava8()
+    {
+        ROBOTOK_LISTAJA.stream().map(this::legnagyobbTavolsag).forEach(System.out::print);
+    }
+
+    private Robot legnagyobbTavolsag(Robot robot)
+    {
+        int robotTavolsaga = Math.abs(robot.getX()) + Math.abs(robot.getY());
+
+        if (robotTavolsaga > legmesszebb)
+        {
+            legmesszebb = robotTavolsaga;
+            legmesszebbLevoRobot = robot;
+        }
+
+        return legmesszebbLevoRobot;
     }
 
     //  5. Add meg, melyek azok a robotok, melyek túlmentek volna egy 21×21-es tábla határain, melynek
