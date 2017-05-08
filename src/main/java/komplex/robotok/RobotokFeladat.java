@@ -4,15 +4,20 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 //  http://www.webotlet.hu/?p=906
-public class RobotokFeladat {
+public class RobotokFeladat
+{
     private static final List<Robot> ROBOTOK_LISTAJA = Beolvas.beolvas();
 
-    //    Add meg minden robot útvonalának vég koordinátáit, ha azt feltételezzük, hogy a 0;0 pontból indultak!
-    public static void koordinataSzamitas() {
+    Robot legnagyobbTeruletuRobot = new Robot(0, 0, 0, 0, 0, 0);
+    int legnagyobbTerulet = 0;
+    int terulet;
 
+    //    Add meg minden robot útvonalának vég koordinátáit, ha azt feltételezzük, hogy a 0;0 pontból indultak!
+    public static void koordinataSzamitas()
+    {
     }
 
-// 2. Add meg, hogy melyik robot milyen messze került a kezdőponttól az út végére!
+    // 2. Add meg, hogy melyik robot milyen messze került a kezdőponttól az út végére!
 
     //    3. Melyik robot áll vízszintes irányban a legmesszebb a kezdőpontjától az út végén?
     public static void legmesszebbVizszintesen() {
@@ -84,12 +89,8 @@ public class RobotokFeladat {
     }
 
     //    9. Melyik roboté a legnagyobb terület?
-    public static void legnagyobbTerulet()
+    public void legnagyobbTerulet()
     {
-        Robot legnagyobbTeruletuRobot = new Robot(0, 0, 0, 0, 0, 0);
-        int legnagyobbTerulet = 0;
-        int terulet;
-
         for (Robot robot : ROBOTOK_LISTAJA)
         {
             terulet = Math.abs(robot.getX()) * Math.abs(robot.getX());
@@ -102,6 +103,24 @@ public class RobotokFeladat {
         }
 
         System.out.print("legnagyobbTeruletu robot: " + legnagyobbTeruletuRobot);
+    }
+
+    public void legnagyobbteruletJava8()
+    {
+        ROBOTOK_LISTAJA.stream().map(this::teruletetSzamol).findFirst();
+    }
+
+    private Object teruletetSzamol(Robot robot)
+    {
+        terulet = Math.abs(robot.getX()) * Math.abs(robot.getX());
+
+        if ( terulet > legnagyobbTerulet)
+        {
+            legnagyobbTerulet = terulet;
+            legnagyobbTeruletuRobot = robot;
+        }
+
+        return null;
     }
 
     // 10. Van-e olyan robot, melynek útvonala tartalmaz szabályos négyzetet?
