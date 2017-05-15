@@ -10,12 +10,14 @@ public class RobotokFeladat
 
     Robot legnagyobbTeruletuRobot = new Robot(0, 0, 0, 0, 0, 0);
     Robot legmesszebbLevoRobot = new Robot(0, 0, 0, 0, 0, 0);
+    Robot legkisebbTeruletuRobot = new Robot(0, 0, 0, 0, 0, 0);
     Robot legmesszebbLevoRobotXkoordinatan = new Robot(0, 0, 0, 0, 0, 0);
 
     int legnagyobbTerulet = 0;
     int terulet = 0;
     int legmesszebb = 0;
     int legmesszebbLevoKoordinata = 0;
+    int legkisebbTerulet = Integer.MAX_VALUE;
 
     //    Add meg minden robot útvonalának vég koordinátáit, ha azt feltételezzük, hogy a 0;0 pontból indultak!
     public static void koordinataSzamitas()
@@ -51,7 +53,7 @@ public class RobotokFeladat
             legmesszebbLevoRobotXkoordinatan  = robot;
             legmesszebb = robot.getX();
         }
-        
+
         return legmesszebbLevoRobotXkoordinatan;
     }
 
@@ -101,15 +103,10 @@ public class RobotokFeladat
         System.out.print("tulmentek: " + hataronBeluliRobotok);
     }
 
-
 //  8.  A robot bejárt területének azt a négyszöget nevezzük, melybe befoglalható
 //      a robot teljes útvonala. Melyik roboté a legkisebb terület?
-    public static void legkisebbTerulet()
+    public void legkisebbTerulet()
     {
-        Robot legkisebbTeruletuRobot = new Robot(0, 0, 0, 0, 0, 0);
-        int legkisebbTerulet = Integer.MAX_VALUE;
-        int terulet;
-
         for (Robot robot : ROBOTOK_LISTAJA)
         {
             terulet = Math.abs(robot.getX()) * Math.abs(robot.getX());
@@ -122,6 +119,24 @@ public class RobotokFeladat
         }
 
         System.out.print("legkisebbTeruletu robot: " + legkisebbTeruletuRobot);
+    }
+
+    public void setLegkisebbTeruletJava8()
+    {
+        ROBOTOK_LISTAJA.stream().map(this::legkisebbTeruletSzamitasa).forEach(System.out::print);
+    }
+
+    private Robot legkisebbTeruletSzamitasa(Robot robot)
+    {
+        terulet = Math.abs(robot.getX()) * Math.abs(robot.getX());
+
+        if ( terulet > legkisebbTerulet)
+        {
+            legkisebbTerulet = terulet;
+            legkisebbTeruletuRobot = robot;
+        }
+
+        return legkisebbTeruletuRobot;
     }
 
     //    9. Melyik roboté a legnagyobb terület?
