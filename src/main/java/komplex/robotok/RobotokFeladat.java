@@ -10,9 +10,12 @@ public class RobotokFeladat
 
     Robot legnagyobbTeruletuRobot = new Robot(0, 0, 0, 0, 0, 0);
     Robot legmesszebbLevoRobot = new Robot(0, 0, 0, 0, 0, 0);
+    Robot legmesszebbLevoRobotXkoordinatan = new Robot(0, 0, 0, 0, 0, 0);
+
     int legnagyobbTerulet = 0;
     int terulet = 0;
     int legmesszebb = 0;
+    int legmesszebbLevoKoordinata = 0;
 
     //    Add meg minden robot útvonalának vég koordinátáit, ha azt feltételezzük, hogy a 0;0 pontból indultak!
     public static void koordinataSzamitas()
@@ -22,18 +25,34 @@ public class RobotokFeladat
     // 2. Add meg, hogy melyik robot milyen messze került a kezdőponttól az út végére!
 
     //    3. Melyik robot áll vízszintes irányban a legmesszebb a kezdőpontjától az út végén?
-    public static void legmesszebbVizszintesen() {
-        Robot legmesszebbLevoRobot = new Robot(0, 0, 0, 0, 0, 0);
-        int legmesszebbLevoKoordinata = 0;
-
-        for (Robot robot : ROBOTOK_LISTAJA) {
-            if (robot.getX() > legmesszebbLevoKoordinata) {
+    public void legmesszebbVizszintesen()
+    {
+        for (Robot robot : ROBOTOK_LISTAJA)
+        {
+            if (robot.getX() > legmesszebbLevoKoordinata)
+            {
                 legmesszebbLevoKoordinata = robot.getX();
-                legmesszebbLevoRobot = robot;
+                legmesszebbLevoRobotXkoordinatan = robot;
             }
         }
 
-        System.out.print("legmesszebb levo robot viszintesen: " + legmesszebbLevoRobot.toString());
+        System.out.print("legmesszebb levo robot viszintesen: " + legmesszebbLevoRobotXkoordinatan.toString());
+    }
+
+    public void legmesszebbVizszintesenJava8()
+    {
+        System.out.print(ROBOTOK_LISTAJA.stream().map(this::legmesszebbXKoordinatan).findFirst());
+    }
+
+    private Robot legmesszebbXKoordinatan(Robot robot)
+    {
+        if(robot.getX() > legmesszebb)
+        {
+            legmesszebbLevoRobotXkoordinatan  = robot;
+            legmesszebb = robot.getX();
+        }
+        
+        return legmesszebbLevoRobotXkoordinatan;
     }
 
     //    4. Melyik robot jutott útvonala során legmesszebbre a kezdőpontjától?
@@ -46,11 +65,11 @@ public class RobotokFeladat
             if (robotTavolsaga > legmesszebb)
             {
                 legmesszebb = robotTavolsaga;
-                legmesszebbLevoRobot = robot;
+                legmesszebbLevoRobotXkoordinatan = robot;
             }
         }
 
-        System.out.print("legtavolabbi robot: " + legmesszebbLevoRobot + ", megtett ut: " + legmesszebb);
+        System.out.print("legtavolabbi robot: " + legmesszebbLevoRobotXkoordinatan + ", megtett ut: " + legmesszebb);
     }
 
     public void legmesszebbJutoRobotJava8()
@@ -65,10 +84,10 @@ public class RobotokFeladat
         if (robotTavolsaga > legmesszebb)
         {
             legmesszebb = robotTavolsaga;
-            legmesszebbLevoRobot = robot;
+            legmesszebbLevoRobotXkoordinatan = robot;
         }
 
-        return legmesszebbLevoRobot;
+        return legmesszebbLevoRobotXkoordinatan;
     }
 
     //  5. Add meg, melyek azok a robotok, melyek túlmentek volna egy 21×21-es tábla határain, melynek
