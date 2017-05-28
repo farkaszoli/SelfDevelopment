@@ -1,7 +1,10 @@
 package jatekok.shakesandfidgetlite;
 
-/**
- * Created by zozo on 2017.05.28..
- */
-public class Main {
+public class Main
+{
+    public static void main(String[] args)
+    {
+        // http://www.inf.u-szeged.hu/~antal/okt/prog1/kotprog/07feladat.pdf
+        System.out.println("Shakes and Fidget Lite");
+    }
 }
