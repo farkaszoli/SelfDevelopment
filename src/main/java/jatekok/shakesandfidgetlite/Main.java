@@ -6,5 +6,7 @@ public class Main
     {
         // http://www.inf.u-szeged.hu/~antal/okt/prog1/kotprog/07feladat.pdf
         System.out.println("Shakes and Fidget Lite");
+
+        TulajdonsagokBeallitasa.tulajdonsagokBeallitasa("felderito", "ember");
     }
 }

@@ -2,40 +2,10 @@ package jatekok.shakesandfidgetlite.model.kaszt;
 
 import jatekok.shakesandfidgetlite.model.faj.Faj;
 
-public class Magus
+public class Magus extends Kaszt
 {
-    private final Faj faj;
-    private final int ero;
-    private final int ugyesseg;
-    private final int ertelem;
-    private final int kitartas;
-
-    public Magus(Faj faj, int ero, int ugyesseg, int ertelem, int kitartas)
+    public Magus(Faj faj)
     {
-        this.faj = faj;
-        this.ero = ero;
-        this.ugyesseg = ugyesseg;
-        this.ertelem = ertelem;
-        this.kitartas = kitartas;
-    }
-
-    public Faj getFaj() {
-        return faj;
-    }
-
-    public int getEro() {
-        return ero;
-    }
-
-    public int getUgyesseg() {
-        return ugyesseg;
-    }
-
-    public int getErtelem() {
-        return ertelem;
-    }
-
-    public int getKitartas() {
-        return kitartas;
+        super(faj, 0, 0, 8, 2);
     }
 }

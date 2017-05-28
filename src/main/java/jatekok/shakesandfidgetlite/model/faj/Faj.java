@@ -10,7 +10,7 @@ public enum Faj
 
     private String fajTipus;
 
-    Faj(String url)
+    Faj(String fajTipus)
     {
         this.fajTipus = fajTipus;
     }

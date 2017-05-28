@@ -2,40 +2,12 @@ package jatekok.shakesandfidgetlite.model.kaszt;
 
 import jatekok.shakesandfidgetlite.model.faj.Faj;
 
-public class Felderito
+public class Felderito extends Kaszt
 {
-    private final Faj faj;
-    private final int ero;
-    private final int ugyesseg;
-    private final int ertelem;
-    private final int kitartas;
-
-    public Felderito(Faj faj, int ero, int ugyesseg, int ertelem, int kitartas)
+    public Felderito(Faj faj)
     {
-        this.faj = faj;
-        this.ero = ero;
-        this.ugyesseg = ugyesseg;
-        this.ertelem = ertelem;
-        this.kitartas = kitartas;
+        super(faj, 1, 7, 1, 4);
     }
 
-    public Faj getFaj() {
-        return faj;
-    }
 
-    public int getEro() {
-        return ero;
-    }
-
-    public int getUgyesseg() {
-        return ugyesseg;
-    }
-
-    public int getErtelem() {
-        return ertelem;
-    }
-
-    public int getKitartas() {
-        return kitartas;
-    }
 }
