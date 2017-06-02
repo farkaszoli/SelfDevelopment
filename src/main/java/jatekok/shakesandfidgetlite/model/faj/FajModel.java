@@ -14,4 +14,20 @@ public class FajModel
         this.ertelem = ertelem;
         this.kitartas = kitartas;
     }
+
+    public int getEro() {
+        return ero;
+    }
+
+    public int getUgyesseg() {
+        return ugyesseg;
+    }
+
+    public int getErtelem() {
+        return ertelem;
+    }
+
+    public int getKitartas() {
+        return kitartas;
+    }
 }

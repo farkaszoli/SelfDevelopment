@@ -1,6 +1,6 @@
 package jatekok.shakesandfidgetlite;
 
-import jatekok.shakesandfidgetlite.model.faj.FajModel;
+import jatekok.shakesandfidgetlite.model.faj.*;
 import jatekok.shakesandfidgetlite.model.kaszt.Felderito;
 import jatekok.shakesandfidgetlite.model.kaszt.Harcos;
 import jatekok.shakesandfidgetlite.model.kaszt.Kaszt;
@@ -8,27 +8,60 @@ import jatekok.shakesandfidgetlite.model.kaszt.Magus;
 
 public class TulajdonsagokBeallitasa
 {
-    public Kaszt tulajdonsagokBeallitasa(String kaszt, String faj)
+    // TODO create unit test
+
+    public Kaszt tulajdonsagokBeallitasa(String valasztottKasztTipus, String valasztottFaj)
     {
-        if ("felderito".equals(kaszt))
-        {
-            return new Felderito(fajBeallitasa(faj));
+        Kaszt kaszt = null;
 
-        } else if ("harcos".equals(kaszt))
+        if ("felderito".equals(valasztottKasztTipus))
         {
-            return new Harcos(fajBeallitasa(faj));
+            kaszt = new Felderito(fajBeallitasa(valasztottFaj));
 
-        } else if ("magus".equals(kaszt))
+        } else if ("harcos".equals(valasztottKasztTipus))
         {
-            return new Magus(fajBeallitasa(faj));
+            kaszt =  new Harcos(fajBeallitasa(valasztottFaj));
+
+        } else if ("magus".equals(valasztottKasztTipus))
+        {
+            kaszt =  new Magus(fajBeallitasa(valasztottFaj));
+        }
+
+        kasztTulajdonsagokBeallitasa(kaszt);
+        return kaszt;
+    }
+
+    private FajModel fajBeallitasa(String valasztottFaj)
+    {
+        if(Faj.DEMON.getFajTipus().equals(valasztottFaj))
+        {
+            return new Demon();
+
+        } else if(Faj.ELF.getFajTipus().equals(valasztottFaj))
+        {
+            return new Elf();
+
+        } else if(Faj.EMBER.getFajTipus().equals(valasztottFaj))
+        {
+            return new Ember();
+
+        } else if(Faj.ORK.getFajTipus().equals(valasztottFaj))
+        {
+            return new Ork();
+
+        } else if(Faj.TORP.getFajTipus().equals(valasztottFaj))
+        {
+            return new Torp();
         }
 
         return null;
-
     }
 
-    private FajModel fajBeallitasa(String faj)
+    private void kasztTulajdonsagokBeallitasa(Kaszt kaszt)
     {
-        return null;
+        kaszt.setEro(kaszt.getEro() + kaszt.getFaj().getEro());
+        kaszt.setUgyesseg(kaszt.getUgyesseg() + kaszt.getFaj().getUgyesseg());
+        kaszt.setErtelem(kaszt.getErtelem() + kaszt.getFaj().getErtelem());
+        kaszt.setKitartas(kaszt.getKitartas() + kaszt.getFaj().getKitartas());
     }
 }
