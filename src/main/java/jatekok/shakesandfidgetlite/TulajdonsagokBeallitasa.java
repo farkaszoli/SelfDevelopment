@@ -59,9 +59,13 @@ public class TulajdonsagokBeallitasa
 
     private void kasztTulajdonsagokBeallitasa(Kaszt kaszt)
     {
-        kaszt.setEro(kaszt.getEro() + kaszt.getFaj().getEro());
-        kaszt.setUgyesseg(kaszt.getUgyesseg() + kaszt.getFaj().getUgyesseg());
-        kaszt.setErtelem(kaszt.getErtelem() + kaszt.getFaj().getErtelem());
-        kaszt.setKitartas(kaszt.getKitartas() + kaszt.getFaj().getKitartas());
+        FajModel fajModel = kaszt.getFajModel();
+
+        kaszt.setEro(kaszt.getEro() + fajModel.getEro());
+        kaszt.setUgyesseg(kaszt.getUgyesseg() + fajModel.getUgyesseg());
+        kaszt.setErtelem(kaszt.getErtelem() + fajModel.getErtelem());
+        kaszt.setKitartas(kaszt.getKitartas() + fajModel.getKitartas());
+        kaszt.setSebzes(1 * (1 + kaszt.getEro() / 10));
+        kaszt.setKitartas(kaszt.getKitartas() * 5 * (kaszt.getSzint() + 1));
     }
 }

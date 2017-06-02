@@ -1,7 +1,7 @@
 package jatekok.shakesandfidgetlite.model.kaszt;
 
-import jatekok.shakesandfidgetlite.model.faj.Faj;
 import jatekok.shakesandfidgetlite.model.faj.FajModel;
+import jatekok.shakesandfidgetlite.model.kiegeszito.Taska;
 
 public class Kaszt
 {
@@ -10,23 +10,30 @@ public class Kaszt
     private int ugyesseg;
     private int ertelem;
     private int kitartas;
+    private int szint;
+    private Taska taska;
+    private double sebzes;
+    private int eletero;
 
-    public Kaszt(FajModel fajModel, int ero, int ugyesseg, int ertelem, int kitartas)
+    public Kaszt(FajModel fajModel, int ero, int ugyesseg, int ertelem, int kitartas, int szint, Taska taska,
+                 double sebzes, int eletero)
     {
         this.fajModel = fajModel;
         this.ero = ero;
         this.ugyesseg = ugyesseg;
         this.ertelem = ertelem;
         this.kitartas = kitartas;
+        this.szint = szint;
+        this.taska = taska;
+        this.sebzes = sebzes;
+        this.eletero = eletero;
     }
 
-    public FajModel getFaj()
-    {
+    public FajModel getFajModel() {
         return fajModel;
     }
 
-    public void setFaj(Faj faj)
-    {
+    public void setFajModel(FajModel fajModel) {
         this.fajModel = fajModel;
     }
 
@@ -69,6 +76,38 @@ public class Kaszt
         this.kitartas = kitartas;
     }
 
+    public int getSzint() {
+        return szint;
+    }
+
+    public void setSzint(int szint) {
+        this.szint = szint;
+    }
+
+    public Taska getTaska() {
+        return taska;
+    }
+
+    public void setTaska(Taska taska) {
+        this.taska = taska;
+    }
+
+    public double getSebzes() {
+        return sebzes;
+    }
+
+    public void setSebzes(double sebzes) {
+        this.sebzes = sebzes;
+    }
+
+    public int getEletero() {
+        return eletero;
+    }
+
+    public void setEletero(int eletero) {
+        this.eletero = eletero;
+    }
+
     @Override
     public String toString() {
         return "Kaszt{" +
@@ -77,6 +116,10 @@ public class Kaszt
                 ", ugyesseg=" + ugyesseg +
                 ", ertelem=" + ertelem +
                 ", kitartas=" + kitartas +
+                ", szint=" + szint +
+                ", taska=" + taska +
+                ", sebzes=" + sebzes +
+                ", eletero=" + eletero +
                 '}';
     }
 }
