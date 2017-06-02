@@ -2,8 +2,8 @@ package jatekok.shakesandfidgetlite.model.faj;
 
 public class Torp extends FajModel
 {
-    public Torp(int ero, int ugyesseg, int ertelem, int kitartas)
+    public Torp()
     {
-        super(ero, ugyesseg, ertelem, kitartas);
+        super(0, -2, -1, 2);
     }
 }

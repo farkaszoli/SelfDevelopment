@@ -1,11 +1,11 @@
 package jatekok.shakesandfidgetlite.model.kaszt;
 
-import jatekok.shakesandfidgetlite.model.faj.Faj;
+import jatekok.shakesandfidgetlite.model.faj.FajModel;
 
 public class Harcos extends Kaszt
 {
-    public Harcos(Faj faj)
+    public Harcos(FajModel fajModel)
     {
-        super(faj, 7, 3, 0, 5);
+        super(fajModel, 7, 3, 0, 5);
     }
 }

@@ -2,8 +2,8 @@ package jatekok.shakesandfidgetlite.model.faj;
 
 public class Ember extends FajModel
 {
-    public Ember(int ero, int ugyesseg, int ertelem, int kitartas)
+    public Ember()
     {
-        super(ero, ugyesseg, ertelem, kitartas);
+        super(0, 0, 0, 0);
     }
 }

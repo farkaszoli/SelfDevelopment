@@ -1,11 +1,11 @@
 package jatekok.shakesandfidgetlite.model.kaszt;
 
-import jatekok.shakesandfidgetlite.model.faj.Faj;
+import jatekok.shakesandfidgetlite.model.faj.FajModel;
 
 public class Magus extends Kaszt
 {
-    public Magus(Faj faj)
+    public Magus(FajModel fajModel)
     {
-        super(faj, 0, 0, 8, 2);
+        super(fajModel, 0, 0, 8, 2);
     }
 }

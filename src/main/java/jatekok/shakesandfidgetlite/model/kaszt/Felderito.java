@@ -1,13 +1,11 @@
 package jatekok.shakesandfidgetlite.model.kaszt;
 
-import jatekok.shakesandfidgetlite.model.faj.Faj;
+import jatekok.shakesandfidgetlite.model.faj.FajModel;
 
 public class Felderito extends Kaszt
 {
-    public Felderito(Faj faj)
+    public Felderito(FajModel fajModel)
     {
-        super(faj, 1, 7, 1, 4);
+        super(fajModel, 1, 7, 1, 4);
     }
-
-
 }

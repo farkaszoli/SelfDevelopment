@@ -1,32 +1,27 @@
 package jatekok.shakesandfidgetlite.model.kaszt;
 
-import jatekok.shakesandfidgetlite.model.faj.Faj;
+import jatekok.shakesandfidgetlite.model.faj.FajModel;
 
 public class Kaszt
 {
-    private Faj faj;
+    private FajModel fajModel;
     private int ero;
     private int ugyesseg;
     private int ertelem;
     private int kitartas;
 
-    public Kaszt(Faj faj, int ero, int ugyesseg, int ertelem, int kitartas)
+    public Kaszt(FajModel fajModel, int ero, int ugyesseg, int ertelem, int kitartas)
     {
-        this.faj = faj;
+        this.fajModel = fajModel;
         this.ero = ero;
         this.ugyesseg = ugyesseg;
         this.ertelem = ertelem;
         this.kitartas = kitartas;
     }
 
-    public Faj getFaj()
+    public FajModel getFaj()
     {
-        return faj;
-    }
-
-    public void setFaj(Faj faj)
-    {
-        this.faj = faj;
+        return fajModel;
     }
 
     public int getEro() {
@@ -43,28 +38,13 @@ public class Kaszt
         return ugyesseg;
     }
 
-    public void setUgyesseg(int ugyesseg)
-    {
-        this.ugyesseg = ugyesseg;
-    }
-
     public int getErtelem()
     {
         return ertelem;
     }
 
-    public void setErtelem(int ertelem)
-    {
-        this.ertelem = ertelem;
-    }
-
     public int getKitartas()
     {
         return kitartas;
-    }
-
-    public void setKitartas(int kitartas)
-    {
-        this.kitartas = kitartas;
     }
 }

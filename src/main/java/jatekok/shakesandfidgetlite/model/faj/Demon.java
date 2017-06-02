@@ -2,8 +2,8 @@ package jatekok.shakesandfidgetlite.model.faj;
 
 public class Demon extends FajModel
 {
-    public Demon(int ero, int ugyesseg, int ertelem, int kitartas)
+    public Demon()
     {
-        super(ero, ugyesseg, ertelem, kitartas);
+        super(3, -1, 0, 1);
     }
 }
