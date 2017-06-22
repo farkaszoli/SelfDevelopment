@@ -6,6 +6,7 @@ public class Taska
 {
     private List<String> targyak;
     private List<Integer> penz;
+    private int taskaMerete = 12;
 
     public Taska(List<String> targyak, List<Integer> penz)
     {
@@ -21,5 +22,20 @@ public class Taska
     public List<Integer> getPenz()
     {
         return penz;
+    }
+
+    public int getTaskaMerete()
+    {
+        return targyak.size();
+    }
+
+    public int getTaskaJelenlegiMerete()
+    {
+        return taskaMerete;
+    }
+
+    private int taskaMeretBeallitasa(int mekkorara)
+    {
+        return taskaMerete = 12;
     }
 }
