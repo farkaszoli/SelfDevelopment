@@ -1,4 +1,4 @@
-package jatekok.shakesandfidgetlite.model;
+package jatekok.shakesandfidgetlite.model.targy;
 
 public class Targy
 {

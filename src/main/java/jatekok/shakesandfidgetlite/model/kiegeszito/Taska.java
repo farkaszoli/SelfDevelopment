@@ -1,20 +1,22 @@
 package jatekok.shakesandfidgetlite.model.kiegeszito;
 
+import jatekok.shakesandfidgetlite.model.targy.Targy;
+
 import java.util.List;
 
 public class Taska
 {
-    private List<String> targyak;
+    private List<Targy> targyak;
     private List<Integer> penz;
     private int taskaMerete = 12;
 
-    public Taska(List<String> targyak, List<Integer> penz)
+    public Taska(List<Targy> targyak, List<Integer> penz)
     {
         this.targyak = targyak;
         this.penz = penz;
     }
 
-    public List<String> getTargyak()
+    public List<Targy> getTargyak()
     {
         return targyak;
     }
