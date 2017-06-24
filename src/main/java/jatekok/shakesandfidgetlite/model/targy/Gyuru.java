@@ -2,8 +2,8 @@ package jatekok.shakesandfidgetlite.model.targy;
 
 public class Gyuru extends Targy
 {
-    public Gyuru(boolean isAktiv)
+    public Gyuru(boolean isAktiv, int targyAra, int eladasiAra)
     {
-        super(isAktiv);
+        super(isAktiv, targyAra, eladasiAra);
     }
 }

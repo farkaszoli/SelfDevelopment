@@ -2,11 +2,11 @@ package jatekok.shakesandfidgetlite.model.targy;
 
 public class Fegyver extends Targy
 {
-    private FegyverTipus fegyverTipus;
+    private final FegyverTipus fegyverTipus;
 
-    public Fegyver(boolean isAktiv, FegyverTipus fegyverTipus)
+    public Fegyver(boolean isAktiv, int targyAra, int eladasiAra, FegyverTipus fegyverTipus)
     {
-        super(isAktiv);
+        super(isAktiv, targyAra, eladasiAra);
         this.fegyverTipus = fegyverTipus;
     }
 
