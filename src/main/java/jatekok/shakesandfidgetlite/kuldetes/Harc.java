@@ -23,12 +23,6 @@ public class Harc
         // 2. körtől
         gepiEllenfel.setSebzes(gepiEllenfel.getSebzes() - (jatekosEllenallasa / 2));
         jatekos.setSebzes(jatekos.getSebzes() - (gepEllenallasa / 2));
-        /*
-        Van lehetőség a kitérésre is, kitérni mindig a védekező fél tud,
-        ami úgy alakul, hogy a védekező ügyességéből kivonjuk a támadó értelem értékét, amennyiben ez
-        pozitív szám, akkor a védekező 25% eséllyel nem szenved el sebzést. Amennyiben ez az érték 0
-        vagy kisebb lenne, akkor a támadó biztosan eltalálja a védekezőt.
-         */
 
         // kitérés
         jatekos.setUgyesseg(jatekos.getUgyesseg() - gepEllenallasa);
