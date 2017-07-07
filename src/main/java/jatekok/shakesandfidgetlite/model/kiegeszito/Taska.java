@@ -36,8 +36,8 @@ public class Taska
         return taskaMerete;
     }
 
-    private int taskaMeretBeallitasa(int mekkorara)
+    private int taskaMeretenekNovelese(int bovitesMerete)
     {
-        return taskaMerete = 12;
+        return taskaMerete += bovitesMerete;
     }
 }

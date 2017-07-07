@@ -4,6 +4,8 @@ import jatekok.shakesandfidgetlite.model.kaszt.Kaszt;
 
 public class Jatek
 {
+    Harc harc = new Harc();
+
     public void jatekMenet(Kaszt jatekos)
     {
         Kaszt gepiJatekos = ellenfelLetrehozasa(jatekos);
@@ -11,15 +13,15 @@ public class Jatek
         // kiJon = true akkor jatekos
         boolean kiJon = true;
 
-        while(jatekos.getErtelem() <= 0 || gepiJatekos.getEletero() <= 0)
+        while(jatekos.getErtelem() >= 0 || gepiJatekos.getEletero() >= 0)
         {
             // TODO: jatek kiszamitasa
             if( kiJon)
             {
-                Harc.harc(jatekos, null);
+                harc.harcAKetJatekosKozott(jatekos, null);
             } else
             {
-                Harc.harc(null, gepiJatekos);
+                harc.harcAKetJatekosKozott(null, gepiJatekos);
             }
 
             jatekosCsere(kiJon);
@@ -28,6 +30,7 @@ public class Jatek
         // TODO: gyoztes
     }
 
+    // hasonlo erossegu kell legyen mint a mi jatekosunk
     public static Kaszt ellenfelLetrehozasa(Kaszt jatekos)
     {
         return new Kaszt(jatekos.getFajModel(), jatekos.getEro(), jatekos.getUgyesseg(),
