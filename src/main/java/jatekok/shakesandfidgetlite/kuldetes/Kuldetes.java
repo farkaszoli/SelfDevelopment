@@ -3,6 +3,8 @@ package jatekok.shakesandfidgetlite.kuldetes;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 public class Kuldetes
 {
