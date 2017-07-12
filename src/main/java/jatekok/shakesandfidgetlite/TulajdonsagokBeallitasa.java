@@ -1,10 +1,7 @@
 package jatekok.shakesandfidgetlite;
 
 import jatekok.shakesandfidgetlite.model.faj.*;
-import jatekok.shakesandfidgetlite.model.kaszt.Felderito;
-import jatekok.shakesandfidgetlite.model.kaszt.Harcos;
-import jatekok.shakesandfidgetlite.model.kaszt.Kaszt;
-import jatekok.shakesandfidgetlite.model.kaszt.Magus;
+import jatekok.shakesandfidgetlite.model.kaszt.*;
 
 public class TulajdonsagokBeallitasa
 {
@@ -14,21 +11,19 @@ public class TulajdonsagokBeallitasa
     {
         Kaszt kaszt = null;
 
-        if ("felderito".equals(valasztottKasztTipus))
+        switch (KasztModel.valueOf(valasztottFaj))
         {
-            kaszt = new Felderito(fajBeallitasa(valasztottFaj));
-
-        } else if ("harcos".equals(valasztottKasztTipus))
-        {
-            kaszt =  new Harcos(fajBeallitasa(valasztottFaj));
-
-        } else if ("magus".equals(valasztottKasztTipus))
-        {
-            kaszt =  new Magus(fajBeallitasa(valasztottFaj));
+            case FELDERITO:
+                kaszt = new Felderito(fajBeallitasa(valasztottFaj)); break;
+            case HARCOS:
+                kaszt = new Harcos(fajBeallitasa(valasztottFaj)); break;
+            case MAGUS:
+                kaszt = new Magus(fajBeallitasa(valasztottFaj)); break;
         }
 
         kasztTulajdonsagokBeallitasa(kaszt);
         return kaszt;
+
     }
 
     private FajModel fajBeallitasa(String valasztottFaj)
