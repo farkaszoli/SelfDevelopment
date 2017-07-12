@@ -9,6 +9,6 @@ public class Harcos extends Kaszt
 {
     public Harcos(FajModel fajModel)
     {
-        super(fajModel, 7, 3, 0, 5,0, new Taska(Collections.emptyList(), Collections.emptyList()), 0, 0);
+        super(fajModel, 7, 3, 0, 5);
     }
 }

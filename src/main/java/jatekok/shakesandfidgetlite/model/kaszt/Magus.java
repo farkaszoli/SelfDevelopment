@@ -9,6 +9,6 @@ public class Magus extends Kaszt
 {
     public Magus(FajModel fajModel)
     {
-        super(fajModel, 0, 0, 8, 2, 0, new Taska(Collections.emptyList(), Collections.emptyList()), 0, 0);
+        super(fajModel, 0, 0, 8, 2);
     }
 }

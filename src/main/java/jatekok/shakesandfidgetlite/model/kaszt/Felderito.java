@@ -9,6 +9,6 @@ public class Felderito extends Kaszt
 {
     public Felderito(FajModel fajModel)
     {
-        super(fajModel, 1, 7, 1, 4, 0, new Taska(Collections.emptyList(), Collections.emptyList()), 0, 0);
+        super(fajModel, 1, 7, 1, 4);
     }
 }

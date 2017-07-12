@@ -13,7 +13,7 @@ public class Jatek
         // kiJon = true akkor jatekos
         boolean kiJon = true;
 
-        while(jatekos.getErtelem() >= 0 || gepiJatekos.getEletero() >= 0)
+        while(gepiJatekos.getEletero() >= 0)
         {
             // TODO: jatek kiszamitasa
             if( kiJon)
@@ -34,8 +34,7 @@ public class Jatek
     public static Kaszt ellenfelLetrehozasa(Kaszt jatekos)
     {
         return new Kaszt(jatekos.getFajModel(), jatekos.getEro(), jatekos.getUgyesseg(),
-                jatekos.getErtelem(), jatekos.getKitartas(), jatekos.getSzint() - 1, null,
-                jatekos.getSebzes(), jatekos.getEletero() );
+                jatekos.getErtelem(), jatekos.getKitartas());
     }
 
     private boolean jatekosCsere(boolean kiJon)

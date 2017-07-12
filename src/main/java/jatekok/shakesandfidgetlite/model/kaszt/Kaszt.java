@@ -15,7 +15,16 @@ public class Kaszt
     private double sebzes;
     private int eletero;
 
-    public Kaszt(FajModel fajModel, int ero, int ugyesseg, int ertelem, int kitartas, int szint, Taska taska,
+    public Kaszt(FajModel fajModel, int ero, int ugyesseg, int ertelem, int kitartas)
+    {
+        this.fajModel = fajModel;
+        this.ero = ero;
+        this.ugyesseg = ugyesseg;
+        this.ertelem = ertelem;
+        this.kitartas = kitartas;
+    }
+
+    private Kaszt(FajModel fajModel, int ero, int ugyesseg, int ertelem, int kitartas, int szint, Taska taska,
                  double sebzes, int eletero)
     {
         this.fajModel = fajModel;
