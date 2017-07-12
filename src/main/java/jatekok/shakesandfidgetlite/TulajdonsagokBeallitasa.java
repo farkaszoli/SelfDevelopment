@@ -2,16 +2,16 @@ package jatekok.shakesandfidgetlite;
 
 import jatekok.shakesandfidgetlite.model.faj.*;
 import jatekok.shakesandfidgetlite.model.kaszt.*;
+import org.springframework.stereotype.Component;
 
+@Component
 public class TulajdonsagokBeallitasa
 {
-    // TODO create unit test
-
     public Kaszt tulajdonsagokBeallitasa(String valasztottKasztTipus, String valasztottFaj)
     {
         Kaszt kaszt = null;
 
-        switch (KasztModel.valueOf(valasztottFaj))
+        switch (KasztModel.valueOf(valasztottKasztTipus))
         {
             case FELDERITO:
                 kaszt = new Felderito(fajBeallitasa(valasztottFaj)); break;
@@ -23,7 +23,6 @@ public class TulajdonsagokBeallitasa
 
         kasztTulajdonsagokBeallitasa(kaszt);
         return kaszt;
-
     }
 
     private FajModel fajBeallitasa(String valasztottFaj)

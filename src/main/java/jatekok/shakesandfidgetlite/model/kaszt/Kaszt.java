@@ -2,7 +2,11 @@ package jatekok.shakesandfidgetlite.model.kaszt;
 
 import jatekok.shakesandfidgetlite.model.faj.FajModel;
 import jatekok.shakesandfidgetlite.model.kiegeszito.Taska;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
+@EqualsAndHashCode
+@ToString
 public class Kaszt
 {
     private FajModel fajModel;
@@ -115,20 +119,5 @@ public class Kaszt
 
     public void setEletero(int eletero) {
         this.eletero = eletero;
-    }
-
-    @Override
-    public String toString() {
-        return "Kaszt{" +
-                "fajModel=" + fajModel +
-                ", ero=" + ero +
-                ", ugyesseg=" + ugyesseg +
-                ", ertelem=" + ertelem +
-                ", kitartas=" + kitartas +
-                ", szint=" + szint +
-                ", taska=" + taska +
-                ", sebzes=" + sebzes +
-                ", eletero=" + eletero +
-                '}';
     }
 }

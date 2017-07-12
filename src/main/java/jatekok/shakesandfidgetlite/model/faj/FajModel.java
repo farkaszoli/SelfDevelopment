@@ -1,5 +1,10 @@
 package jatekok.shakesandfidgetlite.model.faj;
 
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+@EqualsAndHashCode
+@ToString
 public class FajModel
 {
     private int ero;

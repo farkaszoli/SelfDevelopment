@@ -81,7 +81,7 @@ public class KasztBuilder
 
     public Kaszt buildKaszt()
     {
-        return new Kaszt(fajModel, ero, ugyesseg, ertelem, kitartas, szint, taska, sebzes, eletero);
+        return new Kaszt(fajModel, ero, ugyesseg, ertelem, kitartas);
     }
 
 }
