@@ -1,10 +1,17 @@
 package jatekok.shakesandfidgetlite.kuldetes;
 
 import jatekok.shakesandfidgetlite.model.kaszt.Kaszt;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class Jatek
 {
-    Harc harc = new Harc();
+    private Harc harc;
+
+    @Autowired
+    public Jatek(Harc harc)
+    {
+        this.harc = harc;
+    }
 
     public void jatekMenet(Kaszt jatekos)
     {

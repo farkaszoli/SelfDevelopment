@@ -1,7 +1,9 @@
 package jatekok.shakesandfidgetlite.kuldetes;
 
 import jatekok.shakesandfidgetlite.model.kaszt.Kaszt;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Harc
 {
     private int jatekosEllenallasa;
