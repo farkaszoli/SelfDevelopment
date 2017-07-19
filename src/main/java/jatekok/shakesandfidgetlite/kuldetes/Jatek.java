@@ -25,10 +25,10 @@ public class Jatek
             // TODO: jatek kiszamitasa
             if( kiJon)
             {
-                harc.harcAKetJatekosKozott(jatekos, null);
+                harc.harcAKetJatekosKozott(jatekos);
             } else
             {
-                harc.harcAKetJatekosKozott(null, gepiJatekos);
+                harc.harcAKetJatekosKozott(gepiJatekos);
             }
 
             jatekosCsere(kiJon);
