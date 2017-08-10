@@ -1,7 +1,10 @@
 package jatekok.ycom.model.mezo;
 
-/**
- * Created by zozo on 2017.08.10..
- */
-public class Doboz {
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+@EqualsAndHashCode
+@ToString
+public class Doboz extends Mezo
+{
 }
