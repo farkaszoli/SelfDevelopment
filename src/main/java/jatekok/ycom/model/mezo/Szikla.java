@@ -7,4 +7,15 @@ import lombok.ToString;
 @ToString
 public class Szikla extends Mezo
 {
+    private final boolean jarhatoe;
+
+    public Szikla()
+    {
+        this.jarhatoe = false;
+    }
+
+    public boolean isJarhatoe()
+    {
+        return jarhatoe;
+    }
 }

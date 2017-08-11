@@ -7,4 +7,15 @@ import lombok.ToString;
 @ToString
 public class Terep extends Mezo
 {
+    private final boolean jarhatoe;
+
+    public Terep()
+    {
+        this.jarhatoe = true;
+    }
+
+    public boolean isJarhatoe()
+    {
+        return jarhatoe;
+    }
 }

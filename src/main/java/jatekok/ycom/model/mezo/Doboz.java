@@ -7,4 +7,15 @@ import lombok.ToString;
 @ToString
 public class Doboz extends Mezo
 {
+    private final boolean jarhatoe;
+
+    public Doboz()
+    {
+        this.jarhatoe = true;
+    }
+
+    public boolean isJarhatoe()
+    {
+        return jarhatoe;
+    }
 }

@@ -15,12 +15,14 @@ public class Karakter
     private int eletero;
     private int karakterekSzama;
     private int granatokSzam;
+    private int lepesSzam;
 
     public Karakter()
     {
         this.eletero = 100;
         this.karakterekSzama = 3;
         this.granatokSzam = 3;
+        this.lepesSzam = 7;
     }
 
     public int getEletero()
@@ -51,5 +53,15 @@ public class Karakter
     public void setGranatokSzam(int granatokSzam)
     {
         this.granatokSzam = granatokSzam;
+    }
+
+    public int getLepesSzam()
+    {
+        return lepesSzam;
+    }
+
+    public void setLepesSzam(int lepesSzam)
+    {
+        this.lepesSzam = lepesSzam;
     }
 }
