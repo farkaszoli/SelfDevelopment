@@ -8,20 +8,29 @@ import java.util.Random;
 @Component
 public class JatekMenet
 {
+    // false = elsojatekos
     private boolean kijon = false;
 
     public void jatekosKaraktereinekASzama(Karakter elsoJatekos, Karakter masodikJatekos)
     {
         while(elsoJatekos.getKarakterekSzama() > 0 || masodikJatekos.getKarakterekSzama() > 0)
         {
-            if (elsoJatekos.getEletero() <= 0)
+            if (kijon)
             {
-                elsoJatekos.setKarakterekSzama(elsoJatekos.getKarakterekSzama() - 1);
-            }
+                elsoJatekos.setEletero(elsoJatekos.getEletero() - sebzes());
 
-            if(masodikJatekos.getEletero() <= 0)
+                if (elsoJatekos.getEletero() <= 0)
+                {
+                    elsoJatekos.setKarakterekSzama(elsoJatekos.getKarakterekSzama() - 1);
+                }
+            } else
             {
-                masodikJatekos.setKarakterekSzama(masodikJatekos.getKarakterekSzama() - 1);
+                masodikJatekos.setEletero(masodikJatekos.getEletero() - sebzes());
+                
+                if (masodikJatekos.getEletero() <= 0)
+                {
+                    masodikJatekos.setKarakterekSzama(masodikJatekos.getKarakterekSzama() - 1);
+                }
             }
 
             jatekosCsere(kijon);
