@@ -1,7 +1,11 @@
 package jatekok.wumpus.game;
 
+import jatekok.wumpus.model.Feeling;
+import jatekok.wumpus.model.table.Room;
 import jatekok.wumpus.model.table.Status;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class GamePlay
@@ -25,6 +29,26 @@ public class GamePlay
                 break;
         }
 
-        return "";
+        return "test";
+    }
+
+    public String getNextRoomInformation(Feeling feeling)
+    {
+        switch (feeling)
+        {
+            case NOTFEEL:
+                System.out.println("next rooms are empty");
+                break;
+            case SMELL:
+                System.out.println("Wampus is in the next room");
+                break;
+            case BREEZE:
+                System.out.println("maybe the next room is stack");
+                break;
+            case NOISE:
+                    System.out.println("there is a bat in the next room");
+                break;
+        }
+        return "feeling test";
     }
 }

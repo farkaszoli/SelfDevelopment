@@ -9,9 +9,11 @@ public class Player
 {
     private int startXPosition;
     private int startYPosition;
+    private final Quality quality;
 
-    public Player()
+    public Player(Quality quality)
     {
+        this.quality = quality;
         this.startXPosition = 1;
         this.startYPosition = 1;
     }
@@ -34,5 +36,10 @@ public class Player
     public void setStartYPosition(int startYPosition)
     {
         this.startYPosition = startYPosition;
+    }
+
+    public Quality getQuality()
+    {
+        return quality;
     }
 }

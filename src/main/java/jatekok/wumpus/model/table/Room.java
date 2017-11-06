@@ -1,16 +1,24 @@
 package jatekok.wumpus.model.table;
 
+import jatekok.wumpus.model.Feeling;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+
+import java.util.List;
 
 @ToString
 @EqualsAndHashCode
 public class Room
 {
-    private Status status;
+    private final Status status;
+    private final List<Feeling> feelings;
+    private final RoomLevel roomLevel;
 
-    public Room()
+    public Room(Status status, List<Feeling> feelings, RoomLevel roomLevel)
     {
+        this.status = status;
+        this.feelings = feelings;
+        this.roomLevel = roomLevel;
     }
 
     public Status getStatus()
@@ -18,8 +26,13 @@ public class Room
         return status;
     }
 
-    public void setStatus(Status status)
+    public List<Feeling> getFeelings()
     {
-        this.status = status;
+        return feelings;
+    }
+
+    public RoomLevel getRoomLevel()
+    {
+        return roomLevel;
     }
 }
