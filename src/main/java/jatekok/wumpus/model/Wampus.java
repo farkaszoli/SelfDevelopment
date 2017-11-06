@@ -1,9 +1,13 @@
 package jatekok.wumpus.model;
 
-/**
- * Created by zozo on 2017.10.19..
- */
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+@ToString
+@EqualsAndHashCode
 public class Wampus
 {
-
+    public Wampus()
+    {
+    }
 }

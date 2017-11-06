@@ -9,7 +9,7 @@ public class Player
 {
     private int startXPosition;
     private int startYPosition;
-    
+
     public Player()
     {
         this.startXPosition = 1;
