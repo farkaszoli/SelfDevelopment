@@ -8,14 +8,16 @@ import lombok.ToString;
 public class RoomProperty
 {
     private final RoomLevel roomLevel;
+    private final int tableSize;
     private final int numberOfBat;
     private final int numberOfStack;
     private final int numberOfArrow;
     private final int numberOfMeat;
 
-    public RoomProperty(RoomLevel roomLevel, int numberOfBat, int numberOfStack, int numberOfArrow, int numberOfMeat)
+    public RoomProperty(RoomLevel roomLevel, int tableSize, int numberOfBat, int numberOfStack, int numberOfArrow, int numberOfMeat)
     {
         this.roomLevel = roomLevel;
+        this.tableSize = tableSize;
         this.numberOfBat = numberOfBat;
         this.numberOfStack = numberOfStack;
         this.numberOfArrow = numberOfArrow;
@@ -25,6 +27,11 @@ public class RoomProperty
     public RoomLevel getRoomLevel()
     {
         return roomLevel;
+    }
+
+    public int getTableSize()
+    {
+        return tableSize;
     }
 
     public int getNumberOfBat()
