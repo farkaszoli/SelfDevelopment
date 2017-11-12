@@ -1,6 +1,7 @@
-package jatekok.wumpus.model.table;
+package jatekok.wumpus.model.room;
 
 import jatekok.wumpus.model.Feeling;
+import jatekok.wumpus.model.table.Status;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 

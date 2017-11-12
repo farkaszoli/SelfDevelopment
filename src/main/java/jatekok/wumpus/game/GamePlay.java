@@ -1,11 +1,8 @@
 package jatekok.wumpus.game;
 
 import jatekok.wumpus.model.Feeling;
-import jatekok.wumpus.model.table.Room;
 import jatekok.wumpus.model.table.Status;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Component
 public class GamePlay
