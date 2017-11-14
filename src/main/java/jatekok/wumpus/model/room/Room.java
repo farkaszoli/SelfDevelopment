@@ -14,6 +14,7 @@ public class Room
     private final Status status;
     private final List<Feeling> feelings;
     private final RoomLevel roomLevel;
+    private boolean isEmpty;
 
     public Room(Status status, List<Feeling> feelings, RoomLevel roomLevel)
     {
@@ -35,5 +36,13 @@ public class Room
     public RoomLevel getRoomLevel()
     {
         return roomLevel;
+    }
+
+    public boolean isEmpty() {
+        return isEmpty;
+    }
+
+    public void setEmpty(boolean isEmpty) {
+        this.isEmpty = isEmpty;
     }
 }

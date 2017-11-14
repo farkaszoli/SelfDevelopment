@@ -1,7 +1,9 @@
 package jatekok.wumpus;
 
+import jatekok.wumpus.game.CreateTable;
 import jatekok.wumpus.model.room.RoomLevel;
 import jatekok.wumpus.model.table.Table;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,6 +14,8 @@ import static jatekok.wumpus.model.room.RoomLevel.*;
 public class Main
 {
     // TODO: add pmd check style, create unit tests and add mocks, use testng, log4j
+    private static CreateTable createATable;
+    private static Table gameTable;
 
     public static void main(String[] args) throws IOException
     {
@@ -19,7 +23,7 @@ public class Main
 
         String gameLevel = getLevel();
 
-        createTable(gameLevel);
+        gameTable = createATable.createATable(createTable(gameLevel));
     }
 
     // TODO: create new class for this method
@@ -33,19 +37,19 @@ public class Main
     }
 
     // TODO: refactor this and create random generator for this method (generate table structure), create unit tests
-    private static void createTable(String gameLevel)
+    private static int createTable(String gameLevel)
     {
         switch (valueOf(gameLevel))
         {
             case EASY:
-                new Table(6);
-                break;
+               return 6;
             case MEDIUM:
-                new Table(9);
-                break;
+                return 9;
             case HARD:
-                new Table(11);
-                break;
+                return 11;
         }
+
+        // TODO add default value
+        return 6;
     }
 }
