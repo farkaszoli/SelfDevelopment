@@ -9,7 +9,7 @@ import lombok.ToString;
 public class Table
 {
     // table size: n x n
-    private final Room[][] table;
+    private Room[][] table;
 
     public Table(int size)
     {
@@ -19,5 +19,10 @@ public class Table
     public Room[][] getTable()
     {
         return table;
+    }
+
+    public void setTable(Room[][] table)
+    {
+        this.table = table;
     }
 }
