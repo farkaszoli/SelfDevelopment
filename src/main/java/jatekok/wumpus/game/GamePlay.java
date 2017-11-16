@@ -17,7 +17,7 @@ import static jatekok.wumpus.model.room.RoomLevel.valueOf;
 public class GamePlay
 {
     private static CreateTable createATable;
-    private static Table gameTable;
+    private static Table[][] gameTable;
 
     private final CreateTable createTable;
 
@@ -27,7 +27,7 @@ public class GamePlay
         this.createTable = createTable;
     }
 
-    public Table createTalbe() throws IOException
+    public Table[][] createTalbe() throws IOException
     {
         String gameLevel = getLevel();
 

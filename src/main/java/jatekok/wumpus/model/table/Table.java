@@ -8,21 +8,15 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class Table
 {
-    // table size: n x n
-    private Room[][] table;
+    private Room room;
 
-    public Table(int size)
+    public Room getRoom()
     {
-        this.table = new Room[size][size];
+        return room;
     }
 
-    public Room[][] getTable()
+    public void setRoom(Room room)
     {
-        return table;
-    }
-
-    public void setTable(Room[][] table)
-    {
-        this.table = table;
+        this.room = room;
     }
 }
