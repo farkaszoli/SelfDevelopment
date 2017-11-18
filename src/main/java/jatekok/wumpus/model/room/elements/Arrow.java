@@ -6,5 +6,6 @@ import lombok.ToString;
 
 @ToString
 @EqualsAndHashCode
-public class Arrow extends RoomProperty{
+public class Arrow extends Property
+{
 }

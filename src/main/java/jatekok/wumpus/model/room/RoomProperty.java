@@ -8,6 +8,7 @@ import lombok.ToString;
 public class RoomProperty
 {
     private final RoomLevel roomLevel;
+
     private final int tableSize;
     private final int numberOfBat;
     private final int numberOfStack;

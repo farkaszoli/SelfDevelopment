@@ -31,7 +31,7 @@ public class GamePlay
     {
         String gameLevel = getLevel();
 
-        gameTable = createATable.createTable(6, Status.EMPTY, RoomLevel.EASY);
+        gameTable = createATable.createTable(Status.EMPTY, RoomLevel.EASY);
 
         return gameTable;
     }

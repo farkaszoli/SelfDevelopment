@@ -6,6 +6,6 @@ import lombok.ToString;
 
 @ToString
 @EqualsAndHashCode
-public class Stack extends RoomProperty
+public class Stack extends Property
 {
 }
