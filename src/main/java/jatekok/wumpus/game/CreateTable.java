@@ -12,33 +12,32 @@ import java.util.Random;
 @Component
 public class CreateTable
 {
+
+    // TODO separate this class and method
     public Table[][] createTable(Status status, RoomLevel roomLevel)
     {
         RoomProperty roomProperty = getLevel(roomLevel);
-
-        Property randomProperty;
-
-        boolean isEmpty;
 
         int tableSize = roomProperty.getTableSize();
 
         Table[][] gameTable = new Table[tableSize][tableSize];
 
-        createRandomGenerator(roomProperty);
+        int numberOfProperty = numberOfProperties(roomProperty);
 
-        for(int i = 0; i < tableSize; i++)
+        int x,y;
+
+        while(numberOfProperty > 0)
         {
-            for(int j = 0; j < tableSize; j++)
+            x = randomCoordinate(tableSize);
+            y = randomCoordinate(tableSize);
+
+            //TODO count number of properties?
+            if (gameTable[x][y].getRoom().isEmpty())
             {
-                // TODO i will create a random generator, it is a dummy data
-
-                randomProperty = randomProperty();
-
-                // TODO create method or object (property + boolean)
-                isEmpty = false;
-
-                gameTable[i][j].setRoom(new Room(status, Collections.emptyList(), roomLevel, randomProperty, isEmpty));
+                gameTable[x][y].setRoom(randomRoom(status, roomLevel));
             }
+
+            numberOfProperty--;
         }
 
         return gameTable;
@@ -59,42 +58,52 @@ public class CreateTable
         return null;
     }
 
-    private void createRandomGenerator(RoomProperty roomProperty)
+    private int numberOfProperties(RoomProperty roomProperty)
     {
         //  example  6*6-os pálya, 2 denevér, 5 verem, 3 nyíl, 2 hús
         int bats = roomProperty.getNumberOfBat();
         int stacks = roomProperty.getNumberOfStack();
         int arrows = roomProperty.getNumberOfArrow();
         int meat = roomProperty.getNumberOfMeat();
+
+        return bats + stacks + arrows + meat;
     }
 
-    private Property randomProperty()
+    private Room randomRoom(Status status, RoomLevel roomLevel)
     {
         Random r = new Random();
         /*
-        empty room = 1
-        bats = 2
-        stack = 3
-        arrow = 4
-        meat = 5
+
+        bats = 1
+        stack = 2
+        arrow = 3
+        meat = 4
+        empty room = 5
          */
 
         int number = r.nextInt(4) + 1;
 
+        Property property = null;
+
         switch (number)
         {
             case 1:
-                return null;
+                property = new Bat();
             case 2:
-                return new Bat();
+                property = new Stack();
             case 3:
-                return new Stack();
+                property = new Arrow();
             case 4:
-                return new Arrow();
-            case 5:
-                return new Meat();
+                property = new Meat();
         }
 
-        return null;
+        return new Room(status, Collections.emptyList(), roomLevel, property, false);
+    }
+
+    private int randomCoordinate(int tableSize)
+    {
+        Random r = new Random();
+
+        return r.nextInt(tableSize - 1) + 1;
     }
 }
