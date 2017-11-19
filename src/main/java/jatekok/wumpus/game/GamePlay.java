@@ -46,23 +46,6 @@ public class GamePlay
         return br.readLine();
     }
 
-    // TODO: refactor this and create random generator for this method (generate table structure), create unit tests
-    private static int createTable(String gameLevel)
-    {
-        switch (valueOf(gameLevel))
-        {
-            case EASY:
-                return 6;
-            case MEDIUM:
-                return 9;
-            case HARD:
-                return 11;
-        }
-
-        // TODO add default value
-        return 6;
-    }
-
     public String step(Status status)
     {
         switch (status)
@@ -98,6 +81,7 @@ public class GamePlay
                     System.out.println("there is a bat in the next room");
                 break;
         }
+
         return "feeling test";
     }
 }
