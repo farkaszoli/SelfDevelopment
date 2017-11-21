@@ -22,22 +22,47 @@ public class CreateTable
 
         Table[][] gameTable = new Table[tableSize][tableSize];
 
-        int numberOfProperty = numberOfProperties(roomProperty);
-
         int x,y;
 
-        while(numberOfProperty > 0)
+        int bats = roomProperty.getNumberOfBat();
+        int stacks = roomProperty.getNumberOfStack();
+        int arrows = roomProperty.getNumberOfArrow();
+        int meat = roomProperty.getNumberOfMeat();
+
+        int sum = bats + stacks + arrows + meat;
+
+        while(sum > 0)
         {
+
             x = randomCoordinate(tableSize);
             y = randomCoordinate(tableSize);
 
-            //TODO count number of properties?
+            //TODO use simple method
             if (gameTable[x][y].getRoom().isEmpty())
             {
-                gameTable[x][y].setRoom(randomRoom(status, roomLevel));
+                if(bats > 0)
+                {
+                    gameTable[x][y].setRoom(randomRoom(status, roomLevel, new Bat()));
+                    sum--;
+                    bats--;
+                } else if (stacks > 0 && bats == 0)
+                {
+                    gameTable[x][y].setRoom(randomRoom(status, roomLevel, new Stack()));
+                    sum--;
+                    stacks--;
+                } else if (arrows > 0 && bats == 0 && stacks == 0 )
+                {
+                    gameTable[x][y].setRoom(randomRoom(status, roomLevel, new Arrow()));
+                    sum--;
+                    arrows--;
+                } else if (meat > 0 && bats == 0 && stacks == 0 && arrows == 0)
+                {
+                    gameTable[x][y].setRoom(randomRoom(status, roomLevel, new Meat()));
+                    sum--;
+                    meat--;
+                }
             }
 
-            numberOfProperty--;
         }
 
         return gameTable;
@@ -58,45 +83,8 @@ public class CreateTable
         return null;
     }
 
-    private int numberOfProperties(RoomProperty roomProperty)
+    private Room randomRoom(Status status, RoomLevel roomLevel, Property property)
     {
-        //  example  6*6-os pálya, 2 denevér, 5 verem, 3 nyíl, 2 hús
-        int bats = roomProperty.getNumberOfBat();
-        int stacks = roomProperty.getNumberOfStack();
-        int arrows = roomProperty.getNumberOfArrow();
-        int meat = roomProperty.getNumberOfMeat();
-
-        return bats + stacks + arrows + meat;
-    }
-
-    private Room randomRoom(Status status, RoomLevel roomLevel)
-    {
-        Random r = new Random();
-        /*
-
-        bats = 1
-        stack = 2
-        arrow = 3
-        meat = 4
-        empty room = 5
-         */
-
-        int number = r.nextInt(4) + 1;
-
-        Property property = null;
-
-        switch (number)
-        {
-            case 1:
-                property = new Bat();
-            case 2:
-                property = new Stack();
-            case 3:
-                property = new Arrow();
-            case 4:
-                property = new Meat();
-        }
-
         return new Room(status, Collections.emptyList(), roomLevel, property, false);
     }
 
