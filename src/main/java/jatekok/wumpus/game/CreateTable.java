@@ -12,7 +12,6 @@ import java.util.Random;
 @Component
 public class CreateTable
 {
-
     // TODO separate this class and method
     public Table[][] createTable(Status status, RoomLevel roomLevel)
     {
@@ -21,6 +20,9 @@ public class CreateTable
         int tableSize = roomProperty.getTableSize();
 
         Table[][] gameTable = new Table[tableSize][tableSize];
+
+        // wampus position
+        gameTable[0][0].setTableElement(new Room(null, null, null, null, false));
 
         int x,y;
 
@@ -33,31 +35,30 @@ public class CreateTable
 
         while(sum > 0)
         {
-
             x = randomCoordinate(tableSize);
             y = randomCoordinate(tableSize);
 
             //TODO use simple method
-            if (gameTable[x][y].getRoom().isEmpty())
+            if (gameTable[x][y].getTableElement().isEmpty())
             {
                 if(bats > 0)
                 {
-                    gameTable[x][y].setRoom(randomRoom(status, roomLevel, new Bat()));
+                    gameTable[x][y].setTableElement(addRoom(status, roomLevel, new Bat()));
                     sum--;
                     bats--;
                 } else if (stacks > 0 && bats == 0)
                 {
-                    gameTable[x][y].setRoom(randomRoom(status, roomLevel, new Stack()));
+                    gameTable[x][y].setTableElement(addRoom(status, roomLevel, new Stack()));
                     sum--;
                     stacks--;
                 } else if (arrows > 0 && bats == 0 && stacks == 0 )
                 {
-                    gameTable[x][y].setRoom(randomRoom(status, roomLevel, new Arrow()));
+                    gameTable[x][y].setTableElement(addRoom(status, roomLevel, new Arrow()));
                     sum--;
                     arrows--;
                 } else if (meat > 0 && bats == 0 && stacks == 0 && arrows == 0)
                 {
-                    gameTable[x][y].setRoom(randomRoom(status, roomLevel, new Meat()));
+                    gameTable[x][y].setTableElement(addRoom(status, roomLevel, new Meat()));
                     sum--;
                     meat--;
                 }
@@ -83,7 +84,7 @@ public class CreateTable
         return null;
     }
 
-    private Room randomRoom(Status status, RoomLevel roomLevel, Property property)
+    private Room addRoom(Status status, RoomLevel roomLevel, Property property)
     {
         return new Room(status, Collections.emptyList(), roomLevel, property, false);
     }

@@ -5,7 +5,7 @@ import lombok.ToString;
 
 @ToString
 @EqualsAndHashCode
-public class Player
+public class Player extends TableElement
 {
     private int startXPosition;
     private int startYPosition;

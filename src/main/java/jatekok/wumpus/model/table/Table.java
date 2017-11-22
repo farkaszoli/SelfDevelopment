@@ -1,5 +1,6 @@
 package jatekok.wumpus.model.table;
 
+import jatekok.wumpus.model.TableElement;
 import jatekok.wumpus.model.room.Room;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -8,15 +9,15 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class Table
 {
-    private Room room;
+    private TableElement tableElement;
 
-    public Room getRoom()
+    public TableElement getTableElement()
     {
-        return room;
+        return tableElement;
     }
 
-    public void setRoom(Room room)
+    public void setTableElement(TableElement tableElement)
     {
-        this.room = room;
+        this.tableElement = tableElement;
     }
 }

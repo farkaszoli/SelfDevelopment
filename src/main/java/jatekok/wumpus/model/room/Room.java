@@ -1,6 +1,7 @@
 package jatekok.wumpus.model.room;
 
 import jatekok.wumpus.model.Feeling;
+import jatekok.wumpus.model.TableElement;
 import jatekok.wumpus.model.room.elements.Property;
 import jatekok.wumpus.model.table.Status;
 import lombok.EqualsAndHashCode;
@@ -10,7 +11,7 @@ import java.util.List;
 
 @ToString
 @EqualsAndHashCode
-public class Room
+public class Room extends TableElement
 {
     private final Status status;
     private final List<Feeling> feelings;
