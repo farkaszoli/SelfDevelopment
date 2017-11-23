@@ -16,7 +16,9 @@ public class Main
     {
         System.out.println("Wampus world");
 
-        gamePlay.createTalbe();
+        gamePlay.createTable();
+
+        // todo controller settings
     }
 
 

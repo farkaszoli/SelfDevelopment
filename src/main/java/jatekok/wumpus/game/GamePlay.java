@@ -1,9 +1,11 @@
 package jatekok.wumpus.game;
 
 import jatekok.wumpus.model.Feeling;
+import jatekok.wumpus.model.room.Room;
 import jatekok.wumpus.model.room.RoomLevel;
 import jatekok.wumpus.model.table.Status;
 import jatekok.wumpus.model.table.Table;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +13,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import static jatekok.wumpus.model.room.RoomLevel.EASY;
 import static jatekok.wumpus.model.room.RoomLevel.valueOf;
 
 @Component
@@ -27,25 +30,39 @@ public class GamePlay
         this.createTable = createTable;
     }
 
-    public Table[][] createTalbe() throws IOException
+    public Table[][] createTable() throws IOException
     {
-        String gameLevel = getLevel();
-
-        gameTable = createATable.createTable(Status.EMPTY, RoomLevel.EASY);
+        gameTable = createATable.createTable(Status.EMPTY, getLevel());
 
         return gameTable;
     }
 
     // TODO: create new class for this method
-    private static String getLevel() throws IOException
+    private static RoomLevel getLevel() throws IOException
     {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.print("Enter game level(easy, medium, hard): ");
 
-        return br.readLine();
+        String roomLevel = br.readLine();
+
+        if(StringUtils.isNotBlank(roomLevel))
+        {
+            switch (RoomLevel.valueOf(roomLevel))
+            {
+                case EASY:
+                    return RoomLevel.EASY;
+                case MEDIUM:
+                    return RoomLevel.MEDIUM;
+                case HARD:
+                    return RoomLevel.HARD;
+            }
+        }
+
+        return null;
     }
 
+    // todo this will be used later
     public String step(Status status)
     {
         switch (status)
