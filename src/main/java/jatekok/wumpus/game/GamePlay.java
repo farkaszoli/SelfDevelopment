@@ -59,7 +59,8 @@ public class GamePlay
             }
         }
 
-        return null;
+        throw new IllegalArgumentException("wrong room levelType: " + roomLevel);
+
     }
 
     // todo this will be used later
@@ -78,7 +79,7 @@ public class GamePlay
                 break;
         }
 
-        return "test";
+        throw new IllegalArgumentException("wrong status: " + status.getRoomType());
     }
 
     public String getNextRoomInformation(Feeling feeling)
@@ -99,6 +100,6 @@ public class GamePlay
                 break;
         }
 
-        return "feeling test";
+        throw new IllegalArgumentException("wrong feeling: " + feeling.getFeelings());
     }
 }
