@@ -38,8 +38,12 @@ public class CreateTable
             x = randomCoordinate(tableSize);
             y = randomCoordinate(tableSize);
 
+            validField(x, y, tableSize);
+
             //TODO use simple method
-            if (gameTable[x][y].getTableElement().isEmpty())
+            Table tablePosition = gameTable[x][y];
+
+            if (tablePosition.getTableElement().isEmpty())
             {
                 if(bats > 0)
                 {
@@ -63,7 +67,6 @@ public class CreateTable
                     meat--;
                 }
             }
-
         }
 
         return gameTable;
@@ -94,5 +97,16 @@ public class CreateTable
         Random r = new Random();
 
         return r.nextInt(tableSize - 1) + 1;
+    }
+
+
+    private boolean validField(int x, int y, int tableSize)
+    {
+        if (x < tableSize && y < tableSize)
+        {
+            return true;
+        }
+
+        return false;
     }
 }

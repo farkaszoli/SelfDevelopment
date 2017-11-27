@@ -56,11 +56,12 @@ public class GamePlay
                     return RoomLevel.MEDIUM;
                 case HARD:
                     return RoomLevel.HARD;
+                default:
+                    throw new IllegalArgumentException("wrong room levelType: " + roomLevel);
             }
         }
 
-        throw new IllegalArgumentException("wrong room levelType: " + roomLevel);
-
+        return null;
     }
 
     // todo this will be used later
@@ -77,9 +78,11 @@ public class GamePlay
             case MEAT:
                 System.out.print("meat");
                 break;
+            default:
+                throw new IllegalArgumentException("wrong status: " + status.getRoomType());
         }
 
-        throw new IllegalArgumentException("wrong status: " + status.getRoomType());
+        return null;
     }
 
     public String getNextRoomInformation(Feeling feeling)
@@ -96,10 +99,12 @@ public class GamePlay
                 System.out.println("maybe the next room is stack");
                 break;
             case NOISE:
-                    System.out.println("there is a bat in the next room");
+                System.out.println("there is a bat in the next room");
                 break;
+            default:
+                throw new IllegalArgumentException("wrong feeling: " + feeling.getFeelings());
         }
 
-        throw new IllegalArgumentException("wrong feeling: " + feeling.getFeelings());
+        return null;
     }
 }
