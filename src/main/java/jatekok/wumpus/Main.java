@@ -2,6 +2,8 @@ package jatekok.wumpus;
 
 import jatekok.wumpus.game.CreateTable;
 import jatekok.wumpus.game.GamePlay;
+import jatekok.wumpus.model.table.Status;
+import jatekok.wumpus.model.table.Table;
 import org.springframework.boot.ResourceBanner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -26,7 +28,9 @@ public class Main extends SpringBootServletInitializer
 
         System.out.println("Wampus world");
 
-        gamePlay.createTable();
+        Table[][] table = gamePlay.createTable();
+
+        gamePlay.game(table);
 
         // todo controller settings
 

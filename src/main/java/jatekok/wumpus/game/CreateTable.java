@@ -102,11 +102,6 @@ public class CreateTable
 
     private boolean validField(int x, int y, int tableSize)
     {
-        if (x < tableSize && y < tableSize)
-        {
-            return true;
-        }
-
-        return false;
+        return x < tableSize && y < tableSize;
     }
 }

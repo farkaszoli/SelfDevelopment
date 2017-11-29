@@ -107,4 +107,13 @@ public class GamePlay
 
         return null;
     }
+
+    public void game(Table[][] table)
+    {
+        int life = 0;
+        while(life > 0)
+        {
+            step(Status.EMPTY);
+        }
+    }
 }
